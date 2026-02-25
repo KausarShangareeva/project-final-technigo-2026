@@ -12,7 +12,7 @@ interface PDFPlanListProps {
 
 function formatDate(iso: string): string {
   const d = new Date(iso);
-  return d.toLocaleDateString("ru-RU", {
+  return d.toLocaleDateString("en-US", {
     day: "numeric",
     month: "short",
     year: "numeric",
@@ -32,7 +32,7 @@ export default function PDFPlanList({
         {/* Create card */}
         <button className={styles.createCard} onClick={onCreateNew}>
           <span className={styles.createIcon}>+</span>
-          <span className={styles.createText}>Создать новый план</span>
+          <span className={styles.createText}>Create New Plan</span>
         </button>
 
         {/* Plan cards */}
@@ -52,7 +52,7 @@ export default function PDFPlanList({
                   e.stopPropagation();
                   onDeletePlan(plan.id);
                 }}
-                aria-label="Удалить план"
+                aria-label="Delete plan"
               >
                 <Trash2 size={16} />
               </button>

@@ -6,179 +6,179 @@ import styles from "./WeekPlan.module.css";
 /* ===== Constants ===== */
 
 const DAYS = [
-  "Понедельник",
-  "Вторник",
-  "Среда",
-  "Четверг",
-  "Пятница",
-  "Суббота",
-  "Воскресенье",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday",
 ];
 
 const DAY_SHORT: Record<string, string> = {
-  Понедельник: "Пн",
-  Вторник: "Вт",
-  Среда: "Ср",
-  Четверг: "Чт",
-  Пятница: "Пт",
-  Суббота: "Сб",
-  Воскресенье: "Вс",
+  Monday: "Mon",
+  Tuesday: "Tue",
+  Wednesday: "Wed",
+  Thursday: "Thu",
+  Friday: "Fri",
+  Saturday: "Sat",
+  Sunday: "Sun",
 };
 
 const COURSES = [
   {
-    name: "Медицинский курс",
+    name: "Madinah Course",
     color: "#E0592A",
     bg: "rgba(224,89,42,0.12)",
     icon: false,
   },
   {
-    name: "Мединский курс 1",
+    name: "Madinah Course 1",
     color: "#7B2FC9",
     bg: "rgba(123,47,201,0.12)",
     icon: "/MK1.png",
   },
   {
-    name: "Мединский курс 2",
+    name: "Madinah Course 2",
     color: "#2E8B57",
     bg: "rgba(46,139,87,0.12)",
     icon: "/MK2.png",
   },
   {
-    name: "Мединский курс 3",
+    name: "Madinah Course 3",
     color: "#4A9BD9",
     bg: "rgba(74,155,217,0.12)",
     icon: "/MK3.png",
   },
   {
-    name: "Мединский курс 4",
+    name: "Madinah Course 4",
     color: "#C93545",
     bg: "rgba(201,53,69,0.12)",
     icon: "/MK4.png",
   },
   {
-    name: "Бейна Ядейк",
+    name: "Bayna Yadayk",
     color: "#D46ABF",
     bg: "rgba(212,106,191,0.12)",
     icon: false,
   },
   {
-    name: "Бейна Ядейк 1",
+    name: "Bayna Yadayk 1",
     color: "#D4940A",
     bg: "rgba(212,148,10,0.12)",
     icon: "/BY1.png",
   },
   {
-    name: "Бейна Ядейк 2",
+    name: "Bayna Yadayk 2",
     color: "#0D7C50",
     bg: "rgba(13,124,80,0.12)",
     icon: "/BY2.png",
   },
   {
-    name: "Бейна Ядейк 3",
+    name: "Bayna Yadayk 3",
     color: "#1E7FE0",
     bg: "rgba(30,127,224,0.12)",
     icon: "/BY3.png",
   },
   {
-    name: "Бейна Ядейк 4",
+    name: "Bayna Yadayk 4",
     color: "#9B1B4A",
     bg: "rgba(155,27,74,0.12)",
     icon: "/BY4.png",
   },
   {
-    name: "Коран",
+    name: "Quran",
     color: "#1B6E3A",
     bg: "rgba(27,110,58,0.12)",
     icon: "/quran.png",
   },
   {
-    name: "Аджрумийя",
+    name: "Ajrumiyyah",
     color: "#A68B2C",
     bg: "rgba(166,139,44,0.12)",
     icon: "/ajrumiyah.png",
   },
   {
-    name: "Катру ан-Нада",
+    name: "Qatr an-Nada",
     color: "#3566C0",
     bg: "rgba(53,102,192,0.12)",
     icon: false,
   },
   {
-    name: "Альфия ибн Малика",
+    name: "Alfiyyah ibn Malik",
     color: "#7045C9",
     bg: "rgba(112,69,201,0.12)",
     icon: false,
   },
   {
-    name: "Арабский",
+    name: "Arabic",
     color: "#48B07A",
     bg: "rgba(72,176,122,0.12)",
     icon: "/arabic.png",
   },
   {
-    name: "Таджвид",
+    name: "Tajweed",
     color: "#8A7D55",
     bg: "rgba(138,125,85,0.12)",
     icon: "/voice.png",
   },
   {
-    name: "Сарф",
+    name: "Sarf",
     color: "#C2185B",
     bg: "rgba(194,24,91,0.12)",
     icon: "/sarf.png",
   },
   {
-    name: "Нахву",
+    name: "Nahw",
     color: "#4652B1",
     bg: "rgba(70,82,177,0.12)",
     icon: "/nahwu.png",
   },
   {
-    name: "Муроджиа",
+    name: "Muraja'ah",
     color: "#238A72",
     bg: "rgba(35,138,114,0.12)",
     icon: false,
   },
-  { name: "Хифз", color: "#4F5EC0", bg: "rgba(79,94,192,0.12)", icon: false },
+  { name: "Hifz", color: "#4F5EC0", bg: "rgba(79,94,192,0.12)", icon: false },
   {
-    name: "Сира",
+    name: "Seerah",
     color: "#6B4E2A",
     bg: "rgba(107,78,42,0.12)",
     icon: "/Sira.png",
   },
   {
-    name: "Кысас ан-Набиййин лиль-Атфаль",
+    name: "Qisas an-Nabiyyin lil-Atfal",
     color: "#D17B30",
     bg: "rgba(209,123,48,0.12)",
     icon: false,
   },
   {
-    name: "Аль-Кыраа ар-Рашида",
+    name: "Al-Qira'a ar-Rashida",
     color: "#5A9E3C",
     bg: "rgba(90,158,60,0.12)",
     icon: false,
   },
   {
-    name: "40 хадисов ан-Навави",
+    name: "40 Hadith an-Nawawi",
     color: "#8C3D8B",
     bg: "rgba(140,61,139,0.12)",
     icon: false,
   },
   {
-    name: "Муаллим сани",
+    name: "Mu'allim Thani",
     color: "#2CA5A5",
     bg: "rgba(44,165,165,0.12)",
     icon: false,
   },
   {
-    name: "Хатм Корана",
+    name: "Khatm Quran",
     color: "#1A5C3E",
     bg: "rgba(26,92,62,0.12)",
     icon: false,
   },
   {
-    name: "Английский язык",
+    name: "English",
     color: "#2868A9",
     bg: "rgba(40,104,169,0.12)",
     icon: "/english.png",
@@ -186,15 +186,15 @@ const COURSES = [
 ];
 
 const FEATURED = new Set([
-  "Медицинский курс",
-  "Бейна Ядейк",
-  "Коран",
-  "Таджвид",
-  "Хифз",
-  "Сарф",
-  "Сира",
-  "Аджрумийя",
-  "Аль-Кыраа ар-Рашида",
+  "Madinah Course",
+  "Bayna Yadayk",
+  "Quran",
+  "Tajweed",
+  "Hifz",
+  "Sarf",
+  "Seerah",
+  "Ajrumiyyah",
+  "Al-Qira'a ar-Rashida",
 ]);
 
 function isFeatured(name: string): boolean {
@@ -202,12 +202,12 @@ function isFeatured(name: string): boolean {
 }
 
 const DURATIONS = [
-  { label: "30 минут", value: 30 },
-  { label: "1 час", value: 60 },
-  { label: "1.5 часа", value: 90 },
-  { label: "2 часа", value: 120 },
-  { label: "2.5 часа", value: 150 },
-  { label: "3 часа", value: 180 },
+  { label: "30 min", value: 30 },
+  { label: "1 hour", value: 60 },
+  { label: "1.5 hours", value: 90 },
+  { label: "2 hours", value: 120 },
+  { label: "2.5 hours", value: 150 },
+  { label: "3 hours", value: 180 },
 ];
 
 function generateTimeSlots(): string[] {
@@ -341,7 +341,7 @@ export default function WeekPlan({
 
     doc.open();
     doc.write(`<!DOCTYPE html>
-<html><head><meta charset="utf-8"><title>Недельный план</title>
+<html><head><meta charset="utf-8"><title>Weekly Plan</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   ${pageSize}
@@ -380,32 +380,32 @@ export default function WeekPlan({
             onClick={() => onOrientationChange("vertical")}
           >
             <img src="/virtical.svg" alt="" className={styles.toggleIcon} />
-            <span>Вертикальный</span>
+            <span>Vertical</span>
           </button>
           <button
             className={`${styles.toggleBtn} ${orientation === "horizontal" ? styles.toggleActive : ""}`}
             onClick={() => onOrientationChange("horizontal")}
           >
             <img src="/horizontal.svg" alt="" className={styles.toggleIcon} />
-            <span>Горизонтальный</span>
+            <span>Horizontal</span>
           </button>
         </div>
         {/* Emoji toggle */}
         <button
           className={`${styles.emojiSwitch} ${showEmoji ? styles.emojiOn : styles.emojiOff}`}
           onClick={() => setShowEmoji((v) => !v)}
-          aria-label="Добавить эмоджи"
+          aria-label="Toggle emoji"
         >
           <span className={styles.emojiThumb}>{showEmoji ? "😊" : "🌒"}</span>
         </button>
 
         <button className={styles.saveBtn} onClick={onSave} disabled={!canSave}>
           <Save size={18} />
-          Сохранить план
+          Save Plan
         </button>
         <button className={styles.printBtn} onClick={handlePrint}>
           <Printer size={18} />
-          Распечатать PDF
+          Print PDF
         </button>
       </div>
 
@@ -466,20 +466,20 @@ function CoursePopup({
     <div className={styles.overlay} onClick={onClose}>
       <div className={styles.popup} onClick={(e) => e.stopPropagation()}>
         <div className={styles.popupHeader}>
-          <span>Добавить курс</span>
+          <span>Add Course</span>
           <button className={styles.popupClose} onClick={onClose}>
             &times;
           </button>
         </div>
 
         {/* Courses */}
-        <p className={styles.popupLabel}>🎓 Выберите курс</p>
+        <p className={styles.popupLabel}>Select a course</p>
         <div className={styles.searchBox}>
           <Search size={16} className={styles.searchIcon} />
           <input
             className={styles.searchInput}
             type="text"
-            placeholder="Не нашли курс? Введите название…"
+            placeholder="Can't find a course? Type the name..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
@@ -499,12 +499,12 @@ function CoursePopup({
             </button>
           ))}
           {visibleCourses.length === 0 && (
-            <p className={styles.searchEmpty}>Ничего не найдено</p>
+            <p className={styles.searchEmpty}>Nothing found</p>
           )}
         </div>
 
         {/* Duration */}
-        <p className={styles.popupLabel}>🕰️ Длительность</p>
+        <p className={styles.popupLabel}>Duration</p>
         <div className={styles.durationGrid}>
           {DURATIONS.map((d) => (
             <button
@@ -527,7 +527,7 @@ function CoursePopup({
             }
           }}
         >
-          Добавить в расписание
+          Add to Schedule
         </button>
       </div>
     </div>
@@ -620,7 +620,7 @@ function VerticalTable({
     <table className={styles.table}>
       <thead>
         <tr>
-          <th className={styles.timeHeader}>Время</th>
+          <th className={styles.timeHeader}>Time</th>
           {DAYS.map((day) => (
             <th key={day} className={styles.dayHeader}>
               <span className={styles.dayFull} data-print="day-full">
@@ -673,7 +673,7 @@ function HorizontalTable({
     <table className={`${styles.table} ${styles.tableHorizontal}`}>
       <thead>
         <tr>
-          <th className={styles.timeHeader}>Время</th>
+          <th className={styles.timeHeader}>Time</th>
           {DAYS.map((day) => (
             <th key={day} className={styles.dayHeader}>
               <span className={styles.dayFull} data-print="day-full">

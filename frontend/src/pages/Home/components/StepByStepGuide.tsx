@@ -25,7 +25,7 @@ export default function StepByStepGuide() {
           </h3>
           <div className={styles.placeholder}>
             <span className={styles.placeholderText}>
-              Изображение скоро появится
+              Image coming soon
             </span>
           </div>
           <p className={styles.cardBottom}>
@@ -44,7 +44,7 @@ export default function StepByStepGuide() {
           </h3>
           <div className={styles.placeholder}>
             <span className={styles.placeholderText}>
-              Изображение скоро появится
+              Image coming soon
             </span>
           </div>
           <p className={styles.cardBottom}>

@@ -5,25 +5,25 @@ export default function EnvelopePreview() {
   return (
     <section id="envelope" className={styles.previewSection}>
       <SectionHeader
-        title="Готовый график занятий с датами"
-        subtitle="План, график и срок — в одном месте"
+        title="Ready lesson schedule with dates"
+        subtitle="Plan, schedule and deadline — all in one place"
         titleWidth="60%"
       />
 
       <div className={styles.envelopeWrapper}>
         <div className={styles.envelope}>
-          {/* Передняя рубаза конверта */}
+          {/* Front base of envelope */}
           <div className={styles.coverLeft} />
           <div className={styles.coverRight} />
 
-          {/* Серые карточки внутри */}
+          {/* Gray cards inside */}
           <div className={`${styles.card} ${styles.cardLeft}`} />
           <div className={`${styles.card} ${styles.cardRight}`} />
 
-          {/* Центральный placeholder */}
+          {/* Central placeholder */}
           <div className={styles.placeholder} />
 
-          {/* задняя крышка конверта */}
+          {/* Back flap of envelope */}
           <div className={styles.flap} />
         </div>
       </div>

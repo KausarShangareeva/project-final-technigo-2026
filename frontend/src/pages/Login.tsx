@@ -81,11 +81,11 @@ export default function Login() {
                     fill="#EA4335"
                   />
                 </svg>
-                Продолжить с Google
+                Continue with Google
               </button>
 
               <div className={styles.divider}>
-                <span>ИЛИ</span>
+                <span>OR</span>
               </div>
             </>
           )}

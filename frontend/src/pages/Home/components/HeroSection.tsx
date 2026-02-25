@@ -9,10 +9,10 @@ export default function HeroSection() {
   const { get } = useCopy();
 
   const phrases = [
-    { emoji: "🎯", text: "довести курс до конца." },
-    { emoji: "✍️", text: "составить план обучения" },
-    { emoji: "📄", text: "скачать расписание в PDF" },
-    { emoji: "🔔", text: "помнить о занятиях" },
+    { emoji: "🎯", text: "complete your course." },
+    { emoji: "✍️", text: "create a study plan" },
+    { emoji: "📄", text: "download your schedule as PDF" },
+    { emoji: "🔔", text: "stay on top of your lessons" },
   ];
   const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
 
@@ -26,16 +26,16 @@ export default function HeroSection() {
 
   return (
     <div id="hero" className={styles.wrapper}>
-      <div className={styles.badge}>✨ Ваш Спутник в Изучении Арабского</div>
+      <div className={styles.badge}>✨ Your Arabic Learning Companion</div>
 
       <h1 className={styles.mainTitle}>
-        Учишь арабский язык?
+        Learning Arabic?
         <br />
-        Делай это системно
+        Do it systematically
       </h1>
 
       <h2 className={styles.animatedTitle}>
-        Мы поможем вам{" "}
+        We'll help you{" "}
         <span className={styles.changingPhraseWrapper} key={currentPhraseIndex}>
           <span className={styles.phraseEmoji}>
             {phrases[currentPhraseIndex].emoji}

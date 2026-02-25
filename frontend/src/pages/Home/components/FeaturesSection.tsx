@@ -50,7 +50,7 @@ export default function FeaturesSection() {
         })}
       </div>
 
-      <CTAButton to="/register">Начать бесплатно</CTAButton>
+      <CTAButton to="/register">Get Started Free</CTAButton>
     </section>
   );
 }

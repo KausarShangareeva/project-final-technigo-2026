@@ -25,12 +25,12 @@ export default function Footer() {
           <div className={styles.column}>
             <h4 className={styles.columnTitle}>{get("footer.quickLinks")}</h4>
             <nav className={styles.links}>
-              <a href="#hero">Главная</a>
-              <a href="#features">Возможности</a>
-              <a href="#how-it-works">Как это работает</a>
-              <a href="#envelope">Конверт</a>
-              <a href="#pdf-export">PDF экспорт</a>
-              <a href="#notifications">Уведомления</a>
+              <a href="#hero">Home</a>
+              <a href="#features">Features</a>
+              <a href="#how-it-works">How It Works</a>
+              <a href="#envelope">Envelope</a>
+              <a href="#pdf-export">PDF Export</a>
+              <a href="#notifications">Notifications</a>
             </nav>
           </div>
 
@@ -43,7 +43,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
               >
                 <MessageCircle size={15} />
-                Написать автору
+                Message the Author
               </a>
               <a
                 href="https://buymeacoffee.com"
@@ -51,7 +51,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
               >
                 <Coffee size={15} />
-                Купить автору кофе
+                Buy Me a Coffee
               </a>
               <a
                 href="https://t.me/kausarsh"
@@ -59,7 +59,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
               >
                 <Sparkles size={15} />
-                Предложить проект
+                Suggest a Project
               </a>
               <a
                 href="https://t.me/kausarsh"
@@ -67,7 +67,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
               >
                 <MessagesSquare size={15} />
-                Оставить отзыв
+                Leave Feedback
               </a>
               <a
                 href="https://github.com/KausarShangareeva/qalamflow"
@@ -99,7 +99,7 @@ export default function Footer() {
         </span>
       </div>
 
-      <p className={styles.madeWith}>Сделано с 🧠</p>
+      <p className={styles.madeWith}>Made with 🧠</p>
     </footer>
   );
 }

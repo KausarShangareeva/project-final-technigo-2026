@@ -117,11 +117,11 @@ export default function Register() {
                     fill="#EA4335"
                   />
                 </svg>
-                Продолжить с Google
+                Continue with Google
               </button>
 
               <div className={styles.divider}>
-                <span>ИЛИ</span>
+                <span>OR</span>
               </div>
             </>
           )}
@@ -136,7 +136,7 @@ export default function Register() {
                 <input
                   type="text"
                   className={styles.input}
-                  placeholder="Ваше имя"
+                  placeholder="Your name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   required

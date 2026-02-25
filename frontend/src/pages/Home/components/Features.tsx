@@ -7,9 +7,9 @@ export default function Features() {
   return (
     <section id="notifications" className={styles.section}>
       <SectionHeader
-        title="Получайте уведомления и отмечайте прогресс"
+        title="Get notifications and track your progress"
         titleWidth="90%"
-        subtitle="Визуализация вашего успеха в процентах"
+        subtitle="Visualize your success in percentages"
       />
 
       <div className={styles.grid}>
@@ -17,18 +17,18 @@ export default function Features() {
         <div className={styles.card}>
           <div className={styles.tag}>
             <Bell size={20} color="blue" />
-            <span>Напоминания</span>
+            <span>Reminders</span>
           </div>
           <h3 className={styles.cardTitle}>
-            Получайте уведомления о начале урока за 15 минут и мотивацию
+            Get lesson reminders 15 minutes before and stay motivated
           </h3>
           <div className={styles.placeholder}>
             <span className={styles.placeholderText}>
-              Изображение скоро появится
+              Image coming soon
             </span>
           </div>
           <p className={styles.cardBottom}>
-            Выберите курс, укажите даты — и получите готовое расписание занятий
+            Choose a course, set your dates — and get a ready lesson schedule
           </p>
         </div>
 
@@ -36,23 +36,23 @@ export default function Features() {
         <div className={styles.card}>
           <div className={styles.tag}>
             <CircleStar size={20} color="blue" />
-            <span>Прогресс</span>
+            <span>Progress</span>
           </div>
           <h3 className={styles.cardTitle}>
-            Отмечайте пройденные уроки и следите за достижениями
+            Mark completed lessons and track your achievements
           </h3>
           <div className={styles.placeholder}>
             <span className={styles.placeholderText}>
-              Изображение скоро появится
+              Image coming soon
             </span>
           </div>
           <p className={styles.cardBottom}>
-            Визуальная статистика и напоминания помогут вам не сбиться с пути
+            Visual stats and reminders will help you stay on track
           </p>
         </div>
       </div>
 
-      <CTAButton to="/register">Начать планировать</CTAButton>
+      <CTAButton to="/register">Start Planning</CTAButton>
     </section>
   );
 }

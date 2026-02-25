@@ -9,9 +9,9 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'robots.txt', 'apple-touch-icon.svg'],
       manifest: {
-        name: 'QalamFlow - Трекер исламских знаний',
+        name: 'QalamFlow - Islamic Knowledge Tracker',
         short_name: 'QalamFlow',
-        description: 'Отслеживайте ваше путешествие в исламских знаниях с персонализированным расписанием и прогнозированием прогресса',
+        description: 'Track your Islamic knowledge journey with personalized scheduling and progress forecasting',
         theme_color: '#6366f1',
         background_color: '#0f172a',
         display: 'standalone',

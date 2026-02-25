@@ -38,22 +38,22 @@ export default function Navigation() {
     <>
       <header className={styles.header}>
         <div className={styles.container}>
+          {/* Left: Logo */}
           <Link to={user ? "/workspace" : "/"} className={styles.logoLink}>
             <Logo size="medium" />
           </Link>
 
+          {/* Center: Nav links */}
           <nav className={styles.nav}>
             <div className={styles.links}>
               {user ? (
                 <>
                   <Link to="/" className={styles.navLink}>
-                    Главная
+                    Home
                   </Link>
-
                   <Link to="workspace" className={styles.navLink}>
-                    Моя страница
+                    My Page
                   </Link>
-
                   <div className={styles.dropdownWrapper}>
                     <button className={styles.contactLink}>
                       <span className={styles.onlineIndicator} />
@@ -67,7 +67,7 @@ export default function Navigation() {
                         className={styles.dropdownItem}
                       >
                         <MessageCircle size={16} />
-                        Написать автору
+                        Message the Author
                       </a>
                       <a
                         href="https://buymeacoffee.com"
@@ -76,7 +76,7 @@ export default function Navigation() {
                         className={styles.dropdownItem}
                       >
                         <Coffee size={16} />
-                        Купить автору кофе
+                        Buy Me a Coffee
                       </a>
                       <a
                         href="https://t.me/kausarsh"
@@ -85,7 +85,7 @@ export default function Navigation() {
                         className={styles.dropdownItem}
                       >
                         <Sparkles size={16} />
-                        Предложить проект
+                        Suggest a Project
                       </a>
                       <a
                         href="https://t.me/kausarsh"
@@ -94,42 +94,19 @@ export default function Navigation() {
                         className={styles.dropdownItem}
                       >
                         <MessagesSquare size={16} />
-                        Оставить отзыв
+                        Leave Feedback
                       </a>
                     </div>
                   </div>
-
-                  <span className={styles.divider}></span>
-
-                  <button
-                    onClick={toggleTheme}
-                    className={styles.themeBtn}
-                    title={theme === "dark" ? "Светлая тема" : "Темная тема"}
-                  >
-                    {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
-                  </button>
-
-                  <button onClick={handleLogout} className={styles.logoutBtn}>
-                    Выйти
-                    <LogOut size={18} />
-                  </button>
-
-                  <button
-                    className={styles.burgerBtn}
-                    onClick={() => setMenuOpen(true)}
-                  >
-                    <Menu size={20} />
-                  </button>
                 </>
               ) : (
                 <>
                   <Link to="#" className={styles.navLink}>
-                    Как это работает
+                    How It Works
                   </Link>
                   <Link to="#" className={styles.navLink}>
-                    Возможности
+                    Features
                   </Link>
-
                   <div className={styles.dropdownWrapper}>
                     <button className={styles.contactLink}>
                       <span className={styles.onlineIndicator} />
@@ -143,7 +120,7 @@ export default function Navigation() {
                         className={styles.dropdownItem}
                       >
                         <MessageCircle size={16} />
-                        Написать автору
+                        Message the Author
                       </a>
                       <a
                         href="https://buymeacoffee.com"
@@ -152,7 +129,7 @@ export default function Navigation() {
                         className={styles.dropdownItem}
                       >
                         <Coffee size={16} />
-                        Купить автору кофе
+                        Buy Me a Coffee
                       </a>
                       <a
                         href="https://t.me/kausarsh"
@@ -161,7 +138,7 @@ export default function Navigation() {
                         className={styles.dropdownItem}
                       >
                         <Sparkles size={16} />
-                        Предложить проект
+                        Suggest a Project
                       </a>
                       <a
                         href="https://t.me/kausarsh"
@@ -170,35 +147,49 @@ export default function Navigation() {
                         className={styles.dropdownItem}
                       >
                         <MessagesSquare size={16} />
-                        Оставить отзыв
+                        Leave Feedback
                       </a>
                     </div>
                   </div>
-
-                  <Link to="/login" className={styles.contactBtn}>
-                    {localStorage.getItem("hasAccount") ? "Войти" : "Начать"}
-                    <ArrowUpRight size={16} />
-                  </Link>
-
-                  <span className={styles.divider}></span>
-                  <button
-                    onClick={toggleTheme}
-                    className={styles.themeBtn}
-                    title={theme === "dark" ? "Светлая тема" : "Темная тема"}
-                  >
-                    {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
-                  </button>
-
-                  <button
-                    className={styles.burgerBtn}
-                    onClick={() => setMenuOpen(true)}
-                  >
-                    <Menu size={20} />
-                  </button>
                 </>
               )}
             </div>
           </nav>
+
+          {/* Right: CTA + Theme + Burger */}
+          <div className={styles.rightActions}>
+            {user ? (
+              <>
+                <button onClick={handleLogout} className={styles.logoutBtn}>
+                  Logout
+                  <LogOut size={18} />
+                </button>
+                <span className={styles.divider} />
+              </>
+            ) : (
+              <>
+                <Link to="/login" className={styles.contactBtn}>
+                  {localStorage.getItem("hasAccount") ? "Log in" : "Get Started"}
+                  <ArrowUpRight size={16} />
+                </Link>
+              </>
+            )}
+
+            <button
+              onClick={toggleTheme}
+              className={styles.themeBtn}
+              title={theme === "dark" ? "Light theme" : "Dark theme"}
+            >
+              {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
+
+            <button
+              className={styles.burgerBtn}
+              onClick={() => setMenuOpen(true)}
+            >
+              <Menu size={20} />
+            </button>
+          </div>
         </div>
       </header>
 
@@ -221,7 +212,7 @@ export default function Navigation() {
           <>
             <Link to="/" className={styles.mobileNavLink} onClick={closeMenu}>
               <Home size={18} />
-              Главная
+              Home
             </Link>
             <Link
               to="/workspace"
@@ -229,7 +220,7 @@ export default function Navigation() {
               onClick={closeMenu}
             >
               <LayoutDashboard size={18} />
-              Моя страница
+              My Page
             </Link>
 
             <div className={styles.mobileDivider} />
@@ -241,7 +232,7 @@ export default function Navigation() {
               className={styles.mobileNavLink}
             >
               <MessageCircle size={18} />
-              Написать автору
+              Message the Author
             </a>
             <a
               href="https://buymeacoffee.com"
@@ -250,7 +241,7 @@ export default function Navigation() {
               className={styles.mobileNavLink}
             >
               <Coffee size={18} />
-              Купить автору кофе
+              Buy Me a Coffee
             </a>
             <a
               href="https://t.me/kausarsh"
@@ -259,7 +250,7 @@ export default function Navigation() {
               className={styles.mobileNavLink}
             >
               <Sparkles size={18} />
-              Предложить проект
+              Suggest a Project
             </a>
             <a
               href="https://t.me/kausarsh"
@@ -268,7 +259,7 @@ export default function Navigation() {
               className={styles.mobileNavLink}
             >
               <MessagesSquare size={18} />
-              Оставить отзыв
+              Leave Feedback
             </a>
 
             <div className={styles.mobileDivider} />
@@ -279,7 +270,7 @@ export default function Navigation() {
               style={{ cursor: "pointer" }}
             >
               {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
-              {theme === "dark" ? "Светлая тема" : "Тёмная тема"}
+              {theme === "dark" ? "Light theme" : "Dark theme"}
             </button>
 
             <button
@@ -290,16 +281,16 @@ export default function Navigation() {
               }}
             >
               <LogOut size={18} />
-              Выйти
+              Logout
             </button>
           </>
         ) : (
           <>
             <Link to="#" className={styles.mobileNavLink} onClick={closeMenu}>
-              Как это работает
+              How It Works
             </Link>
             <Link to="#" className={styles.mobileNavLink} onClick={closeMenu}>
-              Возможности
+              Features
             </Link>
 
             <div className={styles.mobileDivider} />
@@ -311,7 +302,7 @@ export default function Navigation() {
               className={styles.mobileNavLink}
             >
               <MessageCircle size={18} />
-              Написать автору
+              Message the Author
             </a>
             <a
               href="https://buymeacoffee.com"
@@ -320,7 +311,7 @@ export default function Navigation() {
               className={styles.mobileNavLink}
             >
               <Coffee size={18} />
-              Купить автору кофе
+              Buy Me a Coffee
             </a>
 
             <div className={styles.mobileDivider} />
@@ -331,7 +322,7 @@ export default function Navigation() {
               style={{ cursor: "pointer" }}
             >
               {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
-              {theme === "dark" ? "Светлая тема" : "Тёмная тема"}
+              {theme === "dark" ? "Light theme" : "Dark theme"}
             </button>
 
             <Link
@@ -340,7 +331,7 @@ export default function Navigation() {
               onClick={closeMenu}
             >
               <ArrowUpRight size={18} />
-              {localStorage.getItem("hasAccount") ? "Войти" : "Начать"}
+              {localStorage.getItem("hasAccount") ? "Log in" : "Get Started"}
             </Link>
           </>
         )}

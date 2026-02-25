@@ -1,421 +1,421 @@
 {
   "app": {
     "name": "QalamFlow",
-    "tagline": "Ваш трекер путешествия в исламские знания",
+    "tagline": "Your Islamic knowledge journey tracker",
     "copyright": "QalamFlow"
   },
   "nav": {
-    "dashboard": "Панель",
-    "books": "Книги",
-    "schedule": "Расписание",
-    "roadmap": "План",
-    "contact": "Автор",
-    "login": "Вход",
-    "register": "Регистрация",
-    "logout": "Выход"
+    "dashboard": "Dashboard",
+    "books": "Books",
+    "schedule": "Schedule",
+    "roadmap": "Roadmap",
+    "contact": "Contact",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout"
   },
   "notFound": {
-    "title": "Страница не найдена",
-    "goHome": "На главную"
+    "title": "Page not found",
+    "goHome": "Go home"
   },
   "protectedRoute": {
-    "loading": "Загрузка..."
+    "loading": "Loading..."
   },
   "home": {
-    "title": "Ваш путь к знаниям начинается здесь",
-    "subtitle": "Заполни календарь. Система покажет, когда ты закончишь курс.",
+    "title": "Your path to knowledge starts here",
+    "subtitle": "Fill in the calendar. The system will show when you'll finish your course.",
     "cta": {
-      "dashboard": "Перейти к панели",
-      "register": "Построить свой план"
+      "dashboard": "Go to dashboard",
+      "register": "Build your plan"
     },
     "hero": {
-      "title": "QalamFlow: Ваш путь к исламским знаниям",
-      "subtitle": "Структурированное обучение без хаоса и выгорания. Постройте свой план сегодня!",
-      "cta": "Построить свой план",
-      "ctaSecondary": "Узнать больше"
+      "title": "QalamFlow: Your Path to Islamic Knowledge",
+      "subtitle": "Structured learning without chaos and burnout. Build your plan today!",
+      "cta": "Build your plan",
+      "ctaSecondary": "Learn more"
     },
     "features": {
-      "title": "Что Вас Ждет",
-      "subtitle": "Полный набор инструментов для эффективного и приятного изучения арабского языка.",
+      "title": "What Awaits You",
+      "subtitle": "A complete set of tools for effective and enjoyable Arabic language learning.",
       "items": [
         {
-          "title": "Персональный Roadmap",
-          "description": "Система рассчитывает последовательность книг и тем на основе твоего уровня и времени.",
-          "subtitle": "Персональный маршрут"
+          "title": "Personal Roadmap",
+          "description": "The system calculates the sequence of books and topics based on your level and time.",
+          "subtitle": "Personal route"
         },
         {
-          "title": "Отслеживание прогресса",
-          "description": "Фиксируй выполненные уроки и видь реальный процент завершения курса.",
-          "subtitle": "Отслеживание прогресса"
+          "title": "Progress Tracking",
+          "description": "Log completed lessons and see the real percentage of course completion.",
+          "subtitle": "Progress tracking"
         },
         {
-          "title": "Планирование расписания",
-          "description": "Выбери, сколько дней в неделю ты учишься — система распределит нагрузку автоматически.",
-          "subtitle": "Планирование расписания"
+          "title": "Schedule Planning",
+          "description": "Choose how many days a week you study — the system will distribute the workload automatically.",
+          "subtitle": "Schedule planning"
         },
         {
-          "title": "Система уведомлений",
-          "description": "Напоминания о занятиях и дедлайнах, чтобы не сбиваться с темпа.",
-          "subtitle": "Система уведомлений"
+          "title": "Notification System",
+          "description": "Reminders about lessons and deadlines to keep you on track.",
+          "subtitle": "Notification system"
         },
         {
-          "title": "Экспорт в PDF",
-          "description": "Скачай своё расписание в удобном формате для печати или отправки преподавателю.",
-          "subtitle": "Экспорт в PDF"
+          "title": "PDF Export",
+          "description": "Download your schedule in a convenient format for printing or sending to your teacher.",
+          "subtitle": "PDF export"
         },
         {
-          "title": "Прогноз завершения",
-          "description": "Узнай, через сколько месяцев ты закончишь курс при текущем темпе.",
-          "subtitle": "Прогноз завершения"
+          "title": "Completion Forecast",
+          "description": "Find out how many months it will take to finish the course at your current pace.",
+          "subtitle": "Completion forecast"
         }
       ]
     },
     "howItWorks": {
-      "title": "Как это работает",
-      "subtitle": "От настройки профиля до готового плана обучения — за несколько минут.",
+      "title": "How It Works",
+      "subtitle": "From profile setup to a ready learning plan — in just a few minutes.",
       "step1": {
-        "tag": "Настройте профиль",
-        "main": "Выберите уровень и учебник",
-        "bottom": "План формируется с учётом вашего текущего уровня"
+        "tag": "Set up your profile",
+        "main": "Choose your level and textbook",
+        "bottom": "The plan is built based on your current level"
       },
       "step2": {
-        "tag": "Получите план",
-        "main": "Система рассчитает нагрузку и даты занятий",
-        "bottom": "Вы увидите график и точную дату завершения курса"
+        "tag": "Get your plan",
+        "main": "The system will calculate workload and lesson dates",
+        "bottom": "You'll see a schedule and the exact course completion date"
       },
-      "cta": "Создать мой первый план"
+      "cta": "Create my first plan"
     },
     "testimonial": {
-      "quote": "Чернила ученого драгоценнее крови мученика.",
-      "author": "Пророк Мухаммад ﷺ"
+      "quote": "The ink of the scholar is more precious than the blood of the martyr.",
+      "author": "Prophet Muhammad ﷺ"
     }
   },
   "auth": {
     "login": {
-      "title": "Вход",
-      "subtitle": "Продолжайте ваше путешествие к знаниям",
-      "emailPlaceholder": "Электронная почта",
-      "passwordPlaceholder": "Пароль",
-      "submit": "Войти",
-      "submitting": "Вход...",
-      "submitButton": "Войти",
-      "noAccount": "Нет аккаунта?",
-      "registerLink": "Регистрация"
+      "title": "Login",
+      "subtitle": "Continue your journey to knowledge",
+      "emailPlaceholder": "Email",
+      "passwordPlaceholder": "Password",
+      "submit": "Log in",
+      "submitting": "Logging in...",
+      "submitButton": "Log in",
+      "noAccount": "Don't have an account?",
+      "registerLink": "Register"
     },
     "register": {
-      "title": "Регистрация",
-      "subtitle": "Начните структурированное путешествие к исламским знаниям",
-      "namePlaceholder": "Имя",
-      "emailPlaceholder": "Электронная почта",
-      "passwordPlaceholder": "Пароль",
-      "submit": "Создать аккаунт",
-      "submitting": "Создание аккаунта...",
-      "submitButton": "Создать мой аккаунт",
-      "hasAccount": "Уже есть аккаунт?",
-      "loginLink": "Войти",
-      "welcomeMessage": "Добро пожаловать в QalamFlow, {name}! Ваше путешествие к знаниям начинается сейчас."
+      "title": "Register",
+      "subtitle": "Start your structured journey to Islamic knowledge",
+      "namePlaceholder": "Name",
+      "emailPlaceholder": "Email",
+      "passwordPlaceholder": "Password",
+      "submit": "Create account",
+      "submitting": "Creating account...",
+      "submitButton": "Create my account",
+      "hasAccount": "Already have an account?",
+      "loginLink": "Log in",
+      "welcomeMessage": "Welcome to QalamFlow, {name}! Your journey to knowledge begins now."
     }
   },
   "dashboard": {
-    "greeting": "Ассаляму алейкум, {name}!",
+    "greeting": "Assalamu Alaikum, {name}!",
     "motivations": [
-      "Каждая страница приближает вас к знаниям. Продолжайте!",
-      "Последовательность — ключ к мастерству. У вас отлично получается!",
-      "Чернила ученого драгоценнее крови мученика.",
-      "Маленькие шаги каждый день ведут к великим достижениям.",
-      "Ваша преданность сегодня формирует ваше завтра.",
-      "Знание — сокровище, и вы строите свое сокровище страница за страницей.",
-      "Оставайтесь последовательными, и наблюдайте, как углубляется ваше понимание.",
-      "Да примет Аллах ваши усилия и увеличит вас в полезных знаниях."
+      "Every page brings you closer to knowledge. Keep going!",
+      "Consistency is the key to mastery. You're doing great!",
+      "The ink of the scholar is more precious than the blood of the martyr.",
+      "Small steps every day lead to great achievements.",
+      "Your dedication today shapes your tomorrow.",
+      "Knowledge is a treasure, and you're building yours page by page.",
+      "Stay consistent, and watch your understanding deepen.",
+      "May Allah accept your efforts and increase you in beneficial knowledge."
     ],
     "stats": {
-      "title": "Ваш прогресс",
-      "booksInProgress": "Книг в процессе",
-      "booksCompleted": "Книг завершено",
-      "pagesRead": "Страниц прочитано",
-      "overallProgress": "Общий прогресс"
+      "title": "Your Progress",
+      "booksInProgress": "Books in progress",
+      "booksCompleted": "Books completed",
+      "pagesRead": "Pages read",
+      "overallProgress": "Overall progress"
     },
     "quickAccess": {
-      "title": "Быстрый доступ",
+      "title": "Quick Access",
       "books": {
-        "title": "Мои книги",
-        "description": "Добавляйте новые книги, отслеживайте что изучаете и обновляйте прогресс чтения.",
-        "link": "Управление книгами"
+        "title": "My Books",
+        "description": "Add new books, track what you're studying and update your reading progress.",
+        "link": "Manage books"
       },
       "schedule": {
-        "title": "Мое расписание",
-        "description": "Планируйте недельные учебные сессии и никогда не пропускайте урок.",
-        "link": "Посмотреть расписание"
+        "title": "My Schedule",
+        "description": "Plan weekly study sessions and never miss a lesson.",
+        "link": "View schedule"
       },
       "roadmap": {
-        "title": "Мой план",
-        "description": "Смотрите прогноз обучения и когда вы достигнете своих целей.",
-        "link": "Посмотреть план"
+        "title": "My Roadmap",
+        "description": "See your learning forecast and when you'll reach your goals.",
+        "link": "View roadmap"
       }
     },
-    "reminder": "При вашем текущем темпе вы завершите {bookTitle} через {days} дней. Так держать!",
-    "antiBurnout": "Вы делаете отличный прогресс! Не забывайте делать перерывы и держите баланс в учебе."
+    "reminder": "At your current pace, you'll finish {bookTitle} in {days} days. Keep it up!",
+    "antiBurnout": "You're making great progress! Don't forget to take breaks and keep a balance in your studies."
   },
   "books": {
-    "title": "Мои книги",
-    "subtitle": "Отслеживайте все ваши исламские тексты в одном месте",
-    "empty": "Книг пока нет. Добавьте первую книгу, чтобы начать отслеживать прогресс!",
-    "emptyState": "Вы еще не добавили ни одной книги.\nНачните путешествие — добавьте первую книгу!",
-    "addButton": "+ Добавить книгу",
-    "deleteConfirm": "Вы уверены, что хотите удалить эту книгу?",
-    "by": "автор",
-    "pagesUnit": "стр.",
-    "progressPlaceholder": "страниц",
-    "logButton": "Записать",
+    "title": "My Books",
+    "subtitle": "Track all your Islamic texts in one place",
+    "empty": "No books yet. Add your first book to start tracking progress!",
+    "emptyState": "You haven't added any books yet.\nStart your journey — add your first book!",
+    "addButton": "+ Add Book",
+    "deleteConfirm": "Are you sure you want to delete this book?",
+    "by": "by",
+    "pagesUnit": "p.",
+    "progressPlaceholder": "pages",
+    "logButton": "Log",
     "modal": {
-      "titleAdd": "Добавить новую книгу",
-      "titleEdit": "Редактировать книгу"
+      "titleAdd": "Add New Book",
+      "titleEdit": "Edit Book"
     },
     "form": {
-      "bookTitle": "Название книги",
-      "bookTitlePlaceholder": "напр. Аль-Аджуррумия",
-      "author": "Автор",
-      "authorPlaceholder": "напр. Ибн Аджуррум",
-      "level": "Уровень",
+      "bookTitle": "Book Title",
+      "bookTitlePlaceholder": "e.g. Al-Ajurrumiyyah",
+      "author": "Author",
+      "authorPlaceholder": "e.g. Ibn Ajurrum",
+      "level": "Level",
       "levels": {
-        "beginner": "Начальный",
-        "intermediate": "Средний",
-        "advanced": "Продвинутый"
+        "beginner": "Beginner",
+        "intermediate": "Intermediate",
+        "advanced": "Advanced"
       },
-      "totalPages": "Всего страниц",
-      "totalPagesPlaceholder": "напр. 120",
-      "addBook": "Добавить книгу",
-      "saveChanges": "Сохранить изменения"
+      "totalPages": "Total Pages",
+      "totalPagesPlaceholder": "e.g. 120",
+      "addBook": "Add Book",
+      "saveChanges": "Save Changes"
     },
     "status": {
-      "studying": "Изучается",
-      "completed": "Завершена"
+      "studying": "Studying",
+      "completed": "Completed"
     },
     "actions": {
-      "logProgress": "Записать прогресс",
-      "edit": "Редактировать",
-      "delete": "Удалить",
-      "markComplete": "Отметить как завершенную"
+      "logProgress": "Log Progress",
+      "edit": "Edit",
+      "delete": "Delete",
+      "markComplete": "Mark as Complete"
     }
   },
   "schedule": {
-    "title": "Мое недельное расписание",
-    "subtitle": "Организуйте учебные сессии для последовательного обучения",
-    "empty": "Учебных сессий пока не запланировано.\nОрганизуйте свою неделю — последовательность это путь к мастерству!",
-    "emptyState": "Учебных сессий пока не запланировано.\nОрганизуйте свою неделю — последовательность это путь к мастерству!",
-    "addSession": "+ Добавить сессию",
-    "exportPDF": "📄 Экспорт в PDF",
+    "title": "My Weekly Schedule",
+    "subtitle": "Organize study sessions for consistent learning",
+    "empty": "No study sessions planned yet.\nOrganize your week — consistency is the path to mastery!",
+    "emptyState": "No study sessions planned yet.\nOrganize your week — consistency is the path to mastery!",
+    "addSession": "+ Add Session",
+    "exportPDF": "Export to PDF",
     "table": {
-      "day": "День",
-      "sessions": "Сессии"
+      "day": "Day",
+      "sessions": "Sessions"
     },
     "modal": {
-      "titleAdd": "Добавить учебную сессию",
-      "titleEdit": "Редактировать сессию"
+      "titleAdd": "Add Study Session",
+      "titleEdit": "Edit Session"
     },
     "form": {
-      "day": "День",
-      "time": "Время",
-      "activity": "Занятие",
-      "activityPlaceholder": "напр. Читать главу 3 по Нахву",
-      "linkedBook": "Связанная книга (необязательно)",
-      "noneOption": "— Нет —",
-      "addSession": "Добавить сессию",
-      "saveChanges": "Сохранить изменения"
+      "day": "Day",
+      "time": "Time",
+      "activity": "Activity",
+      "activityPlaceholder": "e.g. Read Chapter 3 of Nahw",
+      "linkedBook": "Linked Book (optional)",
+      "noneOption": "— None —",
+      "addSession": "Add Session",
+      "saveChanges": "Save Changes"
     },
     "days": {
-      "monday": "Понедельник",
-      "tuesday": "Вторник",
-      "wednesday": "Среда",
-      "thursday": "Четверг",
-      "friday": "Пятница",
-      "saturday": "Суббота",
-      "sunday": "Воскресенье"
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday",
+      "sunday": "Sunday"
     }
   },
   "roadmap": {
-    "title": "Ваш учебный план",
-    "subtitle": "Отслеживайте прогресс и прогнозируйте даты завершения",
-    "intro": "Отслеживайте прогресс по всем книгам. Прогноз использует взвешенный алгоритм, который учитывает ваш недавний темп, сложность книги и ваше расписание занятий. Чем последовательнее вы записываете прогресс, тем точнее становятся прогнозы.",
-    "empty": "Нет книг в процессе.\nДобавьте книгу и начните записывать страницы, чтобы увидеть персонализированный план!",
-    "emptyState": "Нет книг в процессе.\nДобавьте книгу и начните записывать страницы, чтобы увидеть персонализированный план!",
-    "customPaceBadge": "свой темп",
-    "progressLabel": "{pct}% завершено — {progress}/{pages} стр.",
-    "noData": "Начните записывать прогресс, чтобы увидеть прогноз.",
+    "title": "Your Learning Roadmap",
+    "subtitle": "Track progress and forecast completion dates",
+    "intro": "Track progress across all books. The forecast uses a weighted algorithm that considers your recent pace, book difficulty, and study schedule. The more consistently you log progress, the more accurate the forecasts become.",
+    "empty": "No books in progress.\nAdd a book and start logging pages to see your personalized roadmap!",
+    "emptyState": "No books in progress.\nAdd a book and start logging pages to see your personalized roadmap!",
+    "customPaceBadge": "custom pace",
+    "progressLabel": "{pct}% complete — {progress}/{pages} p.",
+    "noData": "Start logging progress to see the forecast.",
     "paceRating": {
-      "slow": "Медленный темп",
-      "normal": "Обычный темп",
-      "fast": "Быстрый темп",
-      "very_fast": "Очень быстрый"
+      "slow": "Slow pace",
+      "normal": "Normal pace",
+      "fast": "Fast pace",
+      "very_fast": "Very fast"
     },
     "stats": {
-      "effectivePace": "Эффективный темп",
-      "weightedAvg": "Взвеш. среднее",
-      "last7Days": "Последние 7 дней",
-      "pagesLeft": "Осталось страниц",
-      "avgSession": "Средняя сессия",
-      "daysLeft": "Осталось дней"
+      "effectivePace": "Effective pace",
+      "weightedAvg": "Weighted avg",
+      "last7Days": "Last 7 days",
+      "pagesLeft": "Pages left",
+      "avgSession": "Avg session",
+      "daysLeft": "Days left"
     },
     "details": {
-      "difficulty": "Сложность",
-      "study": "Занятия",
-      "active": "Активно"
+      "difficulty": "Difficulty",
+      "study": "Study",
+      "active": "Active"
     },
     "forecastMessage": {
-      "prefix": "При текущем темпе вы завершите эту книгу к",
-      "fast": "Потрясающий прогресс — так держать!",
-      "slow": "Попробуйте увеличить учебные сессии, чтобы закончить быстрее.",
-      "normal": "Оставайтесь последовательными, и у вас все получится!"
+      "prefix": "At your current pace, you'll finish this book by",
+      "fast": "Amazing progress — keep it up!",
+      "slow": "Try increasing your study sessions to finish faster.",
+      "normal": "Stay consistent, and you'll get there!"
     },
     "weeklyProgress": {
-      "title": "Недельный прогресс",
-      "noData": "Начните записывать прогресс, чтобы увидеть недельную разбивку."
+      "title": "Weekly Progress",
+      "noData": "Start logging progress to see the weekly breakdown."
     },
     "paceOverride": {
-      "title": "Пользовательский темп",
-      "hint": "Установите ручную цель страниц/день, чтобы переопределить рассчитанный темп.",
-      "placeholder": "страниц/день",
-      "setPace": "Установить темп",
-      "remove": "Удалить",
-      "saving": "Сохранение..."
+      "title": "Custom Pace",
+      "hint": "Set a manual pages/day goal to override the calculated pace.",
+      "placeholder": "pages/day",
+      "setPace": "Set pace",
+      "remove": "Remove",
+      "saving": "Saving..."
     },
     "whatIf": {
-      "title": "Что если?",
-      "hint": "Посмотрите, как другой темп изменит дату завершения.",
-      "pagesPerDay": "стр/день",
-      "calculate": "Рассчитать",
-      "result": "При {pagesPerDay} страницах/день вы закончите за {daysLeft} дней — к {completionDate}."
+      "title": "What If?",
+      "hint": "See how a different pace would change your completion date.",
+      "pagesPerDay": "p/day",
+      "calculate": "Calculate",
+      "result": "At {pagesPerDay} pages/day, you'll finish in {daysLeft} days — by {completionDate}."
     }
   },
   "progress": {
-    "title": "Записать прогресс",
-    "bookLabel": "Выберите книгу",
-    "dateLabel": "Дата",
-    "pagesLabel": "Прочитано страниц",
-    "pagesPlaceholder": "напр. 5",
-    "timeLabel": "Время занятий (минут)",
-    "timePlaceholder": "напр. 30",
-    "submitButton": "Записать прогресс",
-    "successMessage": "Прогресс записан! Продолжайте отличную работу!",
+    "title": "Log Progress",
+    "bookLabel": "Select a book",
+    "dateLabel": "Date",
+    "pagesLabel": "Pages read",
+    "pagesPlaceholder": "e.g. 5",
+    "timeLabel": "Study time (minutes)",
+    "timePlaceholder": "e.g. 30",
+    "submitButton": "Log Progress",
+    "successMessage": "Progress logged! Keep up the great work!",
     "history": {
-      "title": "Недавний прогресс",
-      "empty": "Прогресс пока не записан. Начните отслеживать чтение!"
+      "title": "Recent Progress",
+      "empty": "No progress logged yet. Start tracking your reading!"
     }
   },
   "pwa": {
     "install": {
       "banner": {
-        "title": "Установить QalamFlow",
-        "description": "Установите наше приложение для лучшего опыта!",
-        "installButton": "Установить",
+        "title": "Install QalamFlow",
+        "description": "Install our app for a better experience!",
+        "installButton": "Install",
         "dismissButton": "×"
       },
       "modal": {
-        "title": "Установить QalamFlow",
+        "title": "Install QalamFlow",
         "ios": {
-          "title": "📱 На мобильном (iOS)",
+          "title": "On Mobile (iOS)",
           "safari": "Safari",
-          "shareButton": "Поделиться",
-          "shareButtonDesc": "кнопку (квадрат со стрелкой)",
-          "addToHomeScreen": "На экран Домой",
-          "tapAdd": "Добавить",
-          "step1": "Откройте QalamFlow в ",
-          "step2": "Нажмите кнопку ",
-          "step2b": " (квадрат со стрелкой)",
-          "step3": "Прокрутите вниз и нажмите ",
-          "step4": "Нажмите ",
-          "step4b": " для подтверждения"
+          "shareButton": "Share",
+          "shareButtonDesc": "button (square with arrow)",
+          "addToHomeScreen": "Add to Home Screen",
+          "tapAdd": "Add",
+          "step1": "Open QalamFlow in ",
+          "step2": "Tap the ",
+          "step2b": " button (square with arrow)",
+          "step3": "Scroll down and tap ",
+          "step4": "Tap ",
+          "step4b": " to confirm"
         },
         "android": {
-          "title": "📱 На мобильном (Android)",
+          "title": "On Mobile (Android)",
           "chrome": "Chrome",
-          "menu": "меню",
-          "menuDesc": "(три точки)",
-          "addToHome": "Добавить на главный экран",
-          "installApp": "Установить приложение",
-          "install": "Установить",
-          "step1": "Откройте QalamFlow в ",
-          "step2": "Нажмите ",
-          "step2b": " (три точки)",
-          "step3": "Нажмите ",
-          "step3b": " или ",
-          "step4": "Нажмите ",
-          "step4b": " для подтверждения"
+          "menu": "menu",
+          "menuDesc": "(three dots)",
+          "addToHome": "Add to Home Screen",
+          "installApp": "Install App",
+          "install": "Install",
+          "step1": "Open QalamFlow in ",
+          "step2": "Tap ",
+          "step2b": " (three dots)",
+          "step3": "Tap ",
+          "step3b": " or ",
+          "step4": "Tap ",
+          "step4b": " to confirm"
         },
         "desktop": {
-          "title": "💻 На компьютере (Chrome/Edge)",
-          "installIcon": "значок установки",
-          "addressBar": "в адресной строке",
-          "menu": "меню",
-          "menuDesc": "(три точки)",
-          "installQalamFlow": "Установить QalamFlow",
-          "createShortcut": "Создать ярлык",
-          "install": "Установить",
-          "step1": "Найдите ",
-          "step1b": " в адресной строке",
-          "step2": "Или нажмите ",
-          "step2b": " (три точки)",
-          "step3": "Выберите ",
-          "step3b": " или ",
-          "step4": "Нажмите ",
-          "step4b": " для подтверждения"
+          "title": "On Desktop (Chrome/Edge)",
+          "installIcon": "install icon",
+          "addressBar": "in the address bar",
+          "menu": "menu",
+          "menuDesc": "(three dots)",
+          "installQalamFlow": "Install QalamFlow",
+          "createShortcut": "Create Shortcut",
+          "install": "Install",
+          "step1": "Look for the ",
+          "step1b": " in the address bar",
+          "step2": "Or click ",
+          "step2b": " (three dots)",
+          "step3": "Select ",
+          "step3b": " or ",
+          "step4": "Click ",
+          "step4b": " to confirm"
         },
         "benefits": {
-          "title": "✨ Преимущества установки:",
-          "fastLoading": "Быстрая загрузка",
-          "worksOffline": "Работает офлайн",
-          "nativeExperience": "Опыт нативного приложения",
-          "quickAccess": "Быстрый доступ с главного экрана",
-          "noAppStore": "Не требует магазина приложений"
+          "title": "Benefits of installing:",
+          "fastLoading": "Fast loading",
+          "worksOffline": "Works offline",
+          "nativeExperience": "Native app experience",
+          "quickAccess": "Quick access from home screen",
+          "noAppStore": "No app store required"
         }
       }
     }
   },
   "notifications": {
     "session": {
-      "upcoming": "{time} - Урок по {bookTitle}! Ваш учитель ждет.",
-      "reminder": "Не забудьте о сессии {activity} сегодня!"
+      "upcoming": "{time} - Lesson on {bookTitle}! Your teacher is waiting.",
+      "reminder": "Don't forget about your {activity} session today!"
     },
     "achievement": {
-      "bookCompleted": "🎉 Поздравляем! Вы завершили {bookTitle}!",
-      "milestone": "🌟 Достижение: прочитано {pages} страниц!",
-      "streak": "🔥 {days}-дневная серия занятий! Продолжайте!"
+      "bookCompleted": "Congratulations! You've completed {bookTitle}!",
+      "milestone": "Achievement: {pages} pages read!",
+      "streak": "{days}-day study streak! Keep going!"
     }
   },
   "errors": {
-    "generic": "Что-то пошло не так. Попробуйте еще раз.",
-    "network": "Ошибка сети. Проверьте подключение.",
-    "notFound": "Страница не найдена.",
-    "unauthorized": "Войдите, чтобы продолжить.",
+    "generic": "Something went wrong. Please try again.",
+    "network": "Network error. Check your connection.",
+    "notFound": "Page not found.",
+    "unauthorized": "Please log in to continue.",
     "validation": {
-      "required": "Это поле обязательно.",
-      "email": "Введите корректный email.",
-      "minLength": "Должно быть минимум {length} символов.",
-      "number": "Должно быть числом."
+      "required": "This field is required.",
+      "email": "Please enter a valid email.",
+      "minLength": "Must be at least {length} characters.",
+      "number": "Must be a number."
     }
   },
   "common": {
-    "loading": "Загрузка...",
-    "save": "Сохранить",
-    "cancel": "Отмена",
-    "delete": "Удалить",
-    "edit": "Редактировать",
-    "editLower": "редактировать",
-    "add": "Добавить",
-    "close": "Закрыть",
-    "confirm": "Подтвердить",
-    "back": "Назад",
-    "next": "Далее",
-    "previous": "Предыдущий",
-    "search": "Поиск",
-    "filter": "Фильтр",
-    "sort": "Сортировка",
-    "more": "Еще",
-    "less": "Меньше"
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "editLower": "edit",
+    "add": "Add",
+    "close": "Close",
+    "confirm": "Confirm",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "more": "More",
+    "less": "Less"
   },
   "footer": {
-    "quickLinks": "Быстрые ссылки",
-    "connect": "Контакты",
-    "madeWithLove": "Сделано с 🧠"
+    "quickLinks": "Quick Links",
+    "connect": "Connect",
+    "madeWithLove": "Made with"
   }
 }

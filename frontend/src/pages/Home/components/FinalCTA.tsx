@@ -6,22 +6,22 @@ export default function FinalCTA() {
   return (
     <section id="cta" className={styles.section}>
       <SectionHeader
-        title="Звучит здорово? 😊"
-        subtitle="Попробуй сам - это очень просто"
+        title="Sounds great? 😊"
+        subtitle="Try it yourself - it's really simple"
       />
       <div className={styles.card}>
         <div className={styles.illustration}>
           <span className={styles.placeholderText}>
-            Изображение скоро появится
+            Image coming soon
           </span>
         </div>
         <div className={styles.content}>
-          <h3 className={styles.title}>Начните планировать</h3>
+          <h3 className={styles.title}>Start Planning</h3>
           <p className={styles.description}>
-            Создайте свой план обучения с нуля за пару минут и двигайтесь к цели
-            системно.
+            Create your study plan from scratch in just a few minutes and work
+            towards your goal systematically.
           </p>
-          <CTAButton to="/register">Подробнее</CTAButton>
+          <CTAButton to="/register">Learn More</CTAButton>
         </div>
       </div>
     </section>

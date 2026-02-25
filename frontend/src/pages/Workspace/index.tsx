@@ -10,10 +10,10 @@ type Orientation = "vertical" | "horizontal";
 
 function getGreeting(): string {
   const h = new Date().getHours();
-  if (h < 6) return "🌙 Доброй ночи";
-  if (h < 12) return "☀️ Доброе утро";
-  if (h < 18) return "🌤️ Добрый день";
-  return "🌅 Добрый вечер";
+  if (h < 6) return "🌙 Good night";
+  if (h < 12) return "☀️ Good morning";
+  if (h < 18) return "🌤️ Good afternoon";
+  return "🌅 Good evening";
 }
 
 export default function Workspace() {
@@ -42,7 +42,7 @@ export default function Workspace() {
     }
   }, [schedule, orientation, activePlanId, updatePlan, savePlan, setActivePlanId]);
 
-  // "Создать новый план" in PDFPlanList
+  // "Create new plan" in PDFPlanList
   const handleCreateNew = useCallback(() => {
     if (schedule.length > 0) {
       if (activePlanId) {
@@ -86,7 +86,7 @@ export default function Workspace() {
         <div className={styles.heroText}>
           <p className={styles.greeting}>{getGreeting()},</p>
           <h1 className={styles.name}>{firstName}</h1>
-          <p className={styles.subtitle}>Спланируй свою неделю</p>
+          <p className={styles.subtitle}>Plan your week</p>
         </div>
         <div className={styles.heroAccent} aria-hidden />
       </header>
