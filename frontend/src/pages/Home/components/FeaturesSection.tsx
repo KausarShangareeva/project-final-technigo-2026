@@ -10,14 +10,34 @@ import {
   Zap,
   ArrowLeftRight,
   FileText,
+  Trash2,
+  Printer,
 } from "lucide-react";
 
 import styles from "./FeaturesSection.module.css";
 
 const HIGHLIGHTED_COURSES = [
-  { name: "Math", color: "#6366f1", bg: "rgba(99,102,241,0.12)", icon: "📘", rows: 3 },
-  { name: "English", color: "#f97316", bg: "rgba(249,115,22,0.12)", icon: "📒", rows: 5 },
-  { name: "History", color: "#ec4899", bg: "rgba(236,72,153,0.12)", icon: "📕", rows: 4 },
+  {
+    name: "Math",
+    color: "#6366f1",
+    bg: "rgba(99,102,241,0.12)",
+    icon: "📘",
+    rows: 3,
+  },
+  {
+    name: "English",
+    color: "#f97316",
+    bg: "rgba(249,115,22,0.12)",
+    icon: "📒",
+    rows: 5,
+  },
+  {
+    name: "History",
+    color: "#ec4899",
+    bg: "rgba(236,72,153,0.12)",
+    icon: "📕",
+    rows: 4,
+  },
 ];
 
 function HighlightedCourses() {
@@ -52,13 +72,21 @@ const MINI_DAYS = ["M", "T", "W", "T", "F", "S", "S"];
 const MINI_ROWS = 9; // 08:00–16:00
 
 const MINI_SCHEDULE: Record<string, string> = {
-  "0-1": "#6366f1", "0-2": "#6366f1",           // Mon: Math
-  "1-0": "#f59e0b", "1-1": "#f59e0b",           // Tue: Physics
-  "2-3": "#22c55e", "2-4": "#22c55e",           // Wed: Literature
-  "3-1": "#ec4899", "3-2": "#ec4899", "3-3": "#ec4899", // Thu: History
-  "4-6": "#a855f7", "4-7": "#a855f7",           // Fri: Chemistry
-  "5-2": "#0ea5e9", "5-3": "#0ea5e9",           // Sat: Biology
-  "6-5": "#f97316", "6-6": "#f97316",           // Sun: English
+  "0-1": "#6366f1",
+  "0-2": "#6366f1", // Mon: Math
+  "1-0": "#f59e0b",
+  "1-1": "#f59e0b", // Tue: Physics
+  "2-3": "#22c55e",
+  "2-4": "#22c55e", // Wed: Literature
+  "3-1": "#ec4899",
+  "3-2": "#ec4899",
+  "3-3": "#ec4899", // Thu: History
+  "4-6": "#a855f7",
+  "4-7": "#a855f7", // Fri: Chemistry
+  "5-2": "#0ea5e9",
+  "5-3": "#0ea5e9", // Sat: Biology
+  "6-5": "#f97316",
+  "6-6": "#f97316", // Sun: English
 };
 
 function MiniSchedule() {
@@ -68,12 +96,16 @@ function MiniSchedule() {
       <div className={styles.miniCorner} />
       {/* Day headers */}
       {MINI_DAYS.map((day, i) => (
-        <div key={`d${i}`} className={styles.miniDayLabel}>{day}</div>
+        <div key={`d${i}`} className={styles.miniDayLabel}>
+          {day}
+        </div>
       ))}
       {/* Rows */}
       {Array.from({ length: MINI_ROWS }).map((_, row) => (
         <>
-          <div key={`t${row}`} className={styles.miniTimeLabel}>{String(8 + row).padStart(2, "0")}</div>
+          <div key={`t${row}`} className={styles.miniTimeLabel}>
+            {String(8 + row).padStart(2, "0")}
+          </div>
           {MINI_DAYS.map((_, col) => {
             const color = MINI_SCHEDULE[`${col}-${row}`];
             return (
@@ -132,6 +164,73 @@ function PDFFormat() {
   );
 }
 
+function DownloadPDF() {
+  return (
+    <div className={styles.dlWrap}>
+      <div className={styles.dlBox}>
+        {/* PDF file icon */}
+        <div className={styles.dlFile}>
+          <div className={styles.dlFileCorner} />
+          <div className={styles.dlFileBadge}>PDF</div>
+        </div>
+
+        {/* Spinner (loading phase) */}
+        <svg className={styles.dlSpinner} viewBox="0 0 44 44">
+          <circle cx="22" cy="22" r="18" fill="none" strokeWidth="3" />
+        </svg>
+
+        {/* Checkmark (done phase) */}
+        <div className={styles.dlCheck}>
+          <svg width="22" height="22" viewBox="0 0 22 22">
+            <circle cx="11" cy="11" r="10" fill="#22c55e" />
+            <polyline
+              points="6,11 9.5,14.5 16,8"
+              fill="none"
+              stroke="#fff"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </div>
+      </div>
+
+      <button className={styles.dlBtn}>
+        <Printer size={15} strokeWidth={2.5} />
+        Print PDF
+      </button>
+    </div>
+  );
+}
+
+function SavedPlans() {
+  return (
+    <div className={styles.savedStack}>
+      {/* Back cards for stack effect */}
+      <div className={`${styles.savedCard} ${styles.savedCardBack2}`} />
+      <div className={`${styles.savedCard} ${styles.savedCardBack1}`} />
+
+      {/* Front card */}
+      <div className={`${styles.savedCard} ${styles.savedCardFront}`}>
+        <div className={styles.savedCardTop}>
+          <div className={styles.savedCardIcon}>
+            <FileText size={20} strokeWidth={2} />
+          </div>
+          <button className={styles.savedCardTrash} aria-label="Delete">
+            <Trash2 size={18} strokeWidth={1.8} />
+          </button>
+        </div>
+        <div className={styles.savedCardTitle}>Week of Feb 25</div>
+        <div className={styles.savedCardDesc}>
+          3 sessions this week <br />
+          Wed – Fri <br />4 study hours
+        </div>
+        <button className={styles.savedCardOpen}>Open</button>
+      </div>
+    </div>
+  );
+}
+
 const featureIcons = [
   TrendingUp,
   CheckCircle,
@@ -169,6 +268,10 @@ export default function FeaturesSection() {
                   <MiniSchedule />
                 ) : index === 2 ? (
                   <PDFFormat />
+                ) : index === 3 ? (
+                  <DownloadPDF />
+                ) : index === 4 ? (
+                  <SavedPlans />
                 ) : (
                   <span className={styles.comingSoon}>coming soon</span>
                 )}

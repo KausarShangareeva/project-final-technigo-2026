@@ -255,6 +255,419 @@
   color: var(--color-text-muted);
 }
 
+/* Download PDF */
+.dlWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.dlBox {
+  position: relative;
+  width: 7rem;
+  height: 7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-elevated, #f5f5f5);
+  border: 1px solid var(--color-border);
+  border-radius: 1.6rem;
+}
+
+/* PDF file icon */
+.dlFile {
+  position: relative;
+  width: 4rem;
+  height: 4.6rem;
+  background: #fff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 0.5rem 1rem 0.5rem 0.5rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-top: 4rem;
+  padding-bottom: 0.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.dlFileCorner {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0.9rem;
+  height: 0.9rem;
+  background: #e2e8f0;
+  border-radius: 0 0.9rem 0 0.4rem;
+}
+
+.dlFileBadge {
+  background: #ef4444;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 0.15rem 0.6rem;
+  border-radius: 0.3rem;
+  margin-right: 1rem;
+}
+
+/* Spinner ring */
+.dlSpinner {
+  position: absolute;
+  top: 0.35rem;
+  right: 0.35rem;
+  width: 1.6rem;
+  height: 1.6rem;
+  animation:
+    dlSpinRotate 1.2s linear infinite,
+    dlSpinFade 3s ease-in-out infinite;
+}
+
+.dlSpinner circle {
+  stroke: #94a3b8;
+  stroke-dasharray: 60;
+  stroke-dashoffset: 20;
+  stroke-linecap: round;
+}
+
+/* Checkmark badge */
+.dlCheck {
+  position: absolute;
+  top: 0.3rem;
+  right: 0.3rem;
+  animation: dlCheckFade 3s ease-in-out infinite;
+  opacity: 0;
+}
+
+@keyframes dlSpinRotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dlSpinFade {
+  0%,
+  55% {
+    opacity: 1;
+  }
+  65%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes dlCheckFade {
+  0%,
+  60% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  72% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+  80%,
+  90% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+}
+
+/* Green button */
+.dlBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 2rem;
+  border-radius: 0.8rem;
+  background: #4ade80;
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 500;
+  border: none;
+  cursor: default;
+  letter-spacing: 0.01em;
+  box-shadow:
+    0 0 14px rgba(74, 222, 128, 0.15),
+    0 4px 14px rgba(74, 222, 128, 0.15);
+}
+
+/* Saved plan card (SavedPlans) */
+.savedStack {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 16rem;
+  margin-top: 1.6rem;
+}
+
+.savedCard {
+  width: 55%;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 1.4rem;
+  padding: 1.2rem 1.2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+.savedCardBack2 {
+  position: absolute;
+  height: 18rem;
+  transform: rotate(-6deg) translateY(0.4rem);
+  opacity: 0.45;
+  z-index: 0;
+  padding: 0;
+  margin-right: 2rem;
+  transition: all 1s ease;
+}
+
+.savedCardBack1 {
+  position: absolute;
+  height: 18rem;
+  transform: rotate(4deg) translateY(0.2rem);
+  opacity: 0.65;
+  z-index: 1;
+  padding: 0;
+  margin-left: 2rem;
+  transition: all 1s ease;
+}
+
+.savedCardFront {
+  position: relative;
+  z-index: 2;
+  transition: transform 0.35s ease;
+}
+
+.savedStack:hover .savedCardBack2 {
+  transform: rotate(-16deg);
+  opacity: 0.6;
+  margin-right: 5rem;
+}
+
+.savedStack:hover .savedCardBack1 {
+  transform: rotate(13deg);
+  opacity: 0.8;
+  margin-left: 5rem;
+}
+
+.savedStack:hover .savedCardFront {
+  transform: translateY(-0.25rem);
+}
+
+.savedCardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.1rem;
+}
+
+.savedCardIcon {
+  width: 3.2rem;
+  height: 3.2rem;
+  min-width: 3.2rem;
+  min-height: 3.2rem;
+  flex-shrink: 0;
+  border-radius: 0.9rem;
+  background: #fef3c7;
+  color: #d97706;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.savedCardTrash {
+  width: 3.2rem;
+  height: 3.2rem;
+  min-width: 3.2rem;
+  min-height: 3.2rem;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--color-bg-elevated, #f5f5f5);
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  cursor: default;
+}
+
+.savedCardTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0.5rem 0;
+  color: var(--color-text);
+  line-height: 1.2;
+}
+
+.savedCardDesc {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  flex: 1;
+}
+
+.savedCardOpen {
+  margin-top: 0.4rem;
+  width: 100%;
+  padding: 0.6rem 0;
+  border-radius: 1rem;
+  background: var(--color-bg-elevated, #f0f0f0);
+  border: 1px solid var(--color-border);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text);
+  cursor: default;
+  letter-spacing: 0.01em;
+}
+
+/* Saved plans stack */
+.stackWrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.stackTrack {
+  position: relative;
+  width: 25rem;
+  height: 14rem;
+  margin: 3rem 0;
+}
+
+.stackCard {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  animation: stackCycle 15s ease-in-out infinite;
+}
+
+.planCard {
+  width: 10rem;
+  height: 13rem;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.planCardLabel {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  opacity: 0.4;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.planText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  animation: textCycle 15s ease-in-out infinite;
+  opacity: 0;
+}
+
+.planTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text);
+  white-space: nowrap;
+  text-align: center;
+}
+
+.planHours {
+  font-size: 1.5rem;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+/*
+  5 positions cycling horizontally: front → mid-right → far-right → far-left → mid-left → front
+*/
+@keyframes stackCycle {
+  0%,
+  2% {
+    transform: translate(-50%, -50%) translateX(0) scale(1);
+    opacity: 1;
+    z-index: 5;
+  }
+  18%,
+  22% {
+    transform: translate(-50%, -50%) translateX(3.5rem) scale(0.85);
+    opacity: 0.5;
+    z-index: 3;
+  }
+  38%,
+  42% {
+    transform: translate(-50%, -50%) translateX(5.5rem) scale(0.7);
+    opacity: 0.25;
+    z-index: 1;
+  }
+  58%,
+  62% {
+    transform: translate(-50%, -50%) translateX(-3.6rem) scale(0.7);
+    opacity: 0.25;
+    z-index: 1;
+  }
+  78%,
+  82% {
+    transform: translate(-50%, -50%) translateX(-2.2rem) scale(0.85);
+    opacity: 0.5;
+    z-index: 3;
+  }
+  98%,
+  100% {
+    transform: translate(-50%, -50%) translateX(0) scale(1);
+    opacity: 1;
+    z-index: 5;
+  }
+}
+
+/* Text only visible when card is in front */
+@keyframes textCycle {
+  0%,
+  2% {
+    opacity: 1;
+  }
+  12% {
+    opacity: 1;
+  }
+  18% {
+    opacity: 0;
+  }
+  82% {
+    opacity: 0;
+  }
+  92% {
+    opacity: 0;
+  }
+  98%,
+  100% {
+    opacity: 1;
+  }
+}
+
 /* Tablets */
 @media (max-width: 900px) {
   .cardGrid {

@@ -39,17 +39,17 @@
       "subtitle": "A complete set of tools for effective and enjoyable Arabic language learning.",
       "items": [
         {
-          "title": "Personal Roadmap",
+          "title": "Choose your course",
           "description": "The system calculates the sequence of books and topics based on your level and time.",
           "subtitle": "Personal route"
         },
         {
-          "title": "Progress Tracking",
+          "title": "Schedule Planning",
           "description": "Log completed lessons and see the real percentage of course completion.",
           "subtitle": "Progress tracking"
         },
         {
-          "title": "Schedule Planning",
+          "title": "Choose your format",
           "description": "Choose how many days a week you study — the system will distribute the workload automatically.",
           "subtitle": "Schedule planning"
         },
