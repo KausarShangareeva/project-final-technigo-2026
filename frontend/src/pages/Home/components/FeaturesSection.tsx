@@ -8,6 +8,8 @@ import {
   MessageCircle,
   Download,
   Zap,
+  ArrowLeftRight,
+  FileText,
 } from "lucide-react";
 
 import styles from "./FeaturesSection.module.css";
@@ -95,6 +97,41 @@ function MiniSchedule() {
   );
 }
 
+function PDFFormat() {
+  return (
+    <div className={styles.pdfWrap}>
+      {/* Landscape */}
+      <div className={`${styles.pdfPage} ${styles.pdfLandscape}`}>
+        <div className={styles.pdfImgPlaceholder}>
+          <FileText size={20} strokeWidth={1.5} />
+        </div>
+        <div className={styles.pdfLines}>
+          <div className={styles.pdfLine} style={{ width: "80%" }} />
+          <div className={styles.pdfLine} style={{ width: "60%" }} />
+        </div>
+        <div className={styles.pdfBtn} />
+      </div>
+
+      {/* Swap icon */}
+      <div className={styles.pdfSwap}>
+        <ArrowLeftRight size={18} strokeWidth={2} />
+      </div>
+
+      {/* Portrait */}
+      <div className={`${styles.pdfPage} ${styles.pdfPortrait}`}>
+        <div className={styles.pdfImgPlaceholder}>
+          <FileText size={20} strokeWidth={1.5} />
+        </div>
+        <div className={styles.pdfLines}>
+          <div className={styles.pdfLine} style={{ width: "75%" }} />
+          <div className={styles.pdfLine} style={{ width: "50%" }} />
+        </div>
+        <div className={styles.pdfBtn} />
+      </div>
+    </div>
+  );
+}
+
 const featureIcons = [
   TrendingUp,
   CheckCircle,
@@ -130,6 +167,8 @@ export default function FeaturesSection() {
                   <HighlightedCourses />
                 ) : index === 1 ? (
                   <MiniSchedule />
+                ) : index === 2 ? (
+                  <PDFFormat />
                 ) : (
                   <span className={styles.comingSoon}>coming soon</span>
                 )}
