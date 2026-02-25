@@ -195,10 +195,26 @@ function DownloadPDF() {
         </div>
       </div>
 
-      <button className={styles.dlBtn}>
-        <Printer size={15} strokeWidth={2.5} />
-        Print PDF
-      </button>
+      <div className={styles.dlBtnWrap}>
+        <button className={styles.dlBtn}>
+          <Printer size={15} strokeWidth={2.5} />
+          Print PDF
+        </button>
+
+        {/* Cursor with username */}
+        <div className={styles.dlCursor}>
+          <svg width="18" height="20" viewBox="0 0 18 20" fill="none">
+            <path
+              d="M1 1l5.5 16 3-5.5 5.5-3L1 1z"
+              fill="#5b21b6"
+              stroke="#fff"
+              strokeWidth="1.2"
+              strokeLinejoin="round"
+            />
+          </svg>
+          <span className={styles.dlCursorLabel}>Michael</span>
+        </div>
+      </div>
     </div>
   );
 }
