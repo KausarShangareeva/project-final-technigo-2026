@@ -4,145 +4,206 @@
   padding: var(--space-3xl) 0;
 }
 
-.featuresGrid {
+.cardGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr)); /* 280px */
-  gap: var(--space-xl);
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
   max-width: var(--max-width);
   margin: 0 auto;
+  padding-inline: var(--space-md);
 }
 
-.featureCard {
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
   background: var(--color-bg-card);
-  border-radius: 1.6rem; /* 16px */
-  padding: var(--space-lg);
+  border: 1px solid var(--color-border);
+  border-radius: 1.6rem;
+  padding: 1.6rem;
+  min-height: 22rem;
   transition:
     transform var(--transition-fast),
     box-shadow var(--transition-fast);
-  border: 0.1rem solid var(--color-border); /* 1px */
 }
 
-.featureCard:hover {
-  transform: translateY(-0.4rem); /* -4px */
-  box-shadow: 0 1.2rem 3.2rem rgba(61, 61, 61, 0.15); /* 0 12px 32px */
+.card:hover {
+  transform: translateY(-0.2rem);
+  box-shadow: 0 0.6rem 2rem rgba(61, 61, 61, 0.1);
 }
 
-.featureIcon {
-  width: 6.4rem; /* 64px */
-  height: 6.4rem; /* 64px */
-  border-radius: 1.6rem; /* 16px */
+/* Top row: icon left, title right */
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.cardIcon {
+  width: 4rem;
+  height: 4rem;
+  min-width: 4rem;
+  border-radius: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: var(--space-md);
+  background: var(--color-bg);
+  border: 0.1rem solid var(--color-border);
+  color: var(--color-primary);
 }
 
-.iconGradient0 {
-  background: var(--gradient-violet-pink);
+.cardTitle {
+  font-size: var(--fs-base);
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.2;
 }
 
-.iconGradient1 {
-  background: var(--gradient-emerald-cyan);
+/* Center placeholder */
+.cardBody {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.iconGradient2 {
-  background: var(--gradient-orange-pink);
+.comingSoon {
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--color-text-muted);
+  opacity: 0.5;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
-.iconGradient3 {
-  background: var(--gradient-sky-purple);
+/* Highlighted course bricks */
+.courseBricks {
+  display: flex;
+  gap: var(--space-sm);
+  width: 100%;
+  align-items: flex-end;
 }
 
-.iconGradient4 {
-  background: var(--gradient-amber-red);
+.courseColumn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 0.4rem;
 }
 
-.iconGradient5 {
-  background: var(--gradient-emerald-violet);
+.courseBrick {
+  height: 2.4rem;
+  display: flex;
+  align-items: center;
+  padding: 0 0.6rem;
+  gap: 0.4rem;
+  border-bottom: 1px solidrgba(255, 255, 255, 0.3);
 }
 
-.featureTitle {
-  font-size: var(--fs-lg);
+.courseBrick:last-child {
+  border-bottom: none;
+}
+
+.courseBrickIcon {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.courseBrickName {
+  font-size: 1.1rem;
   font-weight: 600;
   color: var(--color-text);
-  margin-bottom: var(--space-sm);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.featureDescription {
-  color: var(--color-text-muted);
-  font-size: var(--fs-sm);
-  line-height: 1.6;
-  margin-bottom: var(--space-sm);
+/* Mini schedule */
+.miniSchedule {
+  width: 90%;
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: 2.2rem repeat(7, 1fr);
+  border: 1px solid var(--color-border);
+  border-bottom: none;
+  border-radius: 0.8rem 0.8rem 0 0;
+  margin-top: 1.6rem;
+  margin-bottom: -1.6rem;
+  padding: 1rem 0.8rem 0;
+  background: var(--color-bg);
+  box-shadow: var(--shadow);
+  position: relative;
 }
 
-.featureSubtitle {
+.miniCorner {
+  /* empty top-left cell */
+}
+
+.miniDayLabel {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  padding-bottom: 0.3rem;
+}
+
+.miniTimeLabel {
+  font-size: 0.8rem;
+  font-weight: 500;
   color: var(--color-text-muted);
-  font-size: var(--fs-xs);
-  font-style: italic;
-  opacity: 0.7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.miniCell {
+  height: 1.6rem;
+  border-right: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.miniCell:nth-child(8n) {
+  border-right: none;
+}
+
+/* Last row: no bottom border (last 8 children = 1 time + 7 cells) */
+.miniTimeLabel:nth-last-child(-n + 8) {
+  border-bottom: none;
+}
+
+.miniCell:nth-last-child(-n + 7) {
+  border-bottom: none;
 }
 
 /* Tablets */
-@media (max-width: 768px) {
-  .featuresGrid {
-    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr)); /* 250px */
-    gap: var(--space-lg);
-    padding-inline: var(--space-lg);
+@media (max-width: 900px) {
+  .cardGrid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  .featureCard {
-    padding: var(--space-lg);
+  .card {
+    min-height: 18rem;
   }
 }
 
 /* Mobile */
-@media (max-width: 640px) {
-  .featuresGrid {
-    padding-inline: var(--space-md);
-    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-    gap: var(--space-md);
+@media (max-width: 540px) {
+  .cardGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
   }
 
-  .featureCard {
-    padding: var(--space-md);
+  .card {
+    min-height: 16rem;
+    padding: 1.4rem;
   }
 
-  .featureIcon {
-    width: 5.6rem;
-    height: 5.6rem;
-  }
-}
-
-/* Extra small screens (320px - 480px) */
-@media (max-width: 480px) {
-  .features {
-    padding: var(--space-2xl) 0;
-  }
-
-  .featuresGrid {
-    padding-inline: var(--space-sm);
-    gap: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
-  }
-
-  .featureCard {
-    padding: 1.5rem;
-  }
-
-  .featureIcon {
-    width: 4.8rem;
-    height: 4.8rem;
-  }
-
-  .featureTitle {
-    font-size: var(--fs-base);
-  }
-
-  .featureDescription {
-    font-size: 1.2rem;
-  }
-
-  .featureSubtitle {
-    font-size: 1.1rem;
+  .cardIcon {
+    width: 3.6rem;
+    height: 3.6rem;
+    min-width: 3.6rem;
   }
 }
