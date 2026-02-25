@@ -6,8 +6,8 @@
   background: var(--color-bg);
   background-image: repeating-linear-gradient(
     90deg,
-    var(--color-border-dark) 0,
-    var(--color-border-dark) 14px,
+    var(--dash-color) 0,
+    var(--dash-color) 14px,
     transparent 14px,
     transparent 22px
   );
@@ -53,7 +53,7 @@
 .navLink {
   color: var(--color-text-muted);
   padding: 1rem 1.6rem;
-  border-radius: 1.5rem;
+  border-radius: 1.2rem;
   transition: all var(--transition-fast);
   white-space: nowrap;
   font-size: var(--fs-base);
@@ -66,6 +66,8 @@
 
 .dropdownWrapper {
   position: relative;
+  padding-bottom: 1.2rem;
+  margin-bottom: -1.2rem;
 }
 
 .contactLink {
@@ -74,7 +76,7 @@
   gap: 0.8rem;
   color: var(--color-text-muted);
   padding: 1rem 1.6rem;
-  border-radius: 1.5rem;
+  border-radius: 1.2rem;
   transition: all var(--transition-fast);
   white-space: nowrap;
   font-size: var(--fs-base);
@@ -91,7 +93,7 @@
 /* Dropdown */
 .dropdown {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 1.2rem);
   left: 50%;
   transform: translateX(-50%) translateY(0.5rem);
   min-width: 24rem;
@@ -107,6 +109,21 @@
     transform var(--transition-base),
     visibility var(--transition-base);
   pointer-events: none;
+}
+
+/* Arrow pointing up */
+.dropdown::before {
+  content: "";
+  position: absolute;
+  top: -0.4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2.2rem;
+  height: 2.2rem;
+  background: var(--color-bg-card);
+  border-top: 0.1rem solid var(--color-border);
+  border-left: 0.1rem solid var(--color-border);
+  rotate: 45deg;
 }
 
 .dropdownWrapper:hover .dropdown {
@@ -133,6 +150,7 @@
   flex-shrink: 0;
   width: 1.8rem;
   height: 1.8rem;
+  color: var(--color-primary);
 }
 
 .dropdownItem:hover {
@@ -162,7 +180,7 @@
 .rightActions {
   display: flex;
   align-items: center;
-  gap: var(--space-xs);
+  gap: var(--space-sm);
 }
 
 .contactBtn {
@@ -172,10 +190,10 @@
   gap: 0.4rem;
   background: linear-gradient(90deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
   color: var(--color-text-inverse);
-  padding: 1.5rem 3rem;
-  border-radius: 1.5rem;
+  padding: 1rem 2.4rem;
+  border-radius: 1.2rem;
   font-weight: 500;
-  font-size: var(--fs-lg);
+  font-size: var(--fs-base);
   transition: all var(--transition-fast);
   white-space: nowrap;
 }
@@ -200,7 +218,8 @@
   background: transparent;
   color: var(--color-text-muted);
   padding: var(--space-sm);
-  border-radius: 50%;
+  border-radius: 1.2rem;
+  border: 1.5px dashed var(--dash-color);
   transition: all var(--transition-fast);
   cursor: pointer;
   width: 3.6rem;
@@ -209,7 +228,7 @@
 
 .themeBtn:hover {
   color: var(--color-text);
-  background-color: var(--color-bg-hover);
+  border-color: var(--color-text-muted);
 }
 
 .logoutBtn {

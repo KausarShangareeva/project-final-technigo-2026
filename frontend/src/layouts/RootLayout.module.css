@@ -4,19 +4,50 @@
   margin-inline: auto;
   padding: var(--space-xl) var(--space-md);
   width: 100%;
+  background-image:
+    radial-gradient(circle, var(--dot-color) 1px, transparent 1px),
+    repeating-linear-gradient(
+      180deg,
+      var(--dash-color) 0,
+      var(--dash-color) 14px,
+      transparent 14px,
+      transparent 22px
+    ),
+    repeating-linear-gradient(
+      180deg,
+      var(--dash-color) 0,
+      var(--dash-color) 14px,
+      transparent 14px,
+      transparent 22px
+    );
+  background-size:
+    24px 24px,
+    1px 100%,
+    1px 100%;
+  background-position:
+    0 0,
+    left top,
+    right top;
+  background-repeat: repeat, no-repeat, no-repeat;
 }
 
 /* Responsive breakpoints aligned with responsive.css */
 @media (min-width: 640px) {
-  .main { padding-inline: var(--space-lg); }
+  .main {
+    padding-inline: var(--space-lg);
+  }
 }
 
 @media (min-width: 768px) {
-  .main { padding-inline: var(--space-xl); }
+  .main {
+    padding-inline: var(--space-xl);
+  }
 }
 
 @media (min-width: 1024px) {
-  .main { padding-inline: var(--space-2xl); }
+  .main {
+    padding-inline: var(--space-2xl);
+  }
 }
 
 /* Extra small screens - reduce padding */

@@ -25,7 +25,8 @@ export default function HeroSection() {
   }, [phrases.length]);
 
   return (
-    <div id="hero" className={styles.wrapper}>
+    <section id="hero" className={styles.heroSection}>
+    <div className={styles.wrapper}>
       <div className={styles.badge}>✨ Your Arabic Learning Companion</div>
 
       <h1 className={styles.mainTitle}>
@@ -53,5 +54,6 @@ export default function HeroSection() {
         <CTAButton to="/register">{get("home.cta.register")} ✨</CTAButton>
       )}
     </div>
+    </section>
   );
 }

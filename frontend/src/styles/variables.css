@@ -26,6 +26,10 @@
   --color-text-inverse: #0f172a;
   --color-text-secondary: #cbd5e1;
 
+  /* Dot grid pattern */
+  --dot-color: rgba(255, 255, 255, 0.08);
+  --dash-color: rgba(255, 255, 255, 0.2);
+
   /* Colors - Borders - Dark Theme */
   --color-border: #334155;
   --color-border-light: #475569;
@@ -89,17 +93,58 @@
 
   /* Gradients */
   --gradient-primary: linear-gradient(90deg, #6366f1 0%, #a855f7 100%);
-  --gradient-rainbow: linear-gradient(90deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
-  --gradient-accent: linear-gradient(90deg, transparent 0%, #6366f1 20%, #a855f7 50%, #ec4899 80%, transparent 100%);
-  --gradient-subtle: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
+  --gradient-rainbow: linear-gradient(
+    90deg,
+    #6366f1 0%,
+    #a855f7 50%,
+    #ec4899 100%
+  );
+  --gradient-accent: linear-gradient(
+    90deg,
+    transparent 0%,
+    #6366f1 20%,
+    #a855f7 50%,
+    #ec4899 80%,
+    transparent 100%
+  );
+  --gradient-subtle: linear-gradient(
+    135deg,
+    rgba(99, 102, 241, 0.1) 0%,
+    rgba(168, 85, 247, 0.1) 100%
+  );
 
   /* Feature Icon Gradients */
   --gradient-violet-pink: linear-gradient(135deg, #7c3aed 0%, #db2777 100%);
-  --gradient-emerald-cyan: linear-gradient(135deg, #059669 0%, #0d9488 50%, #06b6d4 100%);
-  --gradient-orange-pink: linear-gradient(135deg, #f97316 0%, #ef4444 50%, #ec4899 100%);
-  --gradient-sky-purple: linear-gradient(135deg, #0ea5e9 0%, #6366f1 50%, #a855f7 100%);
-  --gradient-amber-red: linear-gradient(135deg, #f59e0b 0%, #f97316 50%, #ef4444 100%);
-  --gradient-emerald-violet: linear-gradient(135deg, #10b981 0%, #3b82f6 50%, #8b5cf6 100%);
+  --gradient-emerald-cyan: linear-gradient(
+    135deg,
+    #059669 0%,
+    #0d9488 50%,
+    #06b6d4 100%
+  );
+  --gradient-orange-pink: linear-gradient(
+    135deg,
+    #f97316 0%,
+    #ef4444 50%,
+    #ec4899 100%
+  );
+  --gradient-sky-purple: linear-gradient(
+    135deg,
+    #0ea5e9 0%,
+    #6366f1 50%,
+    #a855f7 100%
+  );
+  --gradient-amber-red: linear-gradient(
+    135deg,
+    #f59e0b 0%,
+    #f97316 50%,
+    #ef4444 100%
+  );
+  --gradient-emerald-violet: linear-gradient(
+    135deg,
+    #10b981 0%,
+    #3b82f6 50%,
+    #8b5cf6 100%
+  );
 
   /* Course Tags */
   --tag-bg-strength: 24%;
@@ -125,6 +170,10 @@
   --color-text-muted: #6b7280;
   --color-text-inverse: #ffffff;
   --color-text-secondary: #4b5563;
+
+  /* Dot grid pattern - Light Theme */
+  --dot-color: rgba(0, 0, 0, 0.1);
+  --dash-color: rgba(0, 0, 0, 0.2);
 
   /* Colors - Borders - Light Theme */
   --color-border: #e5e7eb;
