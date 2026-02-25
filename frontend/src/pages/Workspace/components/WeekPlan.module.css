@@ -207,11 +207,11 @@
 
 /* ===== Day name toggle (full / short) ===== */
 .dayFull {
-  display: inline;
+  display: none;
 }
 
 .dayShort {
-  display: none;
+  display: inline;
 }
 
 /* ===== Cell label (light hint) ===== */
@@ -595,15 +595,6 @@
 
   .portraitPage {
     aspect-ratio: 210 / 350;
-  }
-
-  /* Short day names on mobile */
-  .dayFull {
-    display: none;
-  }
-
-  .dayShort {
-    display: inline;
   }
 
   /* Smaller table cells */

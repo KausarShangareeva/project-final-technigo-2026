@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../../../context/AuthContext";
 import { useCopy } from "../../../hooks/useCopy";
+import { Link } from "react-router-dom";
+import { ArrowUpRight } from "lucide-react";
 import CTAButton from "../../../components/CTAButton";
 import styles from "./HeroSection.module.css";
 
@@ -26,34 +28,43 @@ export default function HeroSection() {
 
   return (
     <section id="hero" className={styles.heroSection}>
-    <div className={styles.wrapper}>
-      <div className={styles.badge}>✨ Your Arabic Learning Companion</div>
+      <div className={styles.wrapper}>
+        <div className={styles.badge}>✨ Your study plan</div>
 
-      <h1 className={styles.mainTitle}>
-        Learning Arabic?
-        <br />
-        Do it systematically
-      </h1>
+        <h1 className={styles.mainTitle}>
+          Study with a plan,
+          <br />
+          not by mood
+        </h1>
 
-      <h2 className={styles.animatedTitle}>
-        We'll help you{" "}
-        <span className={styles.changingPhraseWrapper} key={currentPhraseIndex}>
-          <span className={styles.phraseEmoji}>
-            {phrases[currentPhraseIndex].emoji}
+        <h2 className={styles.animatedTitle}>
+          We'll help you{" "}
+          <span
+            className={styles.changingPhraseWrapper}
+            key={currentPhraseIndex}
+          >
+            <span className={styles.phraseEmoji}>
+              {phrases[currentPhraseIndex].emoji}
+            </span>
+            <span className={styles.changingPhrase}>
+              {phrases[currentPhraseIndex].text}
+            </span>
           </span>
-          <span className={styles.changingPhrase}>
-            {phrases[currentPhraseIndex].text}
-          </span>
-        </span>
-      </h2>
+        </h2>
 
-      {/* <p className={styles.subtitle}>{get("home.subtitle")}</p> */}
-      {user ? (
-        <CTAButton to="/dashboard">{get("home.cta.dashboard")}</CTAButton>
-      ) : (
-        <CTAButton to="/register">{get("home.cta.register")} ✨</CTAButton>
-      )}
-    </div>
+        {/* <p className={styles.subtitle}>{get("home.subtitle")}</p> */}
+        <div className={styles.heroActions}>
+          {user ? (
+            <CTAButton to="/dashboard">{get("home.cta.dashboard")}</CTAButton>
+          ) : (
+            <CTAButton to="/register">{get("home.cta.register")} ✨</CTAButton>
+          )}
+          <Link to="#features" className={styles.exploreBtn}>
+            Explore
+            <ArrowUpRight size={18} />
+          </Link>
+        </div>
+      </div>
     </section>
   );
 }

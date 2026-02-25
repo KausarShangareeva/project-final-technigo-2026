@@ -620,7 +620,7 @@ function VerticalTable({
     <table className={styles.table}>
       <thead>
         <tr>
-          <th className={styles.timeHeader}>Time</th>
+          <th className={styles.timeHeader} />
           {DAYS.map((day) => (
             <th key={day} className={styles.dayHeader}>
               <span className={styles.dayFull} data-print="day-full">
@@ -673,7 +673,7 @@ function HorizontalTable({
     <table className={`${styles.table} ${styles.tableHorizontal}`}>
       <thead>
         <tr>
-          <th className={styles.timeHeader}>Time</th>
+          <th className={styles.timeHeader} />
           {DAYS.map((day) => (
             <th key={day} className={styles.dayHeader}>
               <span className={styles.dayFull} data-print="day-full">

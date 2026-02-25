@@ -1,0 +1,254 @@
+.section {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-2xl) var(--space-md);
+}
+
+.screen {
+  width: 100%;
+  max-width: 90rem;
+  border-radius: 2rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-card);
+  box-shadow: var(--shadow);
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: 1rem 1.6rem;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-bg-elevated);
+  border-top-right-radius: 2rem;
+  border-top-left-radius: 2rem;
+}
+
+.dots {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.dot {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background: var(--color-border-light);
+}
+
+.dot:first-child {
+  background: #ef4444;
+}
+
+.dot:nth-child(2) {
+  background: #f59e0b;
+}
+
+.dot:nth-child(3) {
+  background: #22c55e;
+}
+
+.addressBar {
+  flex: 1;
+  height: 2.4rem;
+  border-radius: 0.6rem;
+  background: var(--color-bg-input);
+  border: 1px solid var(--color-border);
+}
+
+/* Action buttons */
+.actionBar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-md) 0;
+}
+
+.hintGroup {
+  position: absolute;
+  right: -8%;
+  top: -80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.actionHint {
+  font-family: var(--font-handwritten);
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  text-align: center;
+}
+
+.hintArrow {
+  align-self: flex-start;
+  opacity: 0.5;
+  transform: scale(-1, -1);
+  transform: rotate(100deg);
+  position: absolute;
+  right: 40%;
+  top: 100%;
+}
+
+.saveBtn,
+.printBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 1rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  border: none;
+  border-radius: var(--radius-md);
+  color: #fff;
+  cursor: default;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.saveBtn {
+  background: var(--color-primary);
+}
+
+.printBtn {
+  background: var(--color-success);
+}
+
+/* Table area */
+.content {
+  overflow-x: auto;
+  padding: var(--space-md);
+}
+
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+  border: 1px solid var(--color-border);
+  border-radius: 1.2rem;
+  overflow: hidden;
+}
+
+.timeHeader {
+  width: 7rem;
+}
+
+.dayHeader {
+  padding: 1rem 0.6rem;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--color-primary);
+  text-align: center;
+  background: var(--color-bg-elevated);
+  border-bottom: 2px solid var(--color-primary-subtle);
+}
+
+.timeHeader {
+  padding: 1rem 0.6rem;
+  background: var(--color-bg-elevated);
+  border-bottom: 2px solid var(--color-primary-subtle);
+}
+
+.timeCell {
+  padding: 0.6rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  text-align: center;
+  white-space: nowrap;
+  border-right: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-bg-elevated);
+  width: 7rem;
+}
+
+.emptyCell {
+  border-bottom: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+  height: 3.6rem;
+}
+
+.emptyCell:last-child {
+  border-right: none;
+}
+
+.bookedCell {
+  padding: 0.4rem 0.6rem;
+  border-bottom: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+  border-radius: 0.4rem;
+  vertical-align: top;
+  height: 3.6rem;
+}
+
+.bookedCell:last-child {
+  border-right: none;
+}
+
+.courseIcon {
+  font-size: 1.4rem;
+  margin-right: 0.4rem;
+}
+
+.courseName {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .content {
+    padding: var(--space-sm);
+  }
+
+  .dayHeader,
+  .timeCell {
+    font-size: 1rem;
+    padding: 0.4rem;
+  }
+
+  .timeCell {
+    width: 5rem;
+  }
+
+  .timeHeader {
+    width: 5rem;
+  }
+
+  .emptyCell,
+  .bookedCell {
+    height: 3rem;
+  }
+
+  .courseName {
+    font-size: 1rem;
+  }
+
+  .courseIcon {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: var(--space-xl) var(--space-sm);
+  }
+
+  .emptyCell,
+  .bookedCell {
+    height: 2.4rem;
+  }
+
+  .dayHeader {
+    font-size: 0.9rem;
+  }
+}

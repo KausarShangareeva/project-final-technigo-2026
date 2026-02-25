@@ -1,4 +1,5 @@
 import HeroSection from "./components/HeroSection";
+import ScreenPreview from "./components/ScreenPreview";
 import FeaturesSection from "./components/FeaturesSection";
 import Features from "./components/Features";
 import StepByStepGuide from "./components/StepByStepGuide";
@@ -10,6 +11,7 @@ export default function Home() {
   return (
     <>
       <HeroSection />
+      <ScreenPreview />
       <FeaturesSection />
       <StepByStepGuide />
       <EnvelopePreview />

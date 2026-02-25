@@ -259,7 +259,8 @@
   background: transparent;
   color: var(--color-text-muted);
   padding: var(--space-sm);
-  border-radius: 50%;
+  border-radius: 1.2rem;
+  border: 1.5px dashed var(--dash-color);
   cursor: pointer;
   transition: all var(--transition-fast);
   width: 3.6rem;
@@ -349,6 +350,10 @@
   transition: all var(--transition-fast);
 }
 
+.mobileNavLink svg {
+  color: var(--color-primary);
+}
+
 .mobileNavLink:hover {
   color: var(--color-text);
   background-color: var(--color-bg-hover);
@@ -401,7 +406,7 @@
 }
 
 /* Tablet & mobile - burger menu */
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
   .container {
     display: flex;
     justify-content: space-between;

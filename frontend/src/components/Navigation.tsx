@@ -313,6 +313,24 @@ export default function Navigation() {
               <Coffee size={18} />
               Buy Me a Coffee
             </a>
+            <a
+              href="https://t.me/kausarsh"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.mobileNavLink}
+            >
+              <Sparkles size={18} />
+              Suggest a Project
+            </a>
+            <a
+              href="https://t.me/kausarsh"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.mobileNavLink}
+            >
+              <MessagesSquare size={18} />
+              Leave Feedback
+            </a>
 
             <div className={styles.mobileDivider} />
 
