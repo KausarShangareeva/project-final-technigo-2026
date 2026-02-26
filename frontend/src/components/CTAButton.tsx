@@ -6,14 +6,16 @@ interface CTAButtonProps {
   to?: string;
   onClick?: () => void;
   className?: string;
+  align?: "left" | "center" | "right";
 }
 
-export default function CTAButton({ children, to, onClick, className }: CTAButtonProps) {
+export default function CTAButton({ children, to, onClick, className, align = "center" }: CTAButtonProps) {
+  const containerClass = `${styles.ctaContainer} ${styles[`align_${align}`]}`;
   const btnClass = `${styles.ctaButton} ${className ?? ""}`;
 
   if (to) {
     return (
-      <div className={styles.ctaContainer}>
+      <div className={containerClass}>
         <Link to={to} className={btnClass}>
           {children}
         </Link>
@@ -22,7 +24,7 @@ export default function CTAButton({ children, to, onClick, className }: CTAButto
   }
 
   return (
-    <div className={styles.ctaContainer}>
+    <div className={containerClass}>
       <button className={btnClass} onClick={onClick}>
         {children}
       </button>

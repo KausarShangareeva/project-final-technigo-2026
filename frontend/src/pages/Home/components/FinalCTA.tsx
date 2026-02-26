@@ -11,17 +11,21 @@ export default function FinalCTA() {
       />
       <div className={styles.card}>
         <div className={styles.illustration}>
-          <span className={styles.placeholderText}>
-            Image coming soon
-          </span>
+          <img
+            src="/example_portable.jpg"
+            alt="Schedule preview"
+            className={styles.illustrationImg}
+          />
         </div>
         <div className={styles.content}>
           <h3 className={styles.title}>Start Planning</h3>
           <p className={styles.description}>
             Create your study plan from scratch in just a few minutes and work
-            towards your goal systematically.
+            towards your goal systematically
           </p>
-          <CTAButton to="/register">Learn More</CTAButton>
+          <CTAButton align="left" to="/register">
+            Lets start now ✨
+          </CTAButton>
         </div>
       </div>
     </section>
