@@ -16,9 +16,13 @@ export default function EnvelopePreview() {
           <div className={styles.coverLeft} />
           <div className={styles.coverRight} />
 
-          {/* Gray cards inside */}
-          <div className={`${styles.card} ${styles.cardLeft}`} />
-          <div className={`${styles.card} ${styles.cardRight}`} />
+          {/* Cards inside */}
+          <div className={`${styles.card} ${styles.cardLeft}`}>
+            <img src="/example-1.png" alt="Schedule example 1" className={styles.cardImg} />
+          </div>
+          <div className={`${styles.card} ${styles.cardRight}`}>
+            <img src="/example-2.png" alt="Schedule example 2" className={styles.cardImg} />
+          </div>
 
           {/* Central placeholder */}
           <div className={styles.placeholder} />

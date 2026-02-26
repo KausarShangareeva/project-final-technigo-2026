@@ -31,7 +31,12 @@ export default function Footer() {
           <Logo size="medium" />
           <p className={styles.tagline}>{get("app.tagline")}</p>
 
-          <div className={styles.authorCard}>
+          <a
+            href="https://t.me/kausar_coding"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.authorCard}
+          >
             <div className={styles.avatarWrapper}>
               <img
                 src="/avatar.png"
@@ -48,7 +53,7 @@ export default function Footer() {
               <span className={styles.authorName}>Kausar</span>
               <span className={styles.authorEmail}>kausyarsh@gmail.com</span>
             </div>
-          </div>
+          </a>
         </div>
 
         <div className={styles.columns}>
