@@ -1,7 +1,6 @@
 .section {
   width: 100%;
   padding: var(--space-3xl) 0;
-  background: var(--color-bg);
 }
 
 .header {
@@ -105,6 +104,69 @@
   color: var(--color-text-muted);
   line-height: 1.6;
   margin: 0;
+}
+
+/* Empty schedule table */
+.emptyTable {
+  margin: 3rem 0;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 2.8rem repeat(7, 1fr);
+  border: 1px solid var(--color-border);
+  border-radius: 1rem 1rem 0 0;
+  border-bottom: none;
+  background: var(--color-bg-elevated);
+  overflow: hidden;
+}
+
+.etCorner {
+  /* empty top-left cell */
+  border-right: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.etDayLabel {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  padding: 0.6rem 0;
+  border-right: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.etDayLabel:last-of-type {
+  border-right: none;
+}
+
+.etTimeLabel {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  height: 2.8rem;
+}
+
+.etCell {
+  height: 2.8rem;
+  border-right: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.etCell:nth-child(8n) {
+  border-right: none;
+}
+
+.etTimeLabel:nth-last-child(-n + 8) {
+  border-bottom: none;
+}
+
+.etCell:nth-last-child(-n + 7) {
+  border-bottom: none;
 }
 
 /* Tablets */
@@ -234,5 +296,4 @@
   .placeholderText {
     font-size: var(--fs-sm);
   }
-
 }

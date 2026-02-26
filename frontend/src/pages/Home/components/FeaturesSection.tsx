@@ -1,4 +1,4 @@
-import { useCopy } from "../../../hooks/useCopy";
+﻿import { useCopy } from "../../../hooks/useCopy";
 import SectionHeader from "../../../components/SectionHeader";
 import CTAButton from "../../../components/CTAButton";
 import {
@@ -12,6 +12,7 @@ import {
   FileText,
   Trash2,
   Printer,
+  BookOpen,
 } from "lucide-react";
 
 import styles from "./FeaturesSection.module.css";
@@ -21,21 +22,21 @@ const HIGHLIGHTED_COURSES = [
     name: "Math",
     color: "#6366f1",
     bg: "rgba(99,102,241,0.12)",
-    icon: "📘",
+    icon: "ðŸ“˜",
     rows: 3,
   },
   {
     name: "English",
     color: "#f97316",
     bg: "rgba(249,115,22,0.12)",
-    icon: "📒",
+    icon: "ðŸ“’",
     rows: 5,
   },
   {
     name: "History",
     color: "#ec4899",
     bg: "rgba(236,72,153,0.12)",
-    icon: "📕",
+    icon: "ðŸ“•",
     rows: 4,
   },
 ];
@@ -69,7 +70,7 @@ function HighlightedCourses() {
 }
 
 const MINI_DAYS = ["M", "T", "W", "T", "F", "S", "S"];
-const MINI_ROWS = 9; // 08:00–16:00
+const MINI_ROWS = 9; // 08:00â€“16:00
 
 const MINI_SCHEDULE: Record<string, string> = {
   "0-1": "#6366f1",
@@ -239,10 +240,87 @@ function SavedPlans() {
         <div className={styles.savedCardTitle}>Week of Feb 25</div>
         <div className={styles.savedCardDesc}>
           3 sessions this week <br />
-          Wed – Fri <br />4 study hours
+          Wed â€“ Fri <br />4 study hours
         </div>
         <button className={styles.savedCardOpen}>Open</button>
       </div>
+    </div>
+  );
+}
+
+const NOTIF_ITEMS = [
+  {
+    Icon: BookOpen,
+    title: "Lesson reminder",
+    desc: "Math — Chapter 3",
+    iconColor: "#0F52BA", // sapphire blue
+    iconBgStart: "#E6F0FF",
+    iconBgMid: "#CFE0FF",
+    iconBgEnd: "#B8D1FF",
+    iconBorder: "#9CBFFF",
+    iconRing: "rgba(15, 82, 186, 0.25)",
+  },
+  {
+    Icon: CheckCircle,
+    title: "Goal reached!",
+    desc: "Week completed",
+    iconColor: "#2f9b56",
+    iconBgStart: "#e8f4ea",
+    iconBgMid: "#d4ebd8",
+    iconBgEnd: "#c4e4cb",
+    iconBorder: "#abd7b7",
+    iconRing: "rgba(205, 235, 214, 0.55)",
+  },
+  {
+    Icon: Calendar,
+    title: "New session",
+    desc: "Friday 10:00 added",
+    iconColor: "#bf7b0a",
+    iconBgStart: "#f8f2da",
+    iconBgMid: "#f1e6bf",
+    iconBgEnd: "#e8d9a2",
+    iconBorder: "#e5cf92",
+    iconRing: "rgba(245, 230, 180, 0.58)",
+  },
+];
+
+function Notifications() {
+  return (
+    <div className={styles.notifWrap}>
+      {NOTIF_ITEMS.map(
+        (
+          {
+            Icon,
+            title,
+            desc,
+            iconColor,
+            iconBgStart,
+            iconBgMid,
+            iconBgEnd,
+            iconBorder,
+            iconRing,
+          },
+          i,
+        ) => (
+          <div key={i} className={styles.notifItem}>
+            <div
+              className={styles.notifIconWrap}
+              style={{
+                color: iconColor,
+                background: `radial-gradient(circle at 30% 28%, ${iconBgStart} 0%, ${iconBgMid} 68%, ${iconBgEnd} 100%)`,
+                borderColor: iconBorder,
+                boxShadow: `inset 0 1px 0 rgba(255, 255, 255, 0.62), 0 0 0 0.18rem ${iconRing}`,
+              }}
+            >
+              <Icon size={18} strokeWidth={2} />
+            </div>
+            <div className={styles.notifContent}>
+              <span className={styles.notifTitle}>{title}</span>
+              <span className={styles.notifDesc}>{desc}</span>
+            </div>
+          </div>
+        ),
+      )}
     </div>
   );
 }
@@ -288,6 +366,8 @@ export default function FeaturesSection() {
                   <DownloadPDF />
                 ) : index === 4 ? (
                   <SavedPlans />
+                ) : index === 5 ? (
+                  <Notifications />
                 ) : (
                   <span className={styles.comingSoon}>coming soon</span>
                 )}
