@@ -28,12 +28,11 @@
 
   /* Dot grid pattern */
   --dot-color: rgba(255, 255, 255, 0.08);
-  --dash-color: rgba(255, 255, 255, 0.2);
+  --dash-color: #636f80;
 
   /* Colors - Borders - Dark Theme */
-  --color-border: #334155;
-  --color-border-light: #475569;
-  --color-border-dark: #1e293b;
+  --color-border: #636f80;
+  --color-border-light: #c2cdd9;
 
   /* Colors - Status */
   --color-success: #22c55e;
@@ -175,12 +174,11 @@
 
   /* Dot grid pattern - Light Theme */
   --dot-color: rgba(0, 0, 0, 0.1);
-  --dash-color: rgba(0, 0, 0, 0.2);
+  --dash-color: #636f80;
 
   /* Colors - Borders - Light Theme */
-  --color-border: #e5e7eb;
-  --color-border-light: #d1d5db;
-  --color-border-dark: #9ca3af;
+  --color-border: #d1d5db;
+  --color-border-light: #6b7280;
 
   /* Course Tags - Light Theme */
   --tag-bg-strength: 14%;
