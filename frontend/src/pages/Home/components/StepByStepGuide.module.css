@@ -40,23 +40,11 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  padding: 4rem;
+  padding: 2rem;
+  gap: 2rem;
   position: relative;
   overflow: hidden;
   border: 0.1rem solid var(--color-border); /* 1px */
-}
-
-.card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(
-    45deg,
-    rgba(255, 255, 255, 0.05),
-    rgba(255, 255, 255, 0.05) 1rem,
-    transparent 1rem,
-    transparent 2rem
-  );
 }
 
 .tag {
@@ -89,6 +77,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 .placeholderText {
@@ -104,6 +93,207 @@
   color: var(--color-text-muted);
   line-height: 1.6;
   margin: 0;
+}
+
+/* ── Animated cursor ─────────────────────────────────────── */
+.guideCursor {
+  position: absolute;
+  bottom: 38%;
+  right: 28%;
+  display: flex;
+  align-items: flex-end;
+  gap: 0.3rem;
+  pointer-events: none;
+  z-index: 20;
+  animation: guideCursorClick 5s ease-in-out infinite;
+}
+
+.guideCursorLabel {
+  background: #0d9488;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.2rem 1rem;
+  border-radius: 2rem;
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+}
+
+@keyframes guideCursorClick {
+  /* 5s цикл: клик на ~1700мс, попап появляется на 2000мс */
+  0%,
+  28% {
+    transform: translate(0, 0) scale(1);
+  } /* idle 0–1400ms */
+  32% {
+    transform: translate(0, -3px) scale(1);
+  } /* hover  1600ms */
+  36% {
+    transform: translate(0, -3px) scale(0.82);
+  } /* click  1800ms */
+  40% {
+    transform: translate(0, 0) scale(1);
+  } /* release 2000ms → popup */
+  100% {
+    transform: translate(0, 0) scale(1);
+  } /* idle */
+}
+
+/* ── Demo "Add Course" popup ─────────────────────────────── */
+.demoPopup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(34rem, 90%);
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 1.6rem;
+  padding: 2rem 2rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  z-index: 10;
+  box-shadow: 0 2.4rem 6rem rgba(0 0 0 / 0.35);
+  pointer-events: none;
+  user-select: none;
+  /* hidden by default */
+  opacity: 0;
+  transform: translate(-50%, -46%) scale(0.96);
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
+}
+
+.demoPopupVisible {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.demoPopupHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.demoPopupTitle {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.demoPopupClose {
+  color: var(--color-text-muted);
+  display: flex;
+}
+
+.demoPopupLabel {
+  font-size: 1.25rem;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.demoSearchBar {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: 3rem;
+  padding: 0.7rem 1.2rem;
+}
+
+.demoSearchIcon {
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+.demoSearchPlaceholder {
+  font-size: 1.2rem;
+  color: var(--color-text-muted);
+  opacity: 0.6;
+}
+
+.demoChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.demoChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 1rem;
+  border-radius: 3rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  white-space: nowrap;
+  /* color, background, borderLeft come from inline style */
+}
+
+.demoDurations {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.demoDuration {
+  padding: 0.5rem 1.1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 0.8rem;
+  font-size: 1.2rem;
+  color: var(--color-text-muted);
+  background: transparent;
+}
+
+.demoAddBtn {
+  width: 100%;
+  padding: 1rem 0;
+  background: #4f52b8;
+  border-radius: 0.9rem;
+  text-align: center;
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: rgba(255 255 255 / 0.85);
+  letter-spacing: 0.02em;
+}
+
+/* ── Filled table (card 2) ───────────────────────────────── */
+.filledTableWrap {
+  position: relative;
+  width: 100%;
+  margin: 3rem 0;
+}
+
+.tableBlock {
+  position: absolute;
+  border-radius: 0.4rem;
+  padding: 0.2rem 0.3rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.2rem;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.tableBlockEmoji {
+  font-size: 0.9rem;
+  line-height: 1.3;
+  flex-shrink: 0;
+  position: relative;
+  top: 3px;
+}
+
+.tableBlockLabel {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.3;
+  position: relative;
+  top: 3px;
 }
 
 /* Empty schedule table */
