@@ -7,6 +7,8 @@ const bookRoutes = require("./routes/books");
 const scheduleRoutes = require("./routes/schedules");
 const progressRoutes = require("./routes/progress");
 const forecastRoutes = require("./routes/forecast");
+const suggestionRoutes = require("./routes/suggestions");
+const feedbackRoutes = require("./routes/feedback");
 
 const app = express();
 
@@ -23,6 +25,8 @@ app.use("/api/books", bookRoutes);
 app.use("/api/schedule", scheduleRoutes);
 app.use("/api/progress", progressRoutes);
 app.use("/api/forecast", forecastRoutes);
+app.use("/api/suggestions", suggestionRoutes);
+app.use("/api/feedback", feedbackRoutes);
 
 // Start server
 const PORT = process.env.PORT || 5000;

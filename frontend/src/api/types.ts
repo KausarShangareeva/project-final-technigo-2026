@@ -87,3 +87,31 @@ export interface WhatIfResponse {
   estimatedDaysLeft: number | null;
   estimatedCompletionDate: string | null;
 }
+
+export interface SuggestionPayload {
+  name: string;
+  email: string;
+  projectType: string;
+  title: string;
+  goal: string;
+  details: string;
+  timeline?: string;
+  budget?: string;
+}
+
+export interface FeedbackEntry {
+  _id: string;
+  name: string;
+  rating: number;
+  message: string;
+  location?: string;
+  createdAt: string;
+}
+
+export interface FeedbackPayload {
+  name: string;
+  email: string;
+  rating: number;
+  message: string;
+  location?: string;
+}

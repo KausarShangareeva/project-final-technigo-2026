@@ -149,11 +149,6 @@
   gap: var(--space-md);
 }
 
-/* Reset CTAButton container inside heroActions */
-.heroActions > div {
-  margin-top: 0;
-  width: auto;
-}
 
 .exploreBtn {
   display: inline-flex;

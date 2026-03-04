@@ -52,7 +52,7 @@ export default function Navigation() {
                     Home
                   </Link>
                   <Link to="workspace" className={styles.navLink}>
-                    My Page
+                    My study plan
                   </Link>
                   <div className={styles.dropdownWrapper}>
                     <button className={styles.contactLink}>
@@ -78,24 +78,14 @@ export default function Navigation() {
                         <Coffee size={16} />
                         Buy Me a Coffee
                       </a>
-                      <a
-                        href="https://t.me/kausarsh"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={styles.dropdownItem}
-                      >
+                      <Link to="/suggest-project" className={styles.dropdownItem}>
                         <Sparkles size={16} />
                         Suggest a Project
-                      </a>
-                      <a
-                        href="https://t.me/kausarsh"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={styles.dropdownItem}
-                      >
+                      </Link>
+                      <Link to="/feedback" className={styles.dropdownItem}>
                         <MessagesSquare size={16} />
                         Leave Feedback
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </>
@@ -131,24 +121,14 @@ export default function Navigation() {
                         <Coffee size={16} />
                         Buy Me a Coffee
                       </a>
-                      <a
-                        href="https://t.me/kausarsh"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={styles.dropdownItem}
-                      >
+                      <Link to="/suggest-project" className={styles.dropdownItem}>
                         <Sparkles size={16} />
                         Suggest a Project
-                      </a>
-                      <a
-                        href="https://t.me/kausarsh"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={styles.dropdownItem}
-                      >
+                      </Link>
+                      <Link to="/feedback" className={styles.dropdownItem}>
                         <MessagesSquare size={16} />
                         Leave Feedback
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </>
@@ -169,7 +149,9 @@ export default function Navigation() {
             ) : (
               <>
                 <Link to="/login" className={styles.contactBtn}>
-                  {localStorage.getItem("hasAccount") ? "Log in" : "Get Started"}
+                  {localStorage.getItem("hasAccount")
+                    ? "Log in"
+                    : "Get Started"}
                   <ArrowUpRight size={16} />
                 </Link>
               </>
@@ -220,7 +202,7 @@ export default function Navigation() {
               onClick={closeMenu}
             >
               <LayoutDashboard size={18} />
-              My Page
+              My study plan
             </Link>
 
             <div className={styles.mobileDivider} />
@@ -243,24 +225,14 @@ export default function Navigation() {
               <Coffee size={18} />
               Buy Me a Coffee
             </a>
-            <a
-              href="https://t.me/kausarsh"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.mobileNavLink}
-            >
+            <Link to="/suggest-project" className={styles.mobileNavLink} onClick={closeMenu}>
               <Sparkles size={18} />
               Suggest a Project
-            </a>
-            <a
-              href="https://t.me/kausarsh"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.mobileNavLink}
-            >
+            </Link>
+            <Link to="/feedback" className={styles.mobileNavLink} onClick={closeMenu}>
               <MessagesSquare size={18} />
               Leave Feedback
-            </a>
+            </Link>
 
             <div className={styles.mobileDivider} />
 
@@ -313,24 +285,14 @@ export default function Navigation() {
               <Coffee size={18} />
               Buy Me a Coffee
             </a>
-            <a
-              href="https://t.me/kausarsh"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.mobileNavLink}
-            >
+            <Link to="/suggest-project" className={styles.mobileNavLink} onClick={closeMenu}>
               <Sparkles size={18} />
               Suggest a Project
-            </a>
-            <a
-              href="https://t.me/kausarsh"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.mobileNavLink}
-            >
+            </Link>
+            <Link to="/feedback" className={styles.mobileNavLink} onClick={closeMenu}>
               <MessagesSquare size={18} />
               Leave Feedback
-            </a>
+            </Link>
 
             <div className={styles.mobileDivider} />
 

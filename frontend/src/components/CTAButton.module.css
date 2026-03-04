@@ -1,7 +1,6 @@
 .ctaContainer {
   display: flex;
   justify-content: center;
-  margin-top: var(--space-3xl);
   width: 100%;
 }
 

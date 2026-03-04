@@ -115,7 +115,7 @@ export default function PWAInstallPrompt() {
                 <ol>
                   <li>{get("pwa.install.modal.desktop.step1")}<strong>{get("pwa.install.modal.desktop.installIcon")}</strong>{get("pwa.install.modal.desktop.step1b")}</li>
                   <li>{get("pwa.install.modal.desktop.step2")}<strong>{get("pwa.install.modal.desktop.menu")}</strong>{get("pwa.install.modal.desktop.step2b")}</li>
-                  <li>{get("pwa.install.modal.desktop.step3")}<strong>{get("pwa.install.modal.desktop.installQalamFlow")}</strong>{get("pwa.install.modal.desktop.step3b")}<strong>{get("pwa.install.modal.desktop.createShortcut")}</strong></li>
+                  <li>{get("pwa.install.modal.desktop.step3")}<strong>{get("pwa.install.modal.desktop.installPlanFlow")}</strong>{get("pwa.install.modal.desktop.step3b")}<strong>{get("pwa.install.modal.desktop.createShortcut")}</strong></li>
                   <li>{get("pwa.install.modal.desktop.step4")}<strong>{get("pwa.install.modal.desktop.install")}</strong>{get("pwa.install.modal.desktop.step4b")}</li>
                 </ol>
               </section>

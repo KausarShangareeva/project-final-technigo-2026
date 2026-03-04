@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+﻿import { useState, useEffect } from "react";
 import { useAuth } from "../../../context/AuthContext";
 import { useCopy } from "../../../hooks/useCopy";
 import { Link } from "react-router-dom";
@@ -29,7 +29,7 @@ export default function HeroSection() {
   return (
     <section id="hero" className={styles.heroSection}>
       <div className={styles.wrapper}>
-        <div className={styles.badge}>✨ Your study plan</div>
+        <div className={styles.badge}>✏️ Your study plan</div>
 
         <h1 className={styles.mainTitle}>
           Study with a plan,
@@ -55,7 +55,7 @@ export default function HeroSection() {
         {/* <p className={styles.subtitle}>{get("home.subtitle")}</p> */}
         <div className={styles.heroActions}>
           {user ? (
-            <CTAButton to="/dashboard">{get("home.cta.dashboard")}</CTAButton>
+            <CTAButton to="/workspace">{get("home.cta.dashboard")}</CTAButton>
           ) : (
             <CTAButton to="/register">{get("home.cta.register")} ✨</CTAButton>
           )}

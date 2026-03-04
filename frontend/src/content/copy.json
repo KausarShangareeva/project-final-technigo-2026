@@ -1,8 +1,8 @@
 {
   "app": {
-    "name": "QalamFlow",
+    "name": "PlanFlow",
     "tagline": "Your Islamic knowledge journey tracker",
-    "copyright": "QalamFlow"
+    "copyright": "PlanFlow"
   },
   "nav": {
     "dashboard": "Dashboard",
@@ -25,11 +25,11 @@
     "title": "Your path to knowledge starts here",
     "subtitle": "Fill in the calendar. The system will show when you'll finish your course.",
     "cta": {
-      "dashboard": "Go to dashboard",
+      "dashboard": "Go to workspace",
       "register": "Build your plan"
     },
     "hero": {
-      "title": "QalamFlow: Your Path to Islamic Knowledge",
+      "title": "PlanFlow: Your Path to Islamic Knowledge",
       "subtitle": "Structured learning without chaos and burnout. Build your plan today!",
       "cta": "Build your plan",
       "ctaSecondary": "Learn more"
@@ -74,14 +74,14 @@
       "title": "How It Works",
       "subtitle": "From profile setup to a ready learning plan — in just a few minutes.",
       "step1": {
-        "tag": "Set up your profile",
-        "main": "Choose your level and textbook",
-        "bottom": "The plan is built based on your current level"
+        "tag": "Set up your study plan",
+        "main": "Choose the courses you want to study 🤓",
+        "bottom": "Your study plan will be built around this courses"
       },
       "step2": {
         "tag": "Get your plan",
-        "main": "The system will calculate workload and lesson dates",
-        "bottom": "You'll see a schedule and the exact course completion date"
+        "main": "See how your schedule will look ✨",
+        "bottom": "You'll always know what to study and when."
       },
       "cta": "Create my first plan"
     },
@@ -113,7 +113,7 @@
       "submitButton": "Create my account",
       "hasAccount": "Already have an account?",
       "loginLink": "Log in",
-      "welcomeMessage": "Welcome to QalamFlow, {name}! Your journey to knowledge begins now."
+      "welcomeMessage": "Welcome to PlanFlow, {name}! Your journey to knowledge begins now."
     }
   },
   "dashboard": {
@@ -305,13 +305,13 @@
   "pwa": {
     "install": {
       "banner": {
-        "title": "Install QalamFlow",
+        "title": "Install PlanFlow",
         "description": "Install our app for a better experience!",
         "installButton": "Install",
         "dismissButton": "×"
       },
       "modal": {
-        "title": "Install QalamFlow",
+        "title": "Install PlanFlow",
         "ios": {
           "title": "On Mobile (iOS)",
           "safari": "Safari",
@@ -319,7 +319,7 @@
           "shareButtonDesc": "button (square with arrow)",
           "addToHomeScreen": "Add to Home Screen",
           "tapAdd": "Add",
-          "step1": "Open QalamFlow in ",
+          "step1": "Open PlanFlow in ",
           "step2": "Tap the ",
           "step2b": " button (square with arrow)",
           "step3": "Scroll down and tap ",
@@ -334,7 +334,7 @@
           "addToHome": "Add to Home Screen",
           "installApp": "Install App",
           "install": "Install",
-          "step1": "Open QalamFlow in ",
+          "step1": "Open PlanFlow in ",
           "step2": "Tap ",
           "step2b": " (three dots)",
           "step3": "Tap ",
@@ -348,7 +348,7 @@
           "addressBar": "in the address bar",
           "menu": "menu",
           "menuDesc": "(three dots)",
-          "installQalamFlow": "Install QalamFlow",
+          "installPlanFlow": "Install PlanFlow",
           "createShortcut": "Create Shortcut",
           "install": "Install",
           "step1": "Look for the ",

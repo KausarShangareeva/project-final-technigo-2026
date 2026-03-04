@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useCopy } from "../../../hooks/useCopy";
-import { Calendar, TableProperties, Search, X } from "lucide-react";
+import { Calendar, GraduationCap, Search, X } from "lucide-react";
 import CTAButton from "../../../components/CTAButton";
 import styles from "./StepByStepGuide.module.css";
 
@@ -149,16 +149,14 @@ function FilledTable() {
           style={{
             left: `calc(1px + 2.8rem + ${c.day} * (100% - 2px - 2.8rem) / 7)`,
             top: `calc(6rem + ${c.startRow} * 2.8rem)`,
-            height: `calc(${c.endRow - c.startRow} * 2.8rem - 1px)`,
+            height: `calc(${c.endRow - c.startRow} * 2.9rem - 1px)`,
             width: `calc((100% - 2px - 2.8rem) / 7 - 1px)`,
             background: `repeating-linear-gradient(-45deg, transparent, transparent 4px, ${c.color}18 4px, ${c.color}18 7px), ${c.bg}`,
             borderLeft: `2.5px solid ${c.color}`,
           }}
         >
           <span className={styles.tableBlockEmoji}>{c.emoji}</span>
-          <span className={styles.tableBlockLabel}>
-            {c.label}
-          </span>
+          <span className={styles.tableBlockLabel}>{c.label}</span>
         </div>
       ))}
     </div>
@@ -253,7 +251,7 @@ export default function StepByStepGuide() {
         {/* Card 1 */}
         <div className={styles.card}>
           <div className={styles.tag}>
-            <TableProperties size={20} color="blue" />
+            <GraduationCap size={20} color="blue" />
             <span>{get("home.howItWorks.step1.tag")}</span>
           </div>
           <h3 className={styles.cardTitle}>

@@ -26,180 +26,47 @@ const DAY_SHORT: Record<string, string> = {
 };
 
 const COURSES = [
-  {
-    name: "Madinah Course",
-    color: "#E0592A",
-    bg: "rgba(224,89,42,0.12)",
-    icon: false,
-  },
-  {
-    name: "Madinah Course 1",
-    color: "#7B2FC9",
-    bg: "rgba(123,47,201,0.12)",
-    icon: "/MK1.png",
-  },
-  {
-    name: "Madinah Course 2",
-    color: "#2E8B57",
-    bg: "rgba(46,139,87,0.12)",
-    icon: "/MK2.png",
-  },
-  {
-    name: "Madinah Course 3",
-    color: "#4A9BD9",
-    bg: "rgba(74,155,217,0.12)",
-    icon: "/MK3.png",
-  },
-  {
-    name: "Madinah Course 4",
-    color: "#C93545",
-    bg: "rgba(201,53,69,0.12)",
-    icon: "/MK4.png",
-  },
-  {
-    name: "Bayna Yadayk",
-    color: "#D46ABF",
-    bg: "rgba(212,106,191,0.12)",
-    icon: false,
-  },
-  {
-    name: "Bayna Yadayk 1",
-    color: "#D4940A",
-    bg: "rgba(212,148,10,0.12)",
-    icon: "/BY1.png",
-  },
-  {
-    name: "Bayna Yadayk 2",
-    color: "#0D7C50",
-    bg: "rgba(13,124,80,0.12)",
-    icon: "/BY2.png",
-  },
-  {
-    name: "Bayna Yadayk 3",
-    color: "#1E7FE0",
-    bg: "rgba(30,127,224,0.12)",
-    icon: "/BY3.png",
-  },
-  {
-    name: "Bayna Yadayk 4",
-    color: "#9B1B4A",
-    bg: "rgba(155,27,74,0.12)",
-    icon: "/BY4.png",
-  },
-  {
-    name: "Quran",
-    color: "#1B6E3A",
-    bg: "rgba(27,110,58,0.12)",
-    icon: "/quran.png",
-  },
-  {
-    name: "Ajrumiyyah",
-    color: "#A68B2C",
-    bg: "rgba(166,139,44,0.12)",
-    icon: "/ajrumiyah.png",
-  },
-  {
-    name: "Qatr an-Nada",
-    color: "#3566C0",
-    bg: "rgba(53,102,192,0.12)",
-    icon: false,
-  },
-  {
-    name: "Alfiyyah ibn Malik",
-    color: "#7045C9",
-    bg: "rgba(112,69,201,0.12)",
-    icon: false,
-  },
-  {
-    name: "Arabic",
-    color: "#48B07A",
-    bg: "rgba(72,176,122,0.12)",
-    icon: "/arabic.png",
-  },
-  {
-    name: "Tajweed",
-    color: "#8A7D55",
-    bg: "rgba(138,125,85,0.12)",
-    icon: "/voice.png",
-  },
-  {
-    name: "Sarf",
-    color: "#C2185B",
-    bg: "rgba(194,24,91,0.12)",
-    icon: "/sarf.png",
-  },
-  {
-    name: "Nahw",
-    color: "#4652B1",
-    bg: "rgba(70,82,177,0.12)",
-    icon: "/nahwu.png",
-  },
-  {
-    name: "Muraja'ah",
-    color: "#238A72",
-    bg: "rgba(35,138,114,0.12)",
-    icon: false,
-  },
-  { name: "Hifz", color: "#4F5EC0", bg: "rgba(79,94,192,0.12)", icon: false },
-  {
-    name: "Seerah",
-    color: "#6B4E2A",
-    bg: "rgba(107,78,42,0.12)",
-    icon: "/Sira.png",
-  },
-  {
-    name: "Qisas an-Nabiyyin lil-Atfal",
-    color: "#D17B30",
-    bg: "rgba(209,123,48,0.12)",
-    icon: false,
-  },
-  {
-    name: "Al-Qira'a ar-Rashida",
-    color: "#5A9E3C",
-    bg: "rgba(90,158,60,0.12)",
-    icon: false,
-  },
-  {
-    name: "40 Hadith an-Nawawi",
-    color: "#8C3D8B",
-    bg: "rgba(140,61,139,0.12)",
-    icon: false,
-  },
-  {
-    name: "Mu'allim Thani",
-    color: "#2CA5A5",
-    bg: "rgba(44,165,165,0.12)",
-    icon: false,
-  },
-  {
-    name: "Khatm Quran",
-    color: "#1A5C3E",
-    bg: "rgba(26,92,62,0.12)",
-    icon: false,
-  },
-  {
-    name: "English",
-    color: "#2868A9",
-    bg: "rgba(40,104,169,0.12)",
-    icon: "/english.png",
-  },
+  { name: "Mathematics",       color: "#2868A9", bg: "rgba(40,104,169,0.12)",  icon: "📐" },
+  { name: "Algebra",           color: "#7B2FC9", bg: "rgba(123,47,201,0.12)",  icon: "🔢" },
+  { name: "Geometry",          color: "#E0592A", bg: "rgba(224,89,42,0.12)",   icon: "📏" },
+  { name: "Calculus",          color: "#C93545", bg: "rgba(201,53,69,0.12)",   icon: "∫" },
+  { name: "Statistics",        color: "#4A9BD9", bg: "rgba(74,155,217,0.12)",  icon: "📊" },
+  { name: "Biology",           color: "#2E8B57", bg: "rgba(46,139,87,0.12)",   icon: "🧬" },
+  { name: "Chemistry",         color: "#D4940A", bg: "rgba(212,148,10,0.12)",  icon: "🧪" },
+  { name: "Physics",           color: "#1E7FE0", bg: "rgba(30,127,224,0.12)",  icon: "⚛️" },
+  { name: "Astronomy",         color: "#4F5EC0", bg: "rgba(79,94,192,0.12)",   icon: "🔭" },
+  { name: "Earth Science",     color: "#5A9E3C", bg: "rgba(90,158,60,0.12)",   icon: "🌍" },
+  { name: "History",           color: "#6B4E2A", bg: "rgba(107,78,42,0.12)",   icon: "📜" },
+  { name: "World History",     color: "#8C3D8B", bg: "rgba(140,61,139,0.12)",  icon: "🌐" },
+  { name: "Geography",         color: "#0D7C50", bg: "rgba(13,124,80,0.12)",   icon: "🗺️" },
+  { name: "Literature",        color: "#D46ABF", bg: "rgba(212,106,191,0.12)", icon: "📚" },
+  { name: "Writing",           color: "#A68B2C", bg: "rgba(166,139,44,0.12)",  icon: "✍️" },
+  { name: "Grammar",           color: "#4652B1", bg: "rgba(70,82,177,0.12)",   icon: "📝" },
+  { name: "Reading",           color: "#48B07A", bg: "rgba(72,176,122,0.12)",  icon: "📖" },
+  { name: "English",           color: "#1B6E3A", bg: "rgba(27,110,58,0.12)",   icon: "🇬🇧" },
+  { name: "Computer Science",  color: "#238A72", bg: "rgba(35,138,114,0.12)",  icon: "💻" },
+  { name: "Programming",       color: "#3566C0", bg: "rgba(53,102,192,0.12)",  icon: "👨‍💻" },
+  { name: "Art",               color: "#C2185B", bg: "rgba(194,24,91,0.12)",   icon: "🎨" },
+  { name: "Music",             color: "#D17B30", bg: "rgba(209,123,48,0.12)",  icon: "🎵" },
+  { name: "Physical Education",color: "#9B1B4A", bg: "rgba(155,27,74,0.12)",   icon: "⚽" },
+  { name: "Psychology",        color: "#7045C9", bg: "rgba(112,69,201,0.12)",  icon: "🧠" },
+  { name: "Economics",         color: "#2CA5A5", bg: "rgba(44,165,165,0.12)",  icon: "💰" },
+  { name: "Philosophy",        color: "#8A7D55", bg: "rgba(138,125,85,0.12)",  icon: "🤔" },
+  { name: "Social Studies",    color: "#1A5C3E", bg: "rgba(26,92,62,0.12)",    icon: "🏛️" },
 ];
 
 const FEATURED = new Set([
-  "Madinah Course",
-  "Bayna Yadayk",
-  "Quran",
-  "Tajweed",
-  "Hifz",
-  "Sarf",
-  "Seerah",
-  "Ajrumiyyah",
-  "Al-Qira'a ar-Rashida",
+  "Mathematics",
+  "Biology",
+  "Chemistry",
+  "Physics",
+  "History",
+  "Geography",
+  "English",
+  "Computer Science",
+  "Literature",
+  "Art",
 ]);
-
-function isFeatured(name: string): boolean {
-  return FEATURED.has(name);
-}
 
 const DURATIONS = [
   { label: "30 min", value: 30 },
@@ -458,8 +325,9 @@ function CoursePopup({
 
   const visibleCourses = useMemo(() => {
     const q = search.trim().toLowerCase();
-    if (q.length >= 2) return COURSES.filter((c) => c.name.toLowerCase().includes(q));
-    return COURSES.filter((c) => isFeatured(c.name));
+    if (q.length >= 2)
+      return COURSES.filter((c) => c.name.toLowerCase().includes(q));
+    return COURSES.filter((c) => FEATURED.has(c.name));
   }, [search]);
 
   return (
@@ -493,7 +361,7 @@ function CoursePopup({
               onClick={() => setSelectedCourse(c.name)}
             >
               {showEmoji && typeof c.icon === "string" && (
-                <img src={c.icon} alt="" className={styles.courseIcon} />
+                <span className={styles.courseIcon}>{c.icon}</span>
               )}
               {c.name}
             </button>
@@ -582,12 +450,9 @@ function ScheduleCell({
             data-print="course"
           >
             {showEmoji && typeof info.course.icon === "string" && (
-              <img
-                src={info.course.icon}
-                alt=""
-                className={styles.courseIconCell}
-                data-print="course-icon"
-              />
+              <span className={styles.courseIconCell} data-print="course-icon">
+                {info.course.icon}
+              </span>
             )}
             {info.course.name}
           </span>

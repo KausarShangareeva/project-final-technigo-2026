@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useCopy } from "../hooks/useCopy";
+import { ArrowUpRight } from "lucide-react";
 import styles from "./NotFound.module.css";
 
 export default function NotFound() {
@@ -7,11 +8,19 @@ export default function NotFound() {
 
   return (
     <div className={styles.wrapper}>
-      <h1 className={styles.code}>404</h1>
-      <p className={styles.text}>{get("notFound.title")}</p>
-      <Link to="/" className={styles.link}>
-        {get("notFound.goHome")}
-      </Link>
+      <p className={styles.code}>404</p>
+      <section className={styles.card} aria-label="Not found page">
+        <h1 className={styles.title}>Oops! {get("notFound.title")}</h1>
+        <p className={styles.description}>
+          The page you are looking for does not exist or has been moved.
+        </p>
+        <Link to="/" className={styles.cta}>
+          GO BACK HOME
+          <span className={styles.ctaIcon}>
+            <ArrowUpRight size={16} />
+          </span>
+        </Link>
+      </section>
     </div>
   );
 }

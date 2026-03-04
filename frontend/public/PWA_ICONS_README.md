@@ -57,7 +57,7 @@ For the favicon, you can use an online tool to convert `pwa-192x192.png` to `fav
 
 ## Notes
 
-- The SVG files use QalamFlow brand colors (#6366f1 primary, #f59e0b secondary)
+- The SVG files use PlanFlow brand colors (#6366f1 primary, #f59e0b secondary)
 - Icons feature a pen (qalam) and book design
 - All icons have rounded corners for modern appearance
 - Icons are designed to work on both light and dark backgrounds

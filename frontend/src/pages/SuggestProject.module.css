@@ -1,0 +1,141 @@
+.page {
+  width: 100%;
+  display: grid;
+  gap: var(--space-xl);
+}
+
+.hero h1 {
+  margin-bottom: var(--space-sm);
+}
+
+.eyebrow {
+  margin: 0 0 var(--space-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 1.2rem;
+  color: var(--color-primary-light);
+}
+
+.subtitle {
+  margin: 0;
+  max-width: 64ch;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(22rem, 30rem) 1fr;
+  gap: var(--space-lg);
+}
+
+.benefits {
+  align-self: start;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-lg);
+}
+
+.benefits h2 {
+  font-size: var(--fs-lg);
+  margin-bottom: var(--space-md);
+}
+
+.benefits ul {
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.benefits li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  color: var(--color-text-muted);
+}
+
+.benefits li svg {
+  margin-top: 0.2rem;
+  color: var(--color-primary-light);
+  flex-shrink: 0;
+}
+
+.form {
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--color-bg-card) 95%, #fff 5%),
+    var(--color-bg-card)
+  );
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  display: grid;
+  gap: var(--space-md);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+}
+
+.form label {
+  display: grid;
+  gap: var(--space-xs);
+  color: var(--color-text-secondary);
+  font-size: var(--fs-sm);
+}
+
+.form textarea {
+  resize: vertical;
+  min-height: 12rem;
+}
+
+.submit {
+  justify-self: start;
+  margin-top: var(--space-sm);
+  border-radius: var(--radius-full);
+  padding: 1.2rem 2.2rem;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: #fff;
+  background: var(--gradient-primary);
+}
+
+.submit:disabled {
+  opacity: 0.7;
+}
+
+.error,
+.success {
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--fs-sm);
+}
+
+.error {
+  border: 1px solid var(--color-error);
+  color: var(--color-error-light);
+  background: color-mix(in srgb, var(--color-error) 12%, transparent);
+}
+
+.success {
+  border: 1px solid var(--color-success);
+  color: var(--color-success-light);
+  background: color-mix(in srgb, var(--color-success) 12%, transparent);
+}
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .form {
+    padding: var(--space-lg);
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
