@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useState, type FormEvent } from "react";
-import { MapPin, MessageSquareQuote, Trash2 } from "lucide-react";
+import { MapPin, Trash2 } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import { api } from "../api/client";
 import CTAButton from "../components/CTAButton";
+import UserAvatar from "../components/UserAvatar";
 import type { FeedbackEntry, FeedbackPayload } from "../api/types";
 import styles from "./Feedback.module.css";
 
@@ -37,12 +38,6 @@ function getReactionTag(rating: number): {
   return { label: "Bad", emoji: "😔", className: "tagBad" };
 }
 
-function getInitials(name: string): string {
-  const parts = name.trim().split(/\s+/).filter(Boolean);
-  if (!parts.length) return "G";
-  if (parts.length === 1) return parts[0].slice(0, 1).toUpperCase();
-  return `${parts[0].slice(0, 1)}${parts[1].slice(0, 1)}`.toUpperCase();
-}
 
 export default function FeedbackPage() {
   const { user } = useAuth();
@@ -86,7 +81,6 @@ export default function FeedbackPage() {
     return total / feedbackList.length;
   }, [feedbackList]);
   const displayName = (user?.name || form.name || "Guest").trim();
-  const avatarText = getInitials(displayName);
 
   useEffect(() => {
     api
@@ -147,7 +141,7 @@ export default function FeedbackPage() {
       <header className={styles.hero}>
         <div className={styles.badge}>⭐ Student reviews</div>
         <h2 className={styles.heroTitle}>
-          Real experiences from <span className={styles.brand}>QalamFlow</span>{" "}
+          Real experiences from <span className={styles.brand}>PlanFlow</span>{" "}
           users
         </h2>
         <p className={styles.heroSubtitle}>Tried it already?</p>
@@ -172,18 +166,21 @@ export default function FeedbackPage() {
         <div className={styles.list}>
           {feedbackList.map((entry) => {
             const reaction = getReactionTag(entry.rating);
+            const isOwn = entry.name === displayName;
             return (
               <article key={entry._id} className={styles.card}>
-                <div className={styles.cardAvatar}>
-                  {getInitials(entry.name)}
-                </div>
+                <UserAvatar name={entry.name} size={40} isCurrentUser={isOwn} />
                 <div className={styles.cardContent}>
                   <div className={styles.cardMeta}>
                     <div className={styles.cardInfo}>
                       <strong className={styles.cardName}>{entry.name}</strong>
-                      <span className={styles.cardDate}>{formatDate(entry.createdAt)}</span>
+                      <span className={styles.cardDate}>
+                        {formatDate(entry.createdAt)}
+                      </span>
                     </div>
-                    <span className={`${styles.reactionTag} ${styles[reaction.className]}`}>
+                    <span
+                      className={`${styles.reactionTag} ${styles[reaction.className]}`}
+                    >
                       {reaction.emoji} {reaction.label}
                     </span>
                     <button
@@ -206,7 +203,7 @@ export default function FeedbackPage() {
       <form onSubmit={onSubmit} className={styles.form}>
         <div className={styles.authorCard}>
           <div className={styles.authorMain}>
-            <div className={styles.avatar}>{avatarText}</div>
+            <UserAvatar name={displayName} size={44} isCurrentUser />
             <div className={styles.authorMeta}>
               <div className={styles.authorNameRow}>
                 <h2>{displayName}</h2>

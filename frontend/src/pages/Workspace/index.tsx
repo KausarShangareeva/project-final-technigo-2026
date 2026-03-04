@@ -1,5 +1,7 @@
 import { useRef, useState, useCallback } from "react";
 import { useAuth } from "../../context/AuthContext";
+import { useAvatar } from "../../hooks/useAvatar";
+import UserAvatar from "../../components/UserAvatar";
 import { usePlans } from "./hooks/usePlans";
 import type { ScheduleEntry } from "./types";
 import styles from "./Workspace.module.css";
@@ -13,15 +15,24 @@ function getGreeting(): string {
   if (h < 6) return "🌙 Good night";
   if (h < 12) return "☀️ Good morning";
   if (h < 18) return "🌤️ Good afternoon";
-  return "🌅 Good evening";
+  return "✨ Good evening";
 }
 
 export default function Workspace() {
   const { user } = useAuth();
   const firstName = user?.name?.split(" ")[0] ?? "";
+  const { uploadAvatar } = useAvatar();
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const { plans, activePlanId, setActivePlanId, savePlan, updatePlan, loadPlan, deletePlan } =
-    usePlans();
+  const {
+    plans,
+    activePlanId,
+    setActivePlanId,
+    savePlan,
+    updatePlan,
+    loadPlan,
+    deletePlan,
+  } = usePlans();
 
   const pageRef = useRef<HTMLDivElement>(null);
   const [schedule, setSchedule] = useState<ScheduleEntry[]>([]);
@@ -31,7 +42,6 @@ export default function Workspace() {
     setSchedule(newSchedule);
   }, []);
 
-  // Save button in WeekPlan toolbar
   const handleSave = useCallback(() => {
     if (schedule.length === 0) return;
     if (activePlanId) {
@@ -42,7 +52,6 @@ export default function Workspace() {
     }
   }, [schedule, orientation, activePlanId, updatePlan, savePlan, setActivePlanId]);
 
-  // "Create new plan" in PDFPlanList
   const handleCreateNew = useCallback(() => {
     if (schedule.length > 0) {
       if (activePlanId) {
@@ -56,7 +65,6 @@ export default function Workspace() {
     pageRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [schedule, orientation, activePlanId, updatePlan, savePlan, setActivePlanId]);
 
-  // Click on a saved plan card
   const handleLoadPlan = useCallback(
     (planId: string) => {
       const plan = loadPlan(planId);
@@ -68,7 +76,6 @@ export default function Workspace() {
     [loadPlan],
   );
 
-  // Delete plan
   const handleDeletePlan = useCallback(
     (planId: string) => {
       deletePlan(planId);
@@ -83,10 +90,31 @@ export default function Workspace() {
   return (
     <div className={styles.page} ref={pageRef}>
       <header className={styles.hero}>
-        <div className={styles.heroText}>
-          <p className={styles.greeting}>{getGreeting()},</p>
-          <h1 className={styles.name}>{firstName}</h1>
-          <p className={styles.subtitle}>Plan your week</p>
+        <div className={styles.heroLeft}>
+          <UserAvatar
+            name={firstName}
+            size={64}
+            isCurrentUser
+            showEditOverlay
+            onClick={() => fileInputRef.current?.click()}
+          />
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="image/*"
+            className={styles.fileInput}
+            onChange={(e) => {
+              const file = e.target.files?.[0];
+              if (file) uploadAvatar(file);
+              e.target.value = "";
+            }}
+          />
+          <div className={styles.heroText}>
+            <p className={styles.greeting}>
+              {getGreeting()}, <span className={styles.name}>{firstName}</span>
+            </p>
+            <p className={styles.subtitle}>Plan your week</p>
+          </div>
         </div>
         <div className={styles.heroAccent} aria-hidden />
       </header>
