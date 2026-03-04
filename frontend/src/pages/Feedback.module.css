@@ -346,9 +346,6 @@
 
 /* ===== FEED ===== */
 .feed {
-  display: grid;
-  gap: var(--space-md);
-  align-content: start;
   background: var(--color-bg-card);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-xl);
@@ -380,7 +377,7 @@
 
 .empty {
   margin: 0;
-  padding: var(--space-lg);
+  padding: var(--space-xl);
   color: var(--color-text-muted);
   font-size: var(--fs-sm);
   text-align: center;
@@ -398,6 +395,7 @@
   padding: var(--space-md) var(--space-lg);
   border-bottom: 1px solid var(--color-border);
   transition: background var(--transition-fast);
+  width: 100%;
 }
 
 .card:last-child {
@@ -411,7 +409,6 @@
 .card:hover .deleteBtn {
   opacity: 1;
 }
-
 
 .cardContent {
   flex: 1;
@@ -435,7 +432,7 @@
 
 .cardName {
   font-size: var(--fs-sm);
-  font-weight: 400;
+  font-weight: 600;
   color: var(--color-text);
   line-height: 1;
 }
@@ -446,24 +443,137 @@
   white-space: nowrap;
 }
 
+.cardActions {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.card:hover .cardActions {
+  opacity: 1;
+}
+
+.editBtn,
 .deleteBtn {
   display: grid;
   place-items: center;
-  width: 2.4rem;
-  height: 2.4rem;
+  width: 2.6rem;
+  height: 2.6rem;
   border-radius: 50%;
   border: none;
   background: transparent;
   color: var(--color-text-muted);
   cursor: pointer;
   transition: all var(--transition-fast);
-  opacity: 0;
-  flex-shrink: 0;
+}
+
+.editBtn:hover {
+  background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+  color: var(--color-primary);
 }
 
 .deleteBtn:hover {
   background: color-mix(in srgb, var(--color-error) 12%, transparent);
   color: var(--color-error-light);
+}
+
+/* ===== INLINE EDIT ===== */
+.editArea {
+  display: grid;
+  gap: var(--space-sm);
+  margin-top: 0.4rem;
+}
+
+.editRatingRow {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.editRatingBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background: transparent;
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.editRatingBtn:hover {
+  background: var(--color-bg-hover);
+  color: var(--color-text);
+}
+
+.editRatingActive {
+  background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+  border-color: color-mix(in srgb, var(--color-primary) 40%, transparent);
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.editTextarea {
+  width: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-hover);
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  color: var(--color-text);
+  resize: vertical;
+}
+
+.editTextarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.editActions {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.saveBtn,
+.cancelBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.4rem;
+  border-radius: var(--radius-md);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all var(--transition-fast);
+}
+
+.saveBtn {
+  background: var(--gradient-primary);
+  color: #fff;
+}
+
+.saveBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.cancelBtn {
+  background: var(--color-bg-hover);
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+}
+
+.cancelBtn:hover {
+  background: var(--color-bg-card);
+  color: var(--color-text);
 }
 
 .cardMessage {

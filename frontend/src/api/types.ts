@@ -101,6 +101,7 @@ export interface SuggestionPayload {
 
 export interface FeedbackEntry {
   _id: string;
+  userId: string | null;
   name: string;
   rating: number;
   message: string;

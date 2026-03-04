@@ -1,6 +1,7 @@
-import { useEffect, useMemo, useState, type FormEvent } from "react";
-import { MapPin, Trash2 } from "lucide-react";
+import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
+import { MapPin, Trash2, Pencil, Check, X } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
+import { useAvatar } from "../hooks/useAvatar";
 import { api } from "../api/client";
 import CTAButton from "../components/CTAButton";
 import UserAvatar from "../components/UserAvatar";
@@ -14,6 +15,12 @@ const initialForm: FeedbackPayload = {
   message: "",
   location: "",
 };
+
+const reactionOptions = [
+  { value: 1, emoji: "😔", label: "Bad" },
+  { value: 3, emoji: "🙂", label: "Decent" },
+  { value: 5, emoji: "😍", label: "Love it!" },
+];
 
 function formatDate(dateString: string): string {
   const date = new Date(dateString);
@@ -29,18 +36,15 @@ function getReactionTag(rating: number): {
   emoji: string;
   className: string;
 } {
-  if (rating >= 5) {
-    return { label: "Love it!", emoji: "😍", className: "tagLove" };
-  }
-  if (rating >= 3) {
-    return { label: "Decent", emoji: "🙂", className: "tagDecent" };
-  }
+  if (rating >= 5) return { label: "Love it!", emoji: "😍", className: "tagLove" };
+  if (rating >= 3) return { label: "Decent", emoji: "🙂", className: "tagDecent" };
   return { label: "Bad", emoji: "😔", className: "tagBad" };
 }
 
-
 export default function FeedbackPage() {
   const { user } = useAuth();
+  const { uploadAvatar } = useAvatar();
+  const avatarInputRef = useRef<HTMLInputElement>(null);
   const isAuthed = Boolean(user);
   const [form, setForm] = useState<FeedbackPayload>({
     ...initialForm,
@@ -51,7 +55,14 @@ export default function FeedbackPage() {
   const [loadingList, setLoadingList] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
-  const reactionOptions = [
+
+  // Edit state
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [editMessage, setEditMessage] = useState("");
+  const [editRating, setEditRating] = useState(5);
+  const [editSaving, setEditSaving] = useState(false);
+
+  const formReactionOptions = [
     {
       value: 1,
       emoji: "😔",
@@ -77,9 +88,10 @@ export default function FeedbackPage() {
 
   const averageRating = useMemo(() => {
     if (!feedbackList.length) return 0;
-    const total = feedbackList.reduce((sum, item) => sum + item.rating, 0);
-    return total / feedbackList.length;
+    return feedbackList.reduce((sum, item) => sum + item.rating, 0) / feedbackList.length;
   }, [feedbackList]);
+  void averageRating;
+
   const displayName = (user?.name || form.name || "Guest").trim();
 
   useEffect(() => {
@@ -96,9 +108,40 @@ export default function FeedbackPage() {
       ...prev,
       name: prev.name || user.name || "",
       email: prev.email || user.email || "",
-      location: prev.location || "",
     }));
   }, [user]);
+
+  const isOwn = (entry: FeedbackEntry) => {
+    if (!user) return false;
+    if (entry.userId !== null && user.id) {
+      if (String(entry.userId) === String(user.id)) return true;
+    }
+    return entry.name.trim() === displayName;
+  };
+
+  const startEdit = (entry: FeedbackEntry) => {
+    setEditingId(entry._id);
+    setEditMessage(entry.message);
+    setEditRating(entry.rating);
+  };
+
+  const cancelEdit = () => setEditingId(null);
+
+  const saveEdit = async (id: string) => {
+    setEditSaving(true);
+    try {
+      const updated = await api.patch<FeedbackEntry>(`/feedback/${id}`, {
+        message: editMessage,
+        rating: editRating,
+      });
+      setFeedbackList((prev) => prev.map((e) => (e._id === id ? updated : e)));
+      setEditingId(null);
+    } catch {
+      // silent
+    } finally {
+      setEditSaving(false);
+    }
+  };
 
   const onDelete = async (id: string) => {
     try {
@@ -113,7 +156,6 @@ export default function FeedbackPage() {
     event.preventDefault();
     setSubmitting(true);
     setError("");
-
     try {
       const payload: FeedbackPayload = {
         ...form,
@@ -122,15 +164,9 @@ export default function FeedbackPage() {
       };
       const created = await api.post<FeedbackEntry>("/feedback", payload);
       setFeedbackList((prev) => [created, ...prev]);
-      setForm({
-        ...initialForm,
-        name: user?.name || "",
-        email: user?.email || "",
-      });
+      setForm({ ...initialForm, name: user?.name || "", email: user?.email || "" });
     } catch (err) {
-      setError(
-        err instanceof Error ? err.message : "Failed to submit feedback",
-      );
+      setError(err instanceof Error ? err.message : "Failed to submit feedback");
     } finally {
       setSubmitting(false);
     }
@@ -145,12 +181,9 @@ export default function FeedbackPage() {
           users
         </h2>
         <p className={styles.heroSubtitle}>Tried it already?</p>
-
         <CTAButton
           onClick={() =>
-            document
-              .querySelector("form")
-              ?.scrollIntoView({ behavior: "smooth", block: "start" })
+            document.querySelector("form")?.scrollIntoView({ behavior: "smooth", block: "start" })
           }
         >
           Share your experience
@@ -160,50 +193,125 @@ export default function FeedbackPage() {
       <aside className={styles.feed}>
         {loadingList && <p className={styles.empty}>Loading feedback...</p>}
         {!loadingList && !feedbackList.length && (
-          <p className={styles.empty}>No feedback yet. Be the first one.</p>
+          <p className={styles.empty}>No feedback yet 😄 Be the first one ✨</p>
         )}
 
+        {feedbackList.length > 0 && (
         <div className={styles.list}>
           {feedbackList.map((entry) => {
             const reaction = getReactionTag(entry.rating);
-            const isOwn = entry.name === displayName;
+            const own = isOwn(entry);
+            const isEditing = editingId === entry._id;
+
             return (
               <article key={entry._id} className={styles.card}>
-                <UserAvatar name={entry.name} size={40} isCurrentUser={isOwn} />
+                <UserAvatar name={entry.name} size={40} isCurrentUser={own} />
                 <div className={styles.cardContent}>
                   <div className={styles.cardMeta}>
                     <div className={styles.cardInfo}>
                       <strong className={styles.cardName}>{entry.name}</strong>
-                      <span className={styles.cardDate}>
-                        {formatDate(entry.createdAt)}
-                      </span>
+                      <span className={styles.cardDate}>{formatDate(entry.createdAt)}</span>
                     </div>
-                    <span
-                      className={`${styles.reactionTag} ${styles[reaction.className]}`}
-                    >
-                      {reaction.emoji} {reaction.label}
-                    </span>
-                    <button
-                      type="button"
-                      className={styles.deleteBtn}
-                      onClick={() => onDelete(entry._id)}
-                      aria-label="Delete feedback"
-                    >
-                      <Trash2 size={14} />
-                    </button>
+                    {!isEditing && (
+                      <span className={`${styles.reactionTag} ${styles[reaction.className]}`}>
+                        {reaction.emoji} {reaction.label}
+                      </span>
+                    )}
+                    {own && !isEditing && (
+                      <div className={styles.cardActions}>
+                        <button
+                          type="button"
+                          className={styles.editBtn}
+                          onClick={() => startEdit(entry)}
+                          aria-label="Edit feedback"
+                        >
+                          <Pencil size={13} />
+                        </button>
+                        <button
+                          type="button"
+                          className={styles.deleteBtn}
+                          onClick={() => onDelete(entry._id)}
+                          aria-label="Delete feedback"
+                        >
+                          <Trash2 size={13} />
+                        </button>
+                      </div>
+                    )}
                   </div>
-                  <p className={styles.cardMessage}>{entry.message}</p>
+
+                  {isEditing ? (
+                    <div className={styles.editArea}>
+                      <div className={styles.editRatingRow}>
+                        {reactionOptions.map((opt) => (
+                          <button
+                            key={opt.value}
+                            type="button"
+                            className={`${styles.editRatingBtn} ${editRating === opt.value ? styles.editRatingActive : ""}`}
+                            onClick={() => setEditRating(opt.value)}
+                          >
+                            {opt.emoji} {opt.label}
+                          </button>
+                        ))}
+                      </div>
+                      <textarea
+                        className={styles.editTextarea}
+                        value={editMessage}
+                        onChange={(e) => setEditMessage(e.target.value)}
+                        rows={3}
+                        autoFocus
+                      />
+                      <div className={styles.editActions}>
+                        <button
+                          type="button"
+                          className={styles.saveBtn}
+                          onClick={() => saveEdit(entry._id)}
+                          disabled={editSaving || !editMessage.trim()}
+                        >
+                          <Check size={14} />
+                          {editSaving ? "Saving..." : "Save"}
+                        </button>
+                        <button
+                          type="button"
+                          className={styles.cancelBtn}
+                          onClick={cancelEdit}
+                        >
+                          <X size={14} />
+                          Cancel
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    <p className={styles.cardMessage}>{entry.message}</p>
+                  )}
                 </div>
               </article>
             );
           })}
         </div>
+        )}
       </aside>
 
       <form onSubmit={onSubmit} className={styles.form}>
         <div className={styles.authorCard}>
           <div className={styles.authorMain}>
-            <UserAvatar name={displayName} size={44} isCurrentUser />
+            <UserAvatar
+              name={displayName}
+              size={44}
+              isCurrentUser
+              showEditOverlay
+              onClick={() => avatarInputRef.current?.click()}
+            />
+            <input
+              ref={avatarInputRef}
+              type="file"
+              accept="image/*"
+              hidden
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+                if (file) uploadAvatar(file);
+                e.target.value = "";
+              }}
+            />
             <div className={styles.authorMeta}>
               <div className={styles.authorNameRow}>
                 <h2>{displayName}</h2>
@@ -226,26 +334,18 @@ export default function FeedbackPage() {
             <button
               type="button"
               className={styles.clearBtn}
-              onClick={() =>
-                setForm({
-                  ...initialForm,
-                  name: user?.name || "",
-                  email: user?.email || "",
-                })
-              }
+              onClick={() => setForm({ ...initialForm, name: user?.name || "", email: user?.email || "" })}
               aria-label="Clear form"
             >
               <Trash2 size={15} />
             </button>
             <p className={styles.rateTitle}>Rate your experience</p>
             <div className={styles.reactionGroup}>
-              {reactionOptions.map((option) => (
+              {formReactionOptions.map((option) => (
                 <button
                   key={option.value}
                   type="button"
-                  onClick={() =>
-                    setForm((prev) => ({ ...prev, rating: option.value }))
-                  }
+                  onClick={() => setForm((prev) => ({ ...prev, rating: option.value }))}
                   className={`${styles.reactionButton} ${option.typeClass} ${form.rating === option.value ? option.activeClass : ""}`}
                 >
                   <span>{option.emoji}</span>
@@ -263,9 +363,7 @@ export default function FeedbackPage() {
               Name *
               <input
                 value={form.name}
-                onChange={(e) =>
-                  setForm((prev) => ({ ...prev, name: e.target.value }))
-                }
+                onChange={(e) => setForm((prev) => ({ ...prev, name: e.target.value }))}
                 required
               />
             </label>
@@ -274,9 +372,7 @@ export default function FeedbackPage() {
               <input
                 type="email"
                 value={form.email}
-                onChange={(e) =>
-                  setForm((prev) => ({ ...prev, email: e.target.value }))
-                }
+                onChange={(e) => setForm((prev) => ({ ...prev, email: e.target.value }))}
                 required
               />
             </label>
@@ -287,9 +383,7 @@ export default function FeedbackPage() {
           <textarea
             className={styles.messageArea}
             value={form.message}
-            onChange={(e) =>
-              setForm((prev) => ({ ...prev, message: e.target.value }))
-            }
+            onChange={(e) => setForm((prev) => ({ ...prev, message: e.target.value }))}
             rows={6}
             placeholder="Share your thoughts..."
             required
