@@ -44,7 +44,7 @@ const COURSES = [
 ];
 
 // ── Mini schedule preview ────────────────────────────────────────────────────
-function MiniSchedulePreview({ orientation }: { orientation: Tab }) {
+function MiniSchedulePreview({ orientation: _orientation }: { orientation: Tab }) {
   return (
     <div className={styles.previewPaper}>
       <div className={styles.paper}>
