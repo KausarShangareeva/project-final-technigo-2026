@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useTheme } from "../context/ThemeContext";
 import { useCopy } from "../hooks/useCopy";
@@ -17,6 +17,9 @@ import {
   X,
   Home,
   LayoutDashboard,
+  BookOpen,
+  Zap,
+  Printer,
 } from "lucide-react";
 import styles from "./Navigation.module.css";
 
@@ -27,12 +30,26 @@ export default function Navigation() {
   const { get } = useCopy();
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const location = useLocation();
+
   const handleLogout = () => {
     logout();
     navigate("/", { replace: true });
   };
 
   const closeMenu = () => setMenuOpen(false);
+
+  const scrollToSection = (sectionId: string) => {
+    closeMenu();
+    if (location.pathname === "/") {
+      document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      navigate("/");
+      setTimeout(() => {
+        document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+      }, 150);
+    }
+  };
 
   return (
     <>
@@ -61,7 +78,7 @@ export default function Navigation() {
                     </button>
                     <div className={styles.dropdown}>
                       <a
-                        href="https://t.me/kausarsh"
+                        href="https://t.me/kausar_code"
                         target="_blank"
                         rel="noopener noreferrer"
                         className={styles.dropdownItem}
@@ -91,12 +108,18 @@ export default function Navigation() {
                 </>
               ) : (
                 <>
-                  <Link to="#" className={styles.navLink}>
-                    How It Works
-                  </Link>
-                  <Link to="#" className={styles.navLink}>
+                  <button className={styles.navLink} onClick={() => scrollToSection("hero")}>
+                    Home
+                  </button>
+                  <button className={styles.navLink} onClick={() => scrollToSection("features")}>
                     Features
-                  </Link>
+                  </button>
+                  <button className={styles.navLink} onClick={() => scrollToSection("how-it-works")}>
+                    How It Works
+                  </button>
+                  <button className={styles.navLink} onClick={() => scrollToSection("pdf-export")}>
+                    PDF Export
+                  </button>
                   <div className={styles.dropdownWrapper}>
                     <button className={styles.contactLink}>
                       <span className={styles.onlineIndicator} />
@@ -104,7 +127,7 @@ export default function Navigation() {
                     </button>
                     <div className={styles.dropdown}>
                       <a
-                        href="https://t.me/kausarsh"
+                        href="https://t.me/kausar_code"
                         target="_blank"
                         rel="noopener noreferrer"
                         className={styles.dropdownItem}
@@ -208,7 +231,7 @@ export default function Navigation() {
             <div className={styles.mobileDivider} />
 
             <a
-              href="https://t.me/kausarsh"
+              href="https://t.me/kausar_code"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.mobileNavLink}
@@ -258,17 +281,27 @@ export default function Navigation() {
           </>
         ) : (
           <>
-            <Link to="#" className={styles.mobileNavLink} onClick={closeMenu}>
-              How It Works
-            </Link>
-            <Link to="#" className={styles.mobileNavLink} onClick={closeMenu}>
+            <button className={styles.mobileNavLink} onClick={() => scrollToSection("hero")}>
+              <Home size={18} />
+              Home
+            </button>
+            <button className={styles.mobileNavLink} onClick={() => scrollToSection("features")}>
+              <Zap size={18} />
               Features
-            </Link>
+            </button>
+            <button className={styles.mobileNavLink} onClick={() => scrollToSection("how-it-works")}>
+              <BookOpen size={18} />
+              How It Works
+            </button>
+            <button className={styles.mobileNavLink} onClick={() => scrollToSection("pdf-export")}>
+              <Printer size={18} />
+              PDF Export
+            </button>
 
             <div className={styles.mobileDivider} />
 
             <a
-              href="https://t.me/kausarsh"
+              href="https://t.me/kausar_code"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.mobileNavLink}

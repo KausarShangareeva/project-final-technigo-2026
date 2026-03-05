@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useCopy } from "../hooks/useCopy";
 import Logo from "./Logo";
 import {
@@ -32,7 +33,7 @@ export default function Footer() {
           <p className={styles.tagline}>{get("app.tagline")}</p>
 
           <a
-            href="https://t.me/kausar_coding"
+            href="https://t.me/student_writes_code"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.authorCard}
@@ -73,7 +74,7 @@ export default function Footer() {
             <h4 className={styles.columnTitle}>{get("footer.connect")}</h4>
             <nav className={styles.links}>
               <a
-                href="https://t.me/kausar_coding"
+                href="https://t.me/kausar_code"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -88,22 +89,14 @@ export default function Footer() {
                 <Coffee size={15} />
                 Buy Me a Coffee
               </a>
-              <a
-                href="https://t.me/kausar_coding"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <Link to="/suggest-project">
                 <Sparkles size={15} />
                 Suggest a Project
-              </a>
-              <a
-                href="https://t.me/kausar_coding"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              </Link>
+              <Link to="/feedback">
                 <MessagesSquare size={15} />
                 Leave Feedback
-              </a>
+              </Link>
               <a
                 href="https://github.com/KausarShangareeva/qalamflow"
                 target="_blank"
