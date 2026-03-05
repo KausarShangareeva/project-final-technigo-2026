@@ -36,8 +36,10 @@ function getReactionTag(rating: number): {
   emoji: string;
   className: string;
 } {
-  if (rating >= 5) return { label: "Love it!", emoji: "😍", className: "tagLove" };
-  if (rating >= 3) return { label: "Decent", emoji: "🙂", className: "tagDecent" };
+  if (rating >= 5)
+    return { label: "Love it!", emoji: "😍", className: "tagLove" };
+  if (rating >= 3)
+    return { label: "Decent", emoji: "🙂", className: "tagDecent" };
   return { label: "Bad", emoji: "😔", className: "tagBad" };
 }
 
@@ -65,7 +67,7 @@ export default function FeedbackPage() {
   const formReactionOptions = [
     {
       value: 1,
-      emoji: "😔",
+      emoji: "👎",
       label: "Bad",
       typeClass: styles.reactionTypeBad,
       activeClass: styles.reactionActiveBad,
@@ -79,7 +81,7 @@ export default function FeedbackPage() {
     },
     {
       value: 5,
-      emoji: "😍",
+      emoji: "🔥",
       label: "Love it!",
       typeClass: styles.reactionTypeLove,
       activeClass: styles.reactionActiveLove,
@@ -88,7 +90,10 @@ export default function FeedbackPage() {
 
   const averageRating = useMemo(() => {
     if (!feedbackList.length) return 0;
-    return feedbackList.reduce((sum, item) => sum + item.rating, 0) / feedbackList.length;
+    return (
+      feedbackList.reduce((sum, item) => sum + item.rating, 0) /
+      feedbackList.length
+    );
   }, [feedbackList]);
   void averageRating;
 
@@ -165,9 +170,15 @@ export default function FeedbackPage() {
       };
       const created = await api.post<FeedbackEntry>("/feedback", payload);
       setFeedbackList((prev) => [created, ...prev]);
-      setForm({ ...initialForm, name: user?.name || "", email: user?.email || "" });
+      setForm({
+        ...initialForm,
+        name: user?.name || "",
+        email: user?.email || "",
+      });
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to submit feedback");
+      setError(
+        err instanceof Error ? err.message : "Failed to submit feedback",
+      );
     } finally {
       setSubmitting(false);
     }
@@ -184,7 +195,9 @@ export default function FeedbackPage() {
         <p className={styles.heroSubtitle}>Tried it already?</p>
         <CTAButton
           onClick={() =>
-            document.querySelector("form")?.scrollIntoView({ behavior: "smooth", block: "start" })
+            document
+              .querySelector("form")
+              ?.scrollIntoView({ behavior: "smooth", block: "start" })
           }
         >
           Share your experience
@@ -198,97 +211,108 @@ export default function FeedbackPage() {
         )}
 
         {feedbackList.length > 0 && (
-        <div className={styles.list}>
-          {feedbackList.map((entry) => {
-            const reaction = getReactionTag(entry.rating);
-            const own = isOwn(entry);
-            const isEditing = editingId === entry._id;
+          <div className={styles.list}>
+            {feedbackList.map((entry) => {
+              const reaction = getReactionTag(entry.rating);
+              const own = isOwn(entry);
+              const isEditing = editingId === entry._id;
 
-            return (
-              <article key={entry._id} className={styles.card}>
-                <UserAvatar name={entry.name} size={40} isCurrentUser={own} avatarUrl={entry.avatarUrl} />
-                <div className={styles.cardContent}>
-                  <div className={styles.cardMeta}>
-                    <div className={styles.cardInfo}>
-                      <strong className={styles.cardName}>{entry.name}</strong>
-                      <span className={styles.cardDate}>{formatDate(entry.createdAt)}</span>
-                    </div>
-                    {!isEditing && (
-                      <span className={`${styles.reactionTag} ${styles[reaction.className]}`}>
-                        {reaction.emoji} {reaction.label}
-                      </span>
-                    )}
-                    {own && !isEditing && (
-                      <div className={styles.cardActions}>
-                        <button
-                          type="button"
-                          className={styles.editBtn}
-                          onClick={() => startEdit(entry)}
-                          aria-label="Edit feedback"
-                        >
-                          <Pencil size={13} />
-                        </button>
-                        <button
-                          type="button"
-                          className={styles.deleteBtn}
-                          onClick={() => onDelete(entry._id)}
-                          aria-label="Delete feedback"
-                        >
-                          <Trash2 size={13} />
-                        </button>
+              return (
+                <article key={entry._id} className={styles.card}>
+                  <UserAvatar
+                    name={entry.name}
+                    size={40}
+                    isCurrentUser={own}
+                    avatarUrl={entry.avatarUrl}
+                  />
+                  <div className={styles.cardContent}>
+                    <div className={styles.cardMeta}>
+                      <div className={styles.cardInfo}>
+                        <strong className={styles.cardName}>
+                          {entry.name}
+                        </strong>
+                        <span className={styles.cardDate}>
+                          {formatDate(entry.createdAt)}
+                        </span>
                       </div>
+                      {!isEditing && (
+                        <span
+                          className={`${styles.reactionTag} ${styles[reaction.className]}`}
+                        >
+                          {reaction.emoji} {reaction.label}
+                        </span>
+                      )}
+                      {own && !isEditing && (
+                        <div className={styles.cardActions}>
+                          <button
+                            type="button"
+                            className={styles.editBtn}
+                            onClick={() => startEdit(entry)}
+                            aria-label="Edit feedback"
+                          >
+                            <Pencil size={13} />
+                          </button>
+                          <button
+                            type="button"
+                            className={styles.deleteBtn}
+                            onClick={() => onDelete(entry._id)}
+                            aria-label="Delete feedback"
+                          >
+                            <Trash2 size={13} />
+                          </button>
+                        </div>
+                      )}
+                    </div>
+
+                    {isEditing ? (
+                      <div className={styles.editArea}>
+                        <div className={styles.editRatingRow}>
+                          {reactionOptions.map((opt) => (
+                            <button
+                              key={opt.value}
+                              type="button"
+                              className={`${styles.editRatingBtn} ${editRating === opt.value ? styles.editRatingActive : ""}`}
+                              onClick={() => setEditRating(opt.value)}
+                            >
+                              {opt.emoji} {opt.label}
+                            </button>
+                          ))}
+                        </div>
+                        <textarea
+                          className={styles.editTextarea}
+                          value={editMessage}
+                          onChange={(e) => setEditMessage(e.target.value)}
+                          rows={3}
+                          autoFocus
+                        />
+                        <div className={styles.editActions}>
+                          <button
+                            type="button"
+                            className={styles.saveBtn}
+                            onClick={() => saveEdit(entry._id)}
+                            disabled={editSaving || !editMessage.trim()}
+                          >
+                            <Check size={14} />
+                            {editSaving ? "Saving..." : "Save"}
+                          </button>
+                          <button
+                            type="button"
+                            className={styles.cancelBtn}
+                            onClick={cancelEdit}
+                          >
+                            <X size={14} />
+                            Cancel
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
+                      <p className={styles.cardMessage}>{entry.message}</p>
                     )}
                   </div>
-
-                  {isEditing ? (
-                    <div className={styles.editArea}>
-                      <div className={styles.editRatingRow}>
-                        {reactionOptions.map((opt) => (
-                          <button
-                            key={opt.value}
-                            type="button"
-                            className={`${styles.editRatingBtn} ${editRating === opt.value ? styles.editRatingActive : ""}`}
-                            onClick={() => setEditRating(opt.value)}
-                          >
-                            {opt.emoji} {opt.label}
-                          </button>
-                        ))}
-                      </div>
-                      <textarea
-                        className={styles.editTextarea}
-                        value={editMessage}
-                        onChange={(e) => setEditMessage(e.target.value)}
-                        rows={3}
-                        autoFocus
-                      />
-                      <div className={styles.editActions}>
-                        <button
-                          type="button"
-                          className={styles.saveBtn}
-                          onClick={() => saveEdit(entry._id)}
-                          disabled={editSaving || !editMessage.trim()}
-                        >
-                          <Check size={14} />
-                          {editSaving ? "Saving..." : "Save"}
-                        </button>
-                        <button
-                          type="button"
-                          className={styles.cancelBtn}
-                          onClick={cancelEdit}
-                        >
-                          <X size={14} />
-                          Cancel
-                        </button>
-                      </div>
-                    </div>
-                  ) : (
-                    <p className={styles.cardMessage}>{entry.message}</p>
-                  )}
-                </div>
-              </article>
-            );
-          })}
-        </div>
+                </article>
+              );
+            })}
+          </div>
         )}
       </aside>
 
@@ -335,7 +359,13 @@ export default function FeedbackPage() {
             <button
               type="button"
               className={styles.clearBtn}
-              onClick={() => setForm({ ...initialForm, name: user?.name || "", email: user?.email || "" })}
+              onClick={() =>
+                setForm({
+                  ...initialForm,
+                  name: user?.name || "",
+                  email: user?.email || "",
+                })
+              }
               aria-label="Clear form"
             >
               <Trash2 size={15} />
@@ -346,7 +376,9 @@ export default function FeedbackPage() {
                 <button
                   key={option.value}
                   type="button"
-                  onClick={() => setForm((prev) => ({ ...prev, rating: option.value }))}
+                  onClick={() =>
+                    setForm((prev) => ({ ...prev, rating: option.value }))
+                  }
                   className={`${styles.reactionButton} ${option.typeClass} ${form.rating === option.value ? option.activeClass : ""}`}
                 >
                   <span>{option.emoji}</span>
@@ -364,7 +396,9 @@ export default function FeedbackPage() {
               Name *
               <input
                 value={form.name}
-                onChange={(e) => setForm((prev) => ({ ...prev, name: e.target.value }))}
+                onChange={(e) =>
+                  setForm((prev) => ({ ...prev, name: e.target.value }))
+                }
                 required
               />
             </label>
@@ -373,7 +407,9 @@ export default function FeedbackPage() {
               <input
                 type="email"
                 value={form.email}
-                onChange={(e) => setForm((prev) => ({ ...prev, email: e.target.value }))}
+                onChange={(e) =>
+                  setForm((prev) => ({ ...prev, email: e.target.value }))
+                }
                 required
               />
             </label>
@@ -384,7 +420,9 @@ export default function FeedbackPage() {
           <textarea
             className={styles.messageArea}
             value={form.message}
-            onChange={(e) => setForm((prev) => ({ ...prev, message: e.target.value }))}
+            onChange={(e) =>
+              setForm((prev) => ({ ...prev, message: e.target.value }))
+            }
             rows={6}
             placeholder="Share your thoughts..."
             required

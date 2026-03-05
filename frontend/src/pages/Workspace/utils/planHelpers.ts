@@ -1,44 +1,14 @@
 import type { ScheduleEntry } from "../types";
+import TAGS from "../../../json/tags.json";
+import WEEKDAYS from "../../../json/weekdays.json";
 
-const COURSE_COLORS: Record<string, string> = {
-  "Mathematics":        "#2868A9",
-  "Algebra":            "#7B2FC9",
-  "Geometry":           "#E0592A",
-  "Calculus":           "#C93545",
-  "Statistics":         "#4A9BD9",
-  "Biology":            "#2E8B57",
-  "Chemistry":          "#D4940A",
-  "Physics":            "#1E7FE0",
-  "Astronomy":          "#4F5EC0",
-  "Earth Science":      "#5A9E3C",
-  "History":            "#6B4E2A",
-  "World History":      "#8C3D8B",
-  "Geography":          "#0D7C50",
-  "Literature":         "#D46ABF",
-  "Writing":            "#A68B2C",
-  "Grammar":            "#4652B1",
-  "Reading":            "#48B07A",
-  "English":            "#1B6E3A",
-  "Computer Science":   "#238A72",
-  "Programming":        "#3566C0",
-  "Art":                "#C2185B",
-  "Music":              "#D17B30",
-  "Physical Education": "#9B1B4A",
-  "Psychology":         "#7045C9",
-  "Economics":          "#2CA5A5",
-  "Philosophy":         "#8A7D55",
-  "Social Studies":     "#1A5C3E",
-};
+const COURSE_COLORS: Record<string, string> = Object.fromEntries(
+  TAGS.map((t) => [t.name, t.color])
+);
 
-const DAY_SHORT: Record<string, string> = {
-  Monday: "Mon",
-  Tuesday: "Tue",
-  Wednesday: "Wed",
-  Thursday: "Thu",
-  Friday: "Fri",
-  Saturday: "Sat",
-  Sunday: "Sun",
-};
+const DAY_SHORT: Record<string, string> = Object.fromEntries(
+  WEEKDAYS.days.map((d) => [d.full, d.short])
+);
 
 /** Pick the color of the most frequent course */
 export function getDominantColor(schedule: ScheduleEntry[]): string {

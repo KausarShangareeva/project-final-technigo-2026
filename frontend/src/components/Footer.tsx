@@ -51,8 +51,10 @@ export default function Footer() {
               />
             </div>
             <div className={styles.authorInfo}>
-              <span className={styles.authorName}>Kausar</span>
-              <span className={styles.authorEmail}>kausyarsh@gmail.com</span>
+              <span className={styles.authorName}>My Telegram channel</span>
+              <span className={styles.authorEmail}>
+                The student writes code
+              </span>
             </div>
           </a>
         </div>

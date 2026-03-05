@@ -1,7 +1,8 @@
 import jsPDF from "jspdf";
 import type { ScheduleItem } from "../api/types";
+import WEEKDAYS from "../json/weekdays.json";
 
-const DAYS = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
+const DAYS = WEEKDAYS.days.map((d) => d.lower);
 
 // Colors matching the app theme
 const COLORS = {

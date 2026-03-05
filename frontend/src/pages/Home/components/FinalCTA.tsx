@@ -8,6 +8,7 @@ export default function FinalCTA() {
       <SectionHeader
         title="Sounds great? 😊"
         subtitle="Try it yourself - it's really simple"
+        titleWidth="100%"
       />
       <div className={styles.card}>
         <div className={styles.illustration}>

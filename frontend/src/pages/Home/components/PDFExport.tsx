@@ -1,6 +1,15 @@
 import { useState } from "react";
 import CTAButton from "../../../components/CTAButton";
+import TagIcon from "../../../components/TagIcon";
+import TAGS from "../../../json/tags.json";
+import WEEKDAYS from "../../../json/weekdays.json";
 import styles from "./PDFExport.module.css";
+
+function tag(name: string) {
+  const t = TAGS.find((t) => t.name === name);
+  if (!t) { console.warn(`[PDFExport] Course not found in tags.json: "${name}"`); return { label: name, color: "#888", bg: "rgba(136,136,136,0.12)", icon: "📚" }; }
+  return { label: t.name, color: t.color, bg: t.bg, icon: t.icon };
+}
 
 const tabs = [
   { key: "vertical", label: "Portrait", icon: "/virtical.svg" },
@@ -10,9 +19,10 @@ const tabs = [
 type Tab = (typeof tabs)[number]["key"];
 
 // ── Schedule data ────────────────────────────────────────────────────────────
-const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-const START_HOUR = 6;
-const TOTAL_HOURS = 16; // 06:00 – 22:00 (used for block positioning)
+const DAYS = WEEKDAYS.days.map((d) => d.short);
+const PDF_HOURS = WEEKDAYS.hours.filter((h) => h.value >= 6 && h.value <= 22);
+const START_HOUR = PDF_HOURS[0].value;
+const TOTAL_HOURS = PDF_HOURS[PDF_HOURS.length - 1].value - START_HOUR; // 06:00 – 22:00
 const SLOT_MIN = 30; // 30-minute slots
 const TOTAL_SLOTS = (TOTAL_HOURS * 60) / SLOT_MIN; // 32 slots
 
@@ -21,30 +31,34 @@ const DAY_COL_PCT = (100 - TIME_COL_PCT) / DAYS.length;
 
 const COURSES = [
   // Monday
-  { day: 0, start: 9,    end: 11,   label: "Math",       color: "#6366f1", bg: "rgba(99,102,241,0.12)",  icon: "📘" },
-  { day: 0, start: 13,   end: 14.5, label: "Art",        color: "#e11d48", bg: "rgba(225,29,72,0.12)",   icon: "🎨" },
+  { day: 0, start: 9, end: 11, ...tag("Math") },
+  { day: 0, start: 13, end: 14.5, ...tag("Art") },
   // Tuesday
-  { day: 1, start: 8,    end: 10,   label: "Physics",    color: "#f59e0b", bg: "rgba(245,158,11,0.12)",  icon: "📙" },
-  { day: 1, start: 12,   end: 13.5, label: "Geography",  color: "#0d9488", bg: "rgba(13,148,136,0.12)",  icon: "🌍" },
+  { day: 1, start: 8, end: 10, ...tag("Physics") },
+  { day: 1, start: 12, end: 13.5, ...tag("Geography") },
   // Wednesday
-  { day: 2, start: 7,    end: 8.5,  label: "Music",      color: "#7c3aed", bg: "rgba(124,58,237,0.12)",  icon: "🎵" },
-  { day: 2, start: 11,   end: 13,   label: "Literature", color: "#22c55e", bg: "rgba(34,197,94,0.12)",   icon: "📗" },
+  { day: 2, start: 7, end: 8.5, ...tag("Music") },
+  { day: 2, start: 11, end: 13, ...tag("Literature") },
   // Thursday
-  { day: 3, start: 9,    end: 12,   label: "History",    color: "#ec4899", bg: "rgba(236,72,153,0.12)",  icon: "📕" },
-  { day: 3, start: 14,   end: 16,   label: "P.E.",       color: "#65a30d", bg: "rgba(101,163,13,0.12)",  icon: "⚽" },
+  { day: 3, start: 9, end: 12, ...tag("History") },
+  { day: 3, start: 14, end: 16, ...tag("Physical Education") },
   // Friday
-  { day: 4, start: 9,    end: 11,   label: "Comp. Sci.", color: "#0891b2", bg: "rgba(8,145,178,0.12)",   icon: "💻" },
-  { day: 4, start: 14,   end: 16,   label: "Chemistry",  color: "#a855f7", bg: "rgba(168,85,247,0.12)",  icon: "📓" },
+  { day: 4, start: 9, end: 11, ...tag("Computer Science") },
+  { day: 4, start: 14, end: 16, ...tag("Chemistry") },
   // Saturday
-  { day: 5, start: 10,   end: 12,   label: "Biology",    color: "#0ea5e9", bg: "rgba(14,165,233,0.12)",  icon: "📔" },
-  { day: 5, start: 13.5, end: 15,   label: "Economics",  color: "#d97706", bg: "rgba(217,119,6,0.12)",   icon: "📊" },
+  { day: 5, start: 10, end: 12, ...tag("Biology") },
+  { day: 5, start: 13.5, end: 15, ...tag("Economics") },
   // Sunday
-  { day: 6, start: 11,   end: 12.5, label: "Drama",      color: "#be185d", bg: "rgba(190,24,93,0.12)",   icon: "🎭" },
-  { day: 6, start: 14,   end: 15.5, label: "English",    color: "#f97316", bg: "rgba(249,115,22,0.12)",  icon: "📒" },
+  { day: 6, start: 11, end: 12.5, ...tag("Drama") },
+  { day: 6, start: 14, end: 15.5, ...tag("English") },
 ];
 
 // ── Mini schedule preview ────────────────────────────────────────────────────
-function MiniSchedulePreview({ orientation: _orientation }: { orientation: Tab }) {
+function MiniSchedulePreview({
+  orientation: _orientation,
+}: {
+  orientation: Tab;
+}) {
   return (
     <div className={styles.previewPaper}>
       <div className={styles.paper}>
@@ -95,11 +109,11 @@ function MiniSchedulePreview({ orientation: _orientation }: { orientation: Tab }
                     top: `${top}%`,
                     width: `calc(${DAY_COL_PCT}% - 2px)`,
                     height: `${height}%`,
-                    background: `repeating-linear-gradient(-45deg, transparent, transparent 4px, ${course.color}10 4px, ${course.color}10 7px), ${course.bg}`,
+                    background: `repeating-linear-gradient(-45deg, transparent, transparent 4px, color-mix(in srgb, ${course.color} 10%, transparent) 4px, color-mix(in srgb, ${course.color} 10%, transparent) 7px), ${course.bg}`,
                     borderLeft: `2.5px solid ${course.color}`,
                   }}
                 >
-                  <span className={styles.schedBlockIcon}>{course.icon}</span>
+                  <span className={styles.schedBlockIcon}><TagIcon icon={course.icon} size={13} /></span>
                   <span className={styles.schedBlockLabel}>{course.label}</span>
                 </div>
               );
@@ -119,10 +133,13 @@ export default function PDFExport() {
     <section id="pdf-export" className={styles.section}>
       <div className={styles.header}>
         <div className={styles.first}>
-          <h2 className={styles.title}>Print </h2>
-          <img src="/pdf-svg.svg" alt="" className={styles.titleIcon} />
+          <h2 className={styles.title}>
+            Print
+            <img src="/pdf-svg.svg" alt="" className={styles.titleIcon} />
+            your plan
+          </h2>
         </div>
-        <h2 className={styles.title}>your plan in PDF format</h2>
+        <h2 className={styles.title}> in PDF format</h2>
       </div>
 
       <div className={styles.toggle}>

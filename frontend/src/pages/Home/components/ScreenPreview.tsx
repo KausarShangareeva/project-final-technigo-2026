@@ -1,113 +1,39 @@
 import { Save, Printer } from "lucide-react";
+import TAGS from "../../../json/tags.json";
+import WEEKDAYS from "../../../json/weekdays.json";
+import TagIcon from "../../../components/TagIcon";
 import styles from "./ScreenPreview.module.css";
 
-const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-const TIMES = [
-  "08:00",
-  "09:00",
-  "10:00",
-  "11:00",
-  "12:00",
-  "13:00",
-  "14:00",
-  "15:00",
-  "16:00",
-];
+const DAYS = WEEKDAYS.days.map((d) => d.short);
+const TIMES = WEEKDAYS.hours
+  .filter((h) => h.value >= 8 && h.value <= 16)
+  .map((h) => h.full);
+
+function tag(name: string) {
+  const t = TAGS.find((t) => t.name === name);
+  if (!t) { console.warn(`[ScreenPreview] Course not found in tags.json: "${name}"`); return { name, color: "#888", bg: "rgba(136,136,136,0.12)", icon: "📚" }; }
+  return { name: t.name, color: t.color, bg: t.bg, icon: t.icon };
+}
 
 const DEMO_SCHEDULE: Record<
   string,
   { name: string; color: string; bg: string; icon: string }
 > = {
-  "Mon-09:00": {
-    name: "Math",
-    color: "#6366f1",
-    bg: "rgba(99,102,241,0.12)",
-    icon: "📐",
-  },
-  "Mon-10:00": {
-    name: "Math",
-    color: "#6366f1",
-    bg: "rgba(99,102,241,0.12)",
-    icon: "📐",
-  },
-  "Tue-08:00": {
-    name: "Physics",
-    color: "#f59e0b",
-    bg: "rgba(245,158,11,0.12)",
-    icon: "⚛️",
-  },
-  "Tue-09:00": {
-    name: "Physics",
-    color: "#f59e0b",
-    bg: "rgba(245,158,11,0.12)",
-    icon: "⚛️",
-  },
-  "Wed-11:00": {
-    name: "Literature",
-    color: "#22c55e",
-    bg: "rgba(34,197,94,0.12)",
-    icon: "📖",
-  },
-  "Wed-12:00": {
-    name: "Literature",
-    color: "#22c55e",
-    bg: "rgba(34,197,94,0.12)",
-    icon: "📖",
-  },
-  "Thu-09:00": {
-    name: "History",
-    color: "#ec4899",
-    bg: "rgba(236,72,153,0.12)",
-    icon: "📜",
-  },
-  "Thu-10:00": {
-    name: "History",
-    color: "#ec4899",
-    bg: "rgba(236,72,153,0.12)",
-    icon: "📜",
-  },
-  "Thu-11:00": {
-    name: "History",
-    color: "#ec4899",
-    bg: "rgba(236,72,153,0.12)",
-    icon: "📜",
-  },
-  "Fri-14:00": {
-    name: "Chemistry",
-    color: "#a855f7",
-    bg: "rgba(168,85,247,0.12)",
-    icon: "🧪",
-  },
-  "Fri-15:00": {
-    name: "Chemistry",
-    color: "#a855f7",
-    bg: "rgba(168,85,247,0.12)",
-    icon: "🧪",
-  },
-  "Sat-10:00": {
-    name: "Biology",
-    color: "#0ea5e9",
-    bg: "rgba(14,165,233,0.12)",
-    icon: "🧬",
-  },
-  "Sat-11:00": {
-    name: "Biology",
-    color: "#0ea5e9",
-    bg: "rgba(14,165,233,0.12)",
-    icon: "🧬",
-  },
-  "Sun-13:00": {
-    name: "English",
-    color: "#f97316",
-    bg: "rgba(249,115,22,0.12)",
-    icon: "✍️",
-  },
-  "Sun-14:00": {
-    name: "English",
-    color: "#f97316",
-    bg: "rgba(249,115,22,0.12)",
-    icon: "✍️",
-  },
+  "Mon-09:00": tag("Math"),
+  "Mon-10:00": tag("Math"),
+  "Tue-08:00": tag("Physics"),
+  "Tue-09:00": tag("Physics"),
+  "Wed-11:00": tag("Literature"),
+  "Wed-12:00": tag("Literature"),
+  "Thu-09:00": tag("History"),
+  "Thu-10:00": tag("History"),
+  "Thu-11:00": tag("History"),
+  "Fri-14:00": tag("Chemistry"),
+  "Fri-15:00": tag("Chemistry"),
+  "Sat-10:00": tag("Biology"),
+  "Sat-11:00": tag("Biology"),
+  "Sun-13:00": tag("English"),
+  "Sun-14:00": tag("English"),
 };
 
 // Track which cells are "start" vs "continuation"
@@ -234,15 +160,17 @@ export default function ScreenPreview() {
                           rowSpan={span}
                           className={styles.bookedCell}
                           style={{
-                            background: `repeating-linear-gradient(-45deg, transparent, transparent 4px, ${entry.color}10 4px, ${entry.color}10 7px), ${entry.bg}`,
+                            background: `repeating-linear-gradient(-45deg, transparent, transparent 4px, color-mix(in srgb, ${entry.color} 10%, transparent) 4px, color-mix(in srgb, ${entry.color} 10%, transparent) 7px), ${entry.bg}`,
                             borderLeft: `3px solid ${entry.color}`,
                           }}
                         >
-                          <span className={styles.courseIcon}>
-                            {entry.icon}
-                          </span>
-                          <span className={styles.courseName}>
-                            {entry.name}
+                          <span className={styles.courseContent}>
+                            <span className={styles.courseIcon}>
+                              <TagIcon icon={entry.icon} size={12} />
+                            </span>
+                            <span className={styles.courseName}>
+                              {entry.name}
+                            </span>
                           </span>
                         </td>
                       );

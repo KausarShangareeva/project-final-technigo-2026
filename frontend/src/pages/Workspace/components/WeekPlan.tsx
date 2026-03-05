@@ -1,59 +1,18 @@
 import { useRef, useState, useMemo } from "react";
 import { Printer, Save, Search } from "lucide-react";
 import type { ScheduleEntry } from "../types";
+import COURSES from "../../../json/tags.json";
+import WEEKDAYS from "../../../json/weekdays.json";
+import TagIcon from "../../../components/TagIcon";
 import styles from "./WeekPlan.module.css";
 
 /* ===== Constants ===== */
 
-const DAYS = [
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-  "Sunday",
-];
+const DAYS = WEEKDAYS.days.map((d) => d.full);
 
-const DAY_SHORT: Record<string, string> = {
-  Monday: "Mon",
-  Tuesday: "Tue",
-  Wednesday: "Wed",
-  Thursday: "Thu",
-  Friday: "Fri",
-  Saturday: "Sat",
-  Sunday: "Sun",
-};
-
-const COURSES = [
-  { name: "Mathematics",       color: "#2868A9", bg: "rgba(40,104,169,0.12)",  icon: "📐" },
-  { name: "Algebra",           color: "#7B2FC9", bg: "rgba(123,47,201,0.12)",  icon: "🔢" },
-  { name: "Geometry",          color: "#E0592A", bg: "rgba(224,89,42,0.12)",   icon: "📏" },
-  { name: "Calculus",          color: "#C93545", bg: "rgba(201,53,69,0.12)",   icon: "∫" },
-  { name: "Statistics",        color: "#4A9BD9", bg: "rgba(74,155,217,0.12)",  icon: "📊" },
-  { name: "Biology",           color: "#2E8B57", bg: "rgba(46,139,87,0.12)",   icon: "🧬" },
-  { name: "Chemistry",         color: "#D4940A", bg: "rgba(212,148,10,0.12)",  icon: "🧪" },
-  { name: "Physics",           color: "#1E7FE0", bg: "rgba(30,127,224,0.12)",  icon: "⚛️" },
-  { name: "Astronomy",         color: "#4F5EC0", bg: "rgba(79,94,192,0.12)",   icon: "🔭" },
-  { name: "Earth Science",     color: "#5A9E3C", bg: "rgba(90,158,60,0.12)",   icon: "🌍" },
-  { name: "History",           color: "#6B4E2A", bg: "rgba(107,78,42,0.12)",   icon: "📜" },
-  { name: "World History",     color: "#8C3D8B", bg: "rgba(140,61,139,0.12)",  icon: "🌐" },
-  { name: "Geography",         color: "#0D7C50", bg: "rgba(13,124,80,0.12)",   icon: "🗺️" },
-  { name: "Literature",        color: "#D46ABF", bg: "rgba(212,106,191,0.12)", icon: "📚" },
-  { name: "Writing",           color: "#A68B2C", bg: "rgba(166,139,44,0.12)",  icon: "✍️" },
-  { name: "Grammar",           color: "#4652B1", bg: "rgba(70,82,177,0.12)",   icon: "📝" },
-  { name: "Reading",           color: "#48B07A", bg: "rgba(72,176,122,0.12)",  icon: "📖" },
-  { name: "English",           color: "#1B6E3A", bg: "rgba(27,110,58,0.12)",   icon: "🇬🇧" },
-  { name: "Computer Science",  color: "#238A72", bg: "rgba(35,138,114,0.12)",  icon: "💻" },
-  { name: "Programming",       color: "#3566C0", bg: "rgba(53,102,192,0.12)",  icon: "👨‍💻" },
-  { name: "Art",               color: "#C2185B", bg: "rgba(194,24,91,0.12)",   icon: "🎨" },
-  { name: "Music",             color: "#D17B30", bg: "rgba(209,123,48,0.12)",  icon: "🎵" },
-  { name: "Physical Education",color: "#9B1B4A", bg: "rgba(155,27,74,0.12)",   icon: "⚽" },
-  { name: "Psychology",        color: "#7045C9", bg: "rgba(112,69,201,0.12)",  icon: "🧠" },
-  { name: "Economics",         color: "#2CA5A5", bg: "rgba(44,165,165,0.12)",  icon: "💰" },
-  { name: "Philosophy",        color: "#8A7D55", bg: "rgba(138,125,85,0.12)",  icon: "🤔" },
-  { name: "Social Studies",    color: "#1A5C3E", bg: "rgba(26,92,62,0.12)",    icon: "🏛️" },
-];
+const DAY_SHORT: Record<string, string> = Object.fromEntries(
+  WEEKDAYS.days.map((d) => [d.full, d.short]),
+);
 
 const FEATURED = new Set([
   "Mathematics",
@@ -192,6 +151,22 @@ export default function WeekPlan({
       ? "@page { size: landscape; margin: 8mm; }"
       : "@page { size: portrait; margin: 8mm; }";
 
+    // Resolve CSS variables (var(--tag-*)) so they work inside the iframe
+    const computedRoot = getComputedStyle(document.documentElement);
+    const seen = new Set<string>();
+    const resolvedVars: string[] = [];
+    COURSES.forEach((course) => {
+      [course.color, course.bg].forEach((val) => {
+        const varName = (val as string).match(/var\((--[^)]+)\)/)?.[1];
+        if (varName && !seen.has(varName)) {
+          seen.add(varName);
+          const resolved = computedRoot.getPropertyValue(varName).trim();
+          if (resolved) resolvedVars.push(`${varName}: ${resolved};`);
+        }
+      });
+    });
+    const cssVarsBlock = `:root { ${resolvedVars.join(" ")} }`;
+
     const iframe = document.createElement("iframe");
     iframe.style.position = "fixed";
     iframe.style.left = "-9999px";
@@ -211,30 +186,35 @@ export default function WeekPlan({
 <html><head><meta charset="utf-8"><title>Weekly Plan</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+  ${cssVarsBlock}
   ${pageSize}
   * { margin: 0; padding: 0; box-sizing: border-box; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-  body { font-family: "Montserrat", system-ui, sans-serif; }
-  table { width: 100%; border-collapse: separate; border-spacing: 0; table-layout: fixed; border: 1px solid #ccc; border-radius: 12px; overflow: hidden; }
-  th, td { border-top: 1px solid #ccc; border-right: 1px solid #ccc; padding: ${isHorizontal ? "3px 4px" : "5px 6px"}; font-size: ${isHorizontal ? "9px" : "10px"}; text-align: center; height: ${isHorizontal ? "20px" : "29px"}; }
+  html { font-size: 10px; }
+  body { font-family: "Montserrat", system-ui, sans-serif; background: #fff; }
+  table { width: 100%; border-collapse: separate; border-spacing: 0; table-layout: fixed; border: 1px solid #d1d5db; border-radius: 12px; overflow: hidden; }
+  th, td { border-top: 1px solid #d1d5db; border-right: 1px solid #d1d5db; padding: ${isHorizontal ? "2px 3px" : "3px 5px"}; font-size: ${isHorizontal ? "9px" : "10px"}; text-align: center; height: ${isHorizontal ? "20px" : "29px"}; vertical-align: top; }
   th:last-child, td:last-child { border-right: none; }
   tr:first-child th { border-top: none; }
-  th { background: #f0f0f5 !important; font-weight: 600; color: #303030; border-bottom: 1px solid #3234ae; font-size: 11px; }
-  td:first-child { text-align: left; font-weight: 500; color: #303030; width: ${isHorizontal ? "60px" : "60px"}; }
-  th:first-child { text-align: left; font-weight: 600; color: #303030; width: ${isHorizontal ? "60px" : "60px"}; }
+  th { background: #f3f0fb !important; font-weight: 500; color: #6949b2; border-bottom: 1px solid #d1d5db !important; font-size: ${isHorizontal ? "10px" : "11px"}; white-space: nowrap; }
+  td:first-child { text-align: center; font-weight: 500; color: #6b7280; width: 52px; background: #f3f0fb !important; border-right: 1px solid #d1d5db !important; font-size: ${isHorizontal ? "9px" : "9px"}; }
+  th:first-child { text-align: center; width: 52px; }
   [data-print="day-full"] { display: inline !important; }
   [data-print="day-short"] { display: none !important; }
-  [data-print="label"] { font-size: 8px; color: #bbb; }
-  [data-print="course"] { font-size: 9px; font-weight: 600; display: flex; align-items: center; gap: 2px; }
-  [data-print="course-icon"] { width: 21px; height: 21px; flex-shrink: 0; }
-  [data-print="booked"] { position: relative; z-index: 1; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  [data-print="label"] { display: none !important; }
+  [data-print="course"] { font-size: ${isHorizontal ? "11px" : "12px"}; font-weight: 500; color: #000 !important; display: flex; align-items: center; justify-content: center; gap: 3px; overflow: hidden; white-space: nowrap; padding-top: 4px; }
+  [data-print="course-icon"] { width: ${isHorizontal ? "13px" : "15px"}; height: ${isHorizontal ? "13px" : "15px"}; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+  [data-print="course-icon"] img { width: 100% !important; height: 100% !important; }
+  [data-print="booked"] { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
 </style>
 </head><body>${el.innerHTML}</body></html>`);
     doc.close();
 
     iframe.contentWindow?.focus();
-    iframe.contentWindow?.print();
-
-    setTimeout(() => document.body.removeChild(iframe), 1000);
+    // Delay to allow fonts and emoji images to load before printing
+    setTimeout(() => {
+      iframe.contentWindow?.print();
+      setTimeout(() => document.body.removeChild(iframe), 1000);
+    }, 600);
   }
 
   return (
@@ -361,7 +341,9 @@ function CoursePopup({
               onClick={() => setSelectedCourse(c.name)}
             >
               {showEmoji && typeof c.icon === "string" && (
-                <span className={styles.courseIcon}>{c.icon}</span>
+                <span className={styles.courseIcon}>
+                  <TagIcon icon={c.icon} size={14} />
+                </span>
               )}
               {c.name}
             </button>
@@ -426,15 +408,18 @@ function ScheduleCell({
     const isStart = info.type === "start";
     const { isLast } = info;
     const c = info.course.color;
-    const stripe = `${c}10`;
-    const shadows = [`-1px 0 0 ${c}`, ...(isLast ? [`0 1px 0 ${c}`] : [])];
+    const stripe = `color-mix(in srgb, ${c} 5%, transparent)`;
+    const lineColor = `color-mix(in srgb, ${c} 100%, transparent)`;
     const cellStyle: React.CSSProperties = {
       backgroundColor: info.course.bg,
       backgroundImage: `repeating-linear-gradient(-45deg, transparent, transparent 4px, ${stripe} 4px, ${stripe} 7px)`,
       zIndex: info.order + 1,
-      boxShadow: shadows.join(", "),
-      ...(isStart && { borderTopColor: c }),
-      borderRightColor: c,
+      borderLeft: `1px solid ${lineColor}`,
+      borderRightColor: lineColor,
+      ...(isStart
+        ? { borderTop: `1px solid ${lineColor}` }
+        : { borderTopColor: "transparent" }),
+      ...(isLast && { borderBottom: `1px solid ${lineColor}` }),
     };
     return (
       <td
@@ -444,17 +429,13 @@ function ScheduleCell({
         onClick={() => onCellClick(day, time)}
       >
         {isStart && (
-          <span
-            className={styles.courseName}
-            style={{ color: info.course.color }}
-            data-print="course"
-          >
+          <span className={styles.courseName} data-print="course">
             {showEmoji && typeof info.course.icon === "string" && (
               <span className={styles.courseIconCell} data-print="course-icon">
-                {info.course.icon}
+                <TagIcon icon={info.course.icon} size={15} />
               </span>
             )}
-            {info.course.name}
+            <span className={styles.courseText}>{info.course.name}</span>
           </span>
         )}
       </td>

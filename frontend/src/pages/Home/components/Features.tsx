@@ -16,16 +16,14 @@ export default function Features() {
         {/* Card 1 */}
         <div className={styles.card}>
           <div className={styles.tag}>
-            <Bell size={20} color="blue" />
+            <Bell size={20} color="currentcolor" />
             <span>Reminders</span>
           </div>
           <h3 className={styles.cardTitle}>
             Get lesson reminders 15 minutes before and stay motivated
           </h3>
           <div className={styles.placeholder}>
-            <span className={styles.placeholderText}>
-              Image coming soon
-            </span>
+            <span className={styles.placeholderText}>Image coming soon</span>
           </div>
           <p className={styles.cardBottom}>
             Choose a course, set your dates — and get a ready lesson schedule
@@ -35,16 +33,14 @@ export default function Features() {
         {/* Card 2 */}
         <div className={styles.card}>
           <div className={styles.tag}>
-            <CircleStar size={20} color="blue" />
+            <CircleStar size={20} color="currentcolor" />
             <span>Progress</span>
           </div>
           <h3 className={styles.cardTitle}>
             Mark completed lessons and track your achievements
           </h3>
           <div className={styles.placeholder}>
-            <span className={styles.placeholderText}>
-              Image coming soon
-            </span>
+            <span className={styles.placeholderText}>Image coming soon</span>
           </div>
           <p className={styles.cardBottom}>
             Visual stats and reminders will help you stay on track

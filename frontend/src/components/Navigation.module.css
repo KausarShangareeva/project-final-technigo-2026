@@ -57,6 +57,9 @@
   transition: all var(--transition-fast);
   white-space: nowrap;
   font-size: var(--fs-base);
+  background: transparent;
+  cursor: pointer;
+  font-weight: 500;
 }
 
 .navLink:hover {
@@ -347,6 +350,10 @@
   font-size: var(--fs-lg);
   font-weight: 500;
   transition: all var(--transition-fast);
+  background: transparent;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
 }
 
 .mobileNavLink svg {

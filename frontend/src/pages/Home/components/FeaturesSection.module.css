@@ -2,14 +2,16 @@
 .features {
   width: 100%;
   padding: var(--space-3xl) 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6rem;
 }
 
 .cardGrid {
+  max-width: var(--max-width);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-md);
-  max-width: var(--max-width);
-  margin: 0 auto;
   padding-inline: var(--space-md);
 }
 
@@ -326,7 +328,7 @@
 }
 
 .dlSpinner circle {
-  stroke: #94a3b8;
+  stroke: var(--color-text-muted);
   stroke-dasharray: 60;
   stroke-dashoffset: 20;
   stroke-linecap: round;

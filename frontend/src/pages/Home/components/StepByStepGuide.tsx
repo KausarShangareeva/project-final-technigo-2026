@@ -2,95 +2,60 @@ import { useState, useEffect } from "react";
 import { useCopy } from "../../../hooks/useCopy";
 import { Calendar, GraduationCap, Search, X } from "lucide-react";
 import CTAButton from "../../../components/CTAButton";
+import TagIcon from "../../../components/TagIcon";
 import SectionHeader from "../../../components/SectionHeader";
+import TAGS from "../../../json/tags.json";
+import WEEKDAYS from "../../../json/weekdays.json";
 import styles from "./StepByStepGuide.module.css";
 
-const ET_DAYS = ["M", "T", "W", "T", "F", "S", "S"];
-const ET_TIMES = ["08", "09", "10", "11", "12", "13", "14", "15", "16"];
+const ET_DAYS = WEEKDAYS.days.map((d) => d.letter);
+const ET_TIMES = WEEKDAYS.hours
+  .filter((h) => h.value >= 8 && h.value <= 16)
+  .map((h) => h.full.split(":")[0]);
 
-const DEMO_COURSES = [
-  {
-    label: "Mathematics",
-    emoji: "📐",
-    color: "#0891b2",
-    bg: "rgba(8,145,178,0.15)",
-  },
-  {
-    label: "Biology",
-    emoji: "🧬",
-    color: "#16a34a",
-    bg: "rgba(22,163,74,0.15)",
-  },
-  {
-    label: "Chemistry",
-    emoji: "🧪",
-    color: "#7c3aed",
-    bg: "rgba(124,58,237,0.15)",
-  },
-  {
-    label: "Physics",
-    emoji: "⚛️",
-    color: "#ea580c",
-    bg: "rgba(234,88,12,0.15)",
-  },
-  {
-    label: "History",
-    emoji: "📜",
-    color: "#db2777",
-    bg: "rgba(219,39,119,0.15)",
-  },
+const DEMO_COURSE_NAMES = [
+  "Math",
+  "Biology",
+  "Chemistry",
+  "Physics",
+  "History",
 ];
+
+const FALLBACK_TAG = {
+  label: "?",
+  emoji: "📚",
+  color: "#888",
+  bg: "rgba(136,136,136,0.12)",
+};
+
+const DEMO_COURSES = DEMO_COURSE_NAMES.map((name) => {
+  const tag = TAGS.find((t) => t.name === name);
+  if (!tag) {
+    console.warn(`[StepByStepGuide] Course not found in tags.json: "${name}"`);
+    return FALLBACK_TAG;
+  }
+  return { label: tag.name, emoji: tag.icon, color: tag.color, bg: tag.bg };
+});
 
 const DEMO_DURATIONS = ["30 min", "1 hour", "2 hours"];
 
 // Row height = 2.8rem, time col = 2.8rem, header row ≈ 2.8rem
 // rows: 0=08, 1=09, 2=10, 3=11, 4=12, 5=13, 6=14, 7=15, 8=16
+function getTag(name: string) {
+  const tag = TAGS.find((t) => t.name === name);
+  if (!tag) {
+    console.warn(`[StepByStepGuide] Course not found in tags.json: "${name}"`);
+    return FALLBACK_TAG;
+  }
+  return { label: tag.name, emoji: tag.icon, color: tag.color, bg: tag.bg };
+}
+
 const TABLE_COURSES = [
-  {
-    day: 0,
-    startRow: 1,
-    endRow: 3,
-    label: "Mathematics",
-    emoji: "📐",
-    color: "#0891b2",
-    bg: "rgba(8,145,178,0.15)",
-  },
-  {
-    day: 1,
-    startRow: 0,
-    endRow: 2,
-    label: "Physics",
-    emoji: "⚛️",
-    color: "#ea580c",
-    bg: "rgba(234,88,12,0.15)",
-  },
-  {
-    day: 3,
-    startRow: 1,
-    endRow: 4,
-    label: "History",
-    emoji: "📜",
-    color: "#db2777",
-    bg: "rgba(219,39,119,0.15)",
-  },
-  {
-    day: 5,
-    startRow: 2,
-    endRow: 4,
-    label: "Biology",
-    emoji: "🧬",
-    color: "#16a34a",
-    bg: "rgba(22,163,74,0.15)",
-  },
-  {
-    day: 4,
-    startRow: 6,
-    endRow: 8,
-    label: "Chemistry",
-    emoji: "🧪",
-    color: "#7c3aed",
-    bg: "rgba(124,58,237,0.15)",
-  },
+  { day: 0, startRow: 1, endRow: 3, ...getTag("Math") },
+  { day: 1, startRow: 0, endRow: 2, ...getTag("Physics") },
+  { day: 3, startRow: 1, endRow: 4, ...getTag("History") },
+  { day: 5, startRow: 2, endRow: 4, ...getTag("Biology") },
+  { day: 4, startRow: 6, endRow: 8, ...getTag("Chemistry") },
 ];
 
 const CYCLE_MS = 5000;
@@ -152,11 +117,13 @@ function FilledTable() {
             top: `calc(6rem + ${c.startRow} * 2.8rem)`,
             height: `calc(${c.endRow - c.startRow} * 2.9rem - 1px)`,
             width: `calc((100% - 2px - 2.8rem) / 7 - 1px)`,
-            background: `repeating-linear-gradient(-45deg, transparent, transparent 4px, ${c.color}18 4px, ${c.color}18 7px), ${c.bg}`,
+            background: `repeating-linear-gradient(-45deg, transparent, transparent 4px, color-mix(in srgb, ${c.color} 18%, transparent) 4px, color-mix(in srgb, ${c.color} 18%, transparent) 7px), ${c.bg}`,
             borderLeft: `2.5px solid ${c.color}`,
           }}
         >
-          <span className={styles.tableBlockEmoji}>{c.emoji}</span>
+          <span className={styles.tableBlockEmoji}>
+            <TagIcon icon={c.emoji} size={12} />
+          </span>
           <span className={styles.tableBlockLabel}>{c.label}</span>
         </div>
       ))}
@@ -196,7 +163,10 @@ function DemoPopup({ visible }: { visible: boolean }) {
               border: `1px solid ${c.color}`,
             }}
           >
-            <span>{c.emoji}</span> {c.label}
+            <span className={styles.demoChipIcon}>
+              <TagIcon icon={c.emoji} size={14} />
+            </span>
+            {c.label}
           </span>
         ))}
       </div>
@@ -252,7 +222,7 @@ export default function StepByStepGuide() {
         {/* Card 1 */}
         <div className={styles.card}>
           <div className={styles.tag}>
-            <GraduationCap size={20} color="blue" />
+            <GraduationCap size={20} color="var(--color-primary)" />
             <span>{get("home.howItWorks.step1.tag")}</span>
           </div>
           <h3 className={styles.cardTitle}>
@@ -285,7 +255,7 @@ export default function StepByStepGuide() {
         {/* Card 2 */}
         <div className={styles.card}>
           <div className={styles.tag}>
-            <Calendar size={20} color="blue" />
+            <Calendar size={20} color="var(--color-primary)" />
             <span>{get("home.howItWorks.step2.tag")}</span>
           </div>
           <h3 className={styles.cardTitle}>

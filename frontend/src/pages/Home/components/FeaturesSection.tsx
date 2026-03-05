@@ -2,12 +2,13 @@
 import SectionHeader from "../../../components/SectionHeader";
 import CTAButton from "../../../components/CTAButton";
 import {
-  TrendingUp,
+  GraduationCap,
   CheckCircle,
   Calendar,
+  StickyNote,
   MessageCircle,
   Download,
-  Zap,
+  Save,
   ArrowLeftRight,
   FileText,
   Trash2,
@@ -15,6 +16,7 @@ import {
   BookOpen,
 } from "lucide-react";
 
+import WEEKDAYS from "../../../json/weekdays.json";
 import styles from "./FeaturesSection.module.css";
 
 const HIGHLIGHTED_COURSES = [
@@ -22,14 +24,14 @@ const HIGHLIGHTED_COURSES = [
     name: "Math",
     color: "#6366f1",
     bg: "rgba(99,102,241,0.12)",
-    icon: "➕",
+    icon: "📐",
     rows: 3,
   },
   {
     name: "English",
     color: "#f97316",
     bg: "rgba(249,115,22,0.12)",
-    icon: "📒",
+    icon: "✍️",
     rows: 5,
   },
   {
@@ -51,7 +53,7 @@ function HighlightedCourses() {
               key={i}
               className={styles.courseBrick}
               style={{
-                background: `repeating-linear-gradient(-45deg, transparent, transparent 4px, ${course.color}10 4px, ${course.color}10 7px), ${course.bg}`,
+                background: `repeating-linear-gradient(-45deg, transparent, transparent 4px, color-mix(in srgb, ${course.color} 10%, transparent) 4px, color-mix(in srgb, ${course.color} 10%, transparent) 7px), ${course.bg}`,
                 borderLeft: `3px solid ${course.color}`,
               }}
             >
@@ -69,8 +71,8 @@ function HighlightedCourses() {
   );
 }
 
-const MINI_DAYS = ["M", "T", "W", "T", "F", "S", "S"];
-const MINI_ROWS = 9; // 08:00â€“16:00
+const MINI_DAYS = WEEKDAYS.days.map((d) => d.letter);
+const MINI_HOURS = WEEKDAYS.hours.filter((h) => h.value >= 8 && h.value <= 16);
 
 const MINI_SCHEDULE: Record<string, string> = {
   "0-1": "#6366f1",
@@ -102,10 +104,10 @@ function MiniSchedule() {
         </div>
       ))}
       {/* Rows */}
-      {Array.from({ length: MINI_ROWS }).map((_, row) => (
+      {MINI_HOURS.map((hour, row) => (
         <>
           <div key={`t${row}`} className={styles.miniTimeLabel}>
-            {String(8 + row).padStart(2, "0")}
+            {hour.full.split(":")[0]}
           </div>
           {MINI_DAYS.map((_, col) => {
             const color = MINI_SCHEDULE[`${col}-${row}`];
@@ -116,7 +118,7 @@ function MiniSchedule() {
                 style={
                   color
                     ? {
-                        background: `repeating-linear-gradient(-45deg, transparent, transparent 3px, ${color}15 3px, ${color}15 5px), ${color}18`,
+                        background: `repeating-linear-gradient(-45deg, transparent, transparent 3px, color-mix(in srgb, ${color} 15%, transparent) 3px, color-mix(in srgb, ${color} 15%, transparent) 5px), color-mix(in srgb, ${color} 18%, transparent)`,
                         borderLeft: `2px solid ${color}`,
                       }
                     : undefined
@@ -326,12 +328,12 @@ function Notifications() {
 }
 
 const featureIcons = [
-  TrendingUp,
-  CheckCircle,
+  GraduationCap,
   Calendar,
+  StickyNote,
   MessageCircle,
   Download,
-  Zap,
+  Save,
 ];
 
 export default function FeaturesSection() {
@@ -343,6 +345,7 @@ export default function FeaturesSection() {
       <SectionHeader
         title={get("home.features.title")}
         subtitle={get("home.features.subtitle")}
+        titleWidth="90%"
       />
       <div className={styles.cardGrid}>
         {features.map((feature, index) => {
@@ -363,11 +366,11 @@ export default function FeaturesSection() {
                 ) : index === 2 ? (
                   <PDFFormat />
                 ) : index === 3 ? (
-                  <DownloadPDF />
-                ) : index === 4 ? (
-                  <SavedPlans />
-                ) : index === 5 ? (
                   <Notifications />
+                ) : index === 4 ? (
+                  <DownloadPDF />
+                ) : index === 5 ? (
+                  <SavedPlans />
                 ) : (
                   <span className={styles.comingSoon}>coming soon</span>
                 )}

@@ -1,4 +1,4 @@
-import copy from "../content/copy.json";
+import copy from "../json/en.json";
 
 type ReplacementValues = Record<string, string | number>;
 

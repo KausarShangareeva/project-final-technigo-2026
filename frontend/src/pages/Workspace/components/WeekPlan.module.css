@@ -177,16 +177,16 @@
 .portraitPage {
   aspect-ratio: 210 / 160;
   border-radius: var(--radius-lg);
-  border: 2px solid var(--color-border-light);
-  padding: 0 var(--space-sm);
+  border: 1px solid var(--color-border);
+  padding: 0;
   background: var(--color-bg-card);
 }
 
 .landscapePage {
   aspect-ratio: 297 / 154;
   border-radius: var(--radius-lg);
-  border: 2px solid var(--color-border-light);
-  padding: 0 var(--space-sm);
+  border: 1px solid var(--color-border);
+  padding: 0;
   background: var(--color-bg-card);
 }
 
@@ -229,25 +229,48 @@
   position: relative;
   z-index: 1;
   cursor: pointer;
+  vertical-align: middle;
+  text-align: center;
+}
+
+[data-theme="light"] .cellBooked {
+  filter: saturate(1.22) brightness(1.04);
 }
 
 .courseName {
   position: relative;
-  font-size: 1.2rem;
-  font-weight: 600;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  font-size: 1.4rem;
+  font-weight: 500;
   display: flex;
   align-items: center;
-  gap: 0.3rem;
+  justify-content: center;
+  margin: 0 auto;
+  line-height: 1.2;
+  width: fit-content;
+  max-width: 100%;
+  gap: 1rem;
 }
 
 .courseIconCell {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
   flex-shrink: 0;
-  margin-right: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.courseIconCell img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.courseText {
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* =======================================
@@ -258,18 +281,19 @@
 .dayHeader {
   padding: var(--space-sm) var(--space-md);
   font-size: var(--fs-base);
-  font-weight: 600;
+  font-weight: 500;
   text-align: center;
-  color: var(--color-primary);
-  background: var(--color-bg-elevated);
+  color: #6949b2;
+  background: color-mix(in srgb, var(--color-primary) 7%, var(--color-bg-card));
   letter-spacing: 0.02em;
   white-space: nowrap;
-  box-shadow: inset 0 -2px 0 var(--color-primary);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: none;
 }
 
 .timeHeader {
   width: 8rem;
-  text-align: left;
+  text-align: center;
 }
 
 .hourRow td {
@@ -277,17 +301,17 @@
 }
 
 .halfRow td {
-  border-top: 1px solid var(--color-border-dark);
+  border-top: 1px solid var(--color-border);
 }
 
 .timeCell {
   padding: var(--space-sm) var(--space-sm);
-  font-size: var(--fs-base);
+  font-size: var(--fs-sm);
   font-weight: 500;
   color: var(--color-text-muted);
   white-space: nowrap;
-  text-align: left;
-  background: var(--color-bg-elevated);
+  text-align: center;
+  background: color-mix(in srgb, var(--color-primary) 6%, var(--color-bg-card));
   border-right: 1px solid var(--color-border);
   user-select: none;
 }
@@ -323,12 +347,12 @@
 
 .tableHorizontal .timeCell {
   padding: var(--space-sm) var(--space-sm);
-  font-size: var(--fs-base);
+  font-size: var(--fs-sm);
   font-weight: 500;
   color: var(--color-text-muted);
   white-space: nowrap;
-  text-align: left;
-  background: var(--color-bg-elevated);
+  text-align: center;
+  background: color-mix(in srgb, var(--color-primary) 6%, var(--color-bg-card));
   border-right: 1px solid var(--color-border);
   user-select: none;
 }
@@ -462,7 +486,8 @@
   padding: 0.6rem 2rem;
   font-size: var(--fs-sm);
   font-weight: 500;
-  border: 1.5px solid color-mix(in srgb, var(--tag-color) var(--tag-border-strength), transparent);
+  border: 1.5px solid
+    color-mix(in srgb, var(--tag-color) var(--tag-border-strength), transparent);
   border-radius: var(--radius-full);
   cursor: pointer;
   transition: all var(--transition-fast);
@@ -472,22 +497,43 @@
   justify-content: center;
   gap: 0.5rem;
   color: color-mix(in srgb, var(--tag-color) var(--tag-text-mix), white);
-  background: color-mix(in srgb, var(--tag-color) var(--tag-bg-strength), transparent);
+  background: color-mix(
+    in srgb,
+    var(--tag-color) var(--tag-bg-strength),
+    transparent
+  );
 }
 
 .courseTag:hover {
-  background: color-mix(in srgb, var(--tag-color) calc(var(--tag-bg-strength) + 6%), transparent);
+  background: color-mix(
+    in srgb,
+    var(--tag-color) calc(var(--tag-bg-strength) + 6%),
+    transparent
+  );
 }
 
 .courseIcon {
-  width: 2rem;
-  height: 2rem;
+  width: 1.6rem;
+  height: 1.6rem;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.courseIcon img {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 .courseTagActive {
   border-color: color-mix(in srgb, var(--tag-color) var(--tag-text-mix), white);
-  background: color-mix(in srgb, var(--tag-color) calc(var(--tag-bg-strength) + 8%), transparent);
+  background: color-mix(
+    in srgb,
+    var(--tag-color) calc(var(--tag-bg-strength) + 8%),
+    transparent
+  );
 }
 
 /* ---- Duration buttons ---- */
