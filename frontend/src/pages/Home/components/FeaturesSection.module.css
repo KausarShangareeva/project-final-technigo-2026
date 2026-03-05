@@ -24,6 +24,8 @@
   border-radius: 1.6rem;
   padding: 1.6rem;
   min-height: 22rem;
+  overflow: hidden;
+  min-width: 0;
   transition:
     transform var(--transition-fast),
     box-shadow var(--transition-fast);
@@ -67,6 +69,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .comingSoon {
@@ -713,6 +716,63 @@
   100% {
     opacity: 1;
   }
+}
+
+/* ===== Animated Tags Marquee ===== */
+.tagsWrap {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding: 0.4rem 0;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.tagsTrack {
+  display: flex;
+  gap: 0.55rem;
+  width: max-content;
+  animation: tagsScrollLeft 110s linear infinite;
+}
+
+.tagsTrackRight {
+  animation: tagsScrollRight 90s linear infinite;
+}
+
+.tagsTrackSlow {
+  animation: tagsScrollLeft 130s linear infinite;
+}
+
+.animTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.38rem 0.9rem;
+  border-radius: 10rem;
+  border: 1px solid;
+  font-size: 1.15rem;
+  font-weight: 500;
+  white-space: nowrap;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.animTagIcon {
+  font-size: 1.2rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+@keyframes tagsScrollLeft {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes tagsScrollRight {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
 }
 
 /* Notifications */

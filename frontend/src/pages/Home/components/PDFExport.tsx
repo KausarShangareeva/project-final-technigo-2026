@@ -113,7 +113,7 @@ function MiniSchedulePreview({
                     borderLeft: `2.5px solid ${course.color}`,
                   }}
                 >
-                  <span className={styles.schedBlockIcon}><TagIcon icon={course.icon} size={13} /></span>
+                  <span className={styles.schedBlockIcon}><TagIcon icon={course.icon} size={10} /></span>
                   <span className={styles.schedBlockLabel}>{course.label}</span>
                 </div>
               );

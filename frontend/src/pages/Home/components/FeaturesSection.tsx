@@ -3,20 +3,20 @@ import SectionHeader from "../../../components/SectionHeader";
 import CTAButton from "../../../components/CTAButton";
 import {
   GraduationCap,
-  CheckCircle,
   Calendar,
   StickyNote,
-  MessageCircle,
+  Bookmark,
   Download,
   Save,
   ArrowLeftRight,
   FileText,
   Trash2,
   Printer,
-  BookOpen,
 } from "lucide-react";
 
 import WEEKDAYS from "../../../json/weekdays.json";
+import COURSES from "../../../json/tags.json";
+import TagIcon from "../../../components/TagIcon";
 import styles from "./FeaturesSection.module.css";
 
 const HIGHLIGHTED_COURSES = [
@@ -250,88 +250,54 @@ function SavedPlans() {
   );
 }
 
-const NOTIF_ITEMS = [
-  {
-    Icon: BookOpen,
-    title: "Lesson reminder",
-    desc: "Math — Chapter 3",
-    iconColor: "#0F52BA", // sapphire blue
-    iconBgStart: "#E6F0FF",
-    iconBgMid: "#CFE0FF",
-    iconBgEnd: "#B8D1FF",
-    iconBorder: "#9CBFFF",
-    iconRing: "rgba(15, 82, 186, 0.25)",
-  },
-  {
-    Icon: CheckCircle,
-    title: "Goal reached!",
-    desc: "Week completed",
-    iconColor: "#2f9b56",
-    iconBgStart: "#e8f4ea",
-    iconBgMid: "#d4ebd8",
-    iconBgEnd: "#c4e4cb",
-    iconBorder: "#abd7b7",
-    iconRing: "rgba(205, 235, 214, 0.55)",
-  },
-  {
-    Icon: Calendar,
-    title: "New session",
-    desc: "Friday 10:00 added",
-    iconColor: "#bf7b0a",
-    iconBgStart: "#f8f2da",
-    iconBgMid: "#f1e6bf",
-    iconBgEnd: "#e8d9a2",
-    iconBorder: "#e5cf92",
-    iconRing: "rgba(245, 230, 180, 0.58)",
-  },
+// ── Animated Tags Marquee ─────────────────────────────────────────────────────
+const chunk = Math.ceil(COURSES.length / 3);
+const TAG_ROWS = [
+  COURSES.slice(0, chunk),
+  COURSES.slice(chunk, chunk * 2),
+  COURSES.slice(chunk * 2),
 ];
 
-function Notifications() {
+function AnimatedTags() {
   return (
-    <div className={styles.notifWrap}>
-      {NOTIF_ITEMS.map(
-        (
-          {
-            Icon,
-            title,
-            desc,
-            iconColor,
-            iconBgStart,
-            iconBgMid,
-            iconBgEnd,
-            iconBorder,
-            iconRing,
-          },
-          i,
-        ) => (
-          <div key={i} className={styles.notifItem}>
-            <div
-              className={styles.notifIconWrap}
-              style={{
-                color: iconColor,
-                background: `radial-gradient(circle at 30% 28%, ${iconBgStart} 0%, ${iconBgMid} 68%, ${iconBgEnd} 100%)`,
-                borderColor: iconBorder,
-                boxShadow: `inset 0 1px 0 rgba(255, 255, 255, 0.62), 0 0 0 0.18rem ${iconRing}`,
-              }}
-            >
-              <Icon size={18} strokeWidth={2} />
-            </div>
-            <div className={styles.notifContent}>
-              <span className={styles.notifTitle}>{title}</span>
-              <span className={styles.notifDesc}>{desc}</span>
-            </div>
+    <div className={styles.tagsWrap}>
+      {TAG_ROWS.map((row, rowIdx) => {
+        const doubled = [...row, ...row];
+        const trackClass =
+          rowIdx === 1
+            ? `${styles.tagsTrack} ${styles.tagsTrackRight}`
+            : rowIdx === 2
+              ? `${styles.tagsTrack} ${styles.tagsTrackSlow}`
+              : styles.tagsTrack;
+        return (
+          <div key={rowIdx} className={trackClass}>
+            {doubled.map((course, i) => (
+              <span
+                key={i}
+                className={styles.animTag}
+                style={{
+                  color: course.color,
+                  borderColor: course.color,
+                  background: course.bg,
+                }}
+              >
+                <span className={styles.animTagIcon}><TagIcon icon={course.icon} size={16} /></span>
+                {course.name}
+              </span>
+            ))}
           </div>
-        ),
-      )}
+        );
+      })}
     </div>
   );
 }
+
 
 const featureIcons = [
   GraduationCap,
   Calendar,
   StickyNote,
-  MessageCircle,
+  Bookmark,
   Download,
   Save,
 ];
@@ -366,7 +332,7 @@ export default function FeaturesSection() {
                 ) : index === 2 ? (
                   <PDFFormat />
                 ) : index === 3 ? (
-                  <Notifications />
+                  <AnimatedTags />
                 ) : index === 4 ? (
                   <DownloadPDF />
                 ) : index === 5 ? (

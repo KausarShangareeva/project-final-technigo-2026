@@ -13,8 +13,8 @@
   --tag-calculus:           #FF3D68;
   --tag-calculus-bg:        rgba(255, 61, 104, 0.13);
 
-  --tag-statistics:         #00C9E8;
-  --tag-statistics-bg:      rgba(0, 201, 232, 0.13);
+  --tag-statistics:         #EAB308;
+  --tag-statistics-bg:      rgba(234, 179, 8, 0.13);
 
   --tag-biology:            #00D68F;
   --tag-biology-bg:         rgba(0, 214, 143, 0.13);
@@ -22,14 +22,14 @@
   --tag-chemistry:          #FFB800;
   --tag-chemistry-bg:       rgba(255, 184, 0, 0.13);
 
-  --tag-physics:            #3B9EFF;
-  --tag-physics-bg:         rgba(59, 158, 255, 0.13);
+  --tag-physics:            #C084FC;
+  --tag-physics-bg:         rgba(192, 132, 252, 0.13);
 
   --tag-astronomy:          #818CF8;
   --tag-astronomy-bg:       rgba(129, 140, 248, 0.13);
 
-  --tag-earth-science:      #4ADE80;
-  --tag-earth-science-bg:   rgba(74, 222, 128, 0.13);
+  --tag-earth-science:      #84CC16;
+  --tag-earth-science-bg:   rgba(132, 204, 22, 0.13);
 
   --tag-history:            #C8865A;
   --tag-history-bg:         rgba(200, 134, 90, 0.13);
@@ -37,8 +37,8 @@
   --tag-world-history:      #E040FB;
   --tag-world-history-bg:   rgba(224, 64, 251, 0.13);
 
-  --tag-geography:          #00E5A0;
-  --tag-geography-bg:       rgba(0, 229, 160, 0.13);
+  --tag-geography:          #06B6D4;
+  --tag-geography-bg:       rgba(6, 182, 212, 0.13);
 
   --tag-literature:         #F472B6;
   --tag-literature-bg:      rgba(244, 114, 182, 0.13);
@@ -49,17 +49,17 @@
   --tag-grammar:            #6E8FFF;
   --tag-grammar-bg:         rgba(110, 143, 255, 0.13);
 
-  --tag-reading:            #34D399;
-  --tag-reading-bg:         rgba(52, 211, 153, 0.13);
+  --tag-reading:            #A78BFA;
+  --tag-reading-bg:         rgba(167, 139, 250, 0.13);
 
-  --tag-english:            #10E090;
-  --tag-english-bg:         rgba(16, 224, 144, 0.13);
+  --tag-english:            #F97316;
+  --tag-english-bg:         rgba(249, 115, 22, 0.13);
 
-  --tag-computer-science:   #00D5B0;
-  --tag-computer-science-bg:rgba(0, 213, 176, 0.13);
+  --tag-computer-science:   #6366F1;
+  --tag-computer-science-bg:rgba(99, 102, 241, 0.13);
 
-  --tag-programming:        #5B8FFF;
-  --tag-programming-bg:     rgba(91, 143, 255, 0.13);
+  --tag-programming:        #0EA5E9;
+  --tag-programming-bg:     rgba(14, 165, 233, 0.13);
 
   --tag-art:                #F43F8E;
   --tag-art-bg:             rgba(244, 63, 142, 0.13);
@@ -67,14 +67,14 @@
   --tag-music:              #FB923C;
   --tag-music-bg:           rgba(251, 146, 60, 0.13);
 
-  --tag-physical-education:    #FF4D80;
-  --tag-physical-education-bg: rgba(255, 77, 128, 0.13);
+  --tag-physical-education:    #EF4444;
+  --tag-physical-education-bg: rgba(239, 68, 68, 0.13);
 
   --tag-psychology:         #C084FC;
   --tag-psychology-bg:      rgba(192, 132, 252, 0.13);
 
-  --tag-economics:          #22D4D4;
-  --tag-economics-bg:       rgba(34, 212, 212, 0.13);
+  --tag-economics:          #F43F5E;
+  --tag-economics-bg:       rgba(244, 63, 94, 0.13);
 
   --tag-philosophy:         #D4B96A;
   --tag-philosophy-bg:      rgba(212, 185, 106, 0.13);
@@ -337,8 +337,8 @@
   --tag-calculus:           #C81040;
   --tag-calculus-bg:        rgba(200, 16, 64, 0.10);
 
-  --tag-statistics:         #0284C7;
-  --tag-statistics-bg:      rgba(2, 132, 199, 0.10);
+  --tag-statistics:         #A16207;
+  --tag-statistics-bg:      rgba(161, 98, 7, 0.14);
 
   --tag-biology:            #00B874;
   --tag-biology-bg:         rgba(0, 184, 116, 0.18);
@@ -346,14 +346,14 @@
   --tag-chemistry:          #E38A00;
   --tag-chemistry-bg:       rgba(227, 138, 0, 0.18);
 
-  --tag-physics:            #3B8CFF;
-  --tag-physics-bg:         rgba(59, 140, 255, 0.18);
+  --tag-physics:            #7C3AED;
+  --tag-physics-bg:         rgba(124, 58, 237, 0.14);
 
   --tag-astronomy:          #4338CA;
   --tag-astronomy-bg:       rgba(67, 56, 202, 0.10);
 
-  --tag-earth-science:      #15803D;
-  --tag-earth-science-bg:   rgba(21, 128, 61, 0.10);
+  --tag-earth-science:      #4D7C0F;
+  --tag-earth-science-bg:   rgba(77, 124, 15, 0.12);
 
   --tag-history:            #B86A2E;
   --tag-history-bg:         rgba(184, 106, 46, 0.18);
@@ -361,8 +361,8 @@
   --tag-world-history:      #86198F;
   --tag-world-history-bg:   rgba(134, 25, 143, 0.10);
 
-  --tag-geography:          #2AAE78;
-  --tag-geography-bg:       rgba(42, 174, 120, 0.18);
+  --tag-geography:          #0891B2;
+  --tag-geography-bg:       rgba(8, 145, 178, 0.16);
 
   --tag-literature:         #E44F9C;
   --tag-literature-bg:      rgba(228, 79, 156, 0.18);
@@ -373,17 +373,17 @@
   --tag-grammar:            #3730A3;
   --tag-grammar-bg:         rgba(55, 48, 163, 0.10);
 
-  --tag-reading:            #047857;
-  --tag-reading-bg:         rgba(4, 120, 87, 0.10);
+  --tag-reading:            #6D28D9;
+  --tag-reading-bg:         rgba(109, 40, 217, 0.12);
 
-  --tag-english:            #0D9D6A;
-  --tag-english-bg:         rgba(13, 157, 106, 0.18);
+  --tag-english:            #C2410C;
+  --tag-english-bg:         rgba(194, 65, 12, 0.14);
 
-  --tag-computer-science:   #00B8C6;
-  --tag-computer-science-bg:rgba(0, 184, 198, 0.18);
+  --tag-computer-science:   #4338CA;
+  --tag-computer-science-bg:rgba(67, 56, 202, 0.12);
 
-  --tag-programming:        #1D4ED8;
-  --tag-programming-bg:     rgba(29, 78, 216, 0.10);
+  --tag-programming:        #0369A1;
+  --tag-programming-bg:     rgba(3, 105, 161, 0.12);
 
   --tag-art:                #E73D7A;
   --tag-art-bg:             rgba(231, 61, 122, 0.18);
@@ -391,14 +391,14 @@
   --tag-music:              #F08A3A;
   --tag-music-bg:           rgba(240, 138, 58, 0.18);
 
-  --tag-physical-education:    #B34AD8;
-  --tag-physical-education-bg: rgba(179, 74, 216, 0.18);
+  --tag-physical-education:    #DC2626;
+  --tag-physical-education-bg: rgba(220, 38, 38, 0.14);
 
   --tag-psychology:         #7E22CE;
   --tag-psychology-bg:      rgba(126, 34, 206, 0.10);
 
-  --tag-economics:          #4C86F9;
-  --tag-economics-bg:       rgba(76, 134, 249, 0.18);
+  --tag-economics:          #BE123C;
+  --tag-economics-bg:       rgba(190, 18, 60, 0.13);
 
   --tag-philosophy:         #78600A;
   --tag-philosophy-bg:      rgba(120, 96, 10, 0.10);

@@ -343,186 +343,36 @@
     "icon": "🧘"
   },
 
-  {
-    "name": "Quran Reading",
-    "color": "var(--tag-quran-reading)",
-    "bg": "var(--tag-quran-reading-bg)",
-    "icon": "📖"
-  },
-  {
-    "name": "Quran Memorization (Hifz)",
-    "color": "var(--tag-quran-memorization)",
-    "bg": "var(--tag-quran-memorization-bg)",
-    "icon": "🌙"
-  },
-  {
-    "name": "Tajweed Rules",
-    "color": "var(--tag-tajweed)",
-    "bg": "var(--tag-tajweed-bg)",
-    "icon": "🗣️"
-  },
-  {
-    "name": "Quran Tafsir",
-    "color": "var(--tag-quran-tafsir)",
-    "bg": "var(--tag-quran-tafsir-bg)",
-    "icon": "📜"
-  },
-  {
-    "name": "Quran Sciences",
-    "color": "var(--tag-quran-sciences)",
-    "bg": "var(--tag-quran-sciences-bg)",
-    "icon": "✨"
-  },
-  {
-    "name": "Arabic for Quran",
-    "color": "var(--tag-arabic-for-quran)",
-    "bg": "var(--tag-arabic-for-quran-bg)",
-    "icon": "🌿"
-  },
-  {
-    "name": "Arabic Grammar (Nahw)",
-    "color": "var(--tag-arabic-grammar)",
-    "bg": "var(--tag-arabic-grammar-bg)",
-    "icon": "📝"
-  },
-  {
-    "name": "Arabic Morphology (Sarf)",
-    "color": "var(--tag-arabic-morphology)",
-    "bg": "var(--tag-arabic-morphology-bg)",
-    "icon": "🔤"
-  },
-  {
-    "name": "Islamic Creed (Aqeedah)",
-    "color": "var(--tag-aqeedah)",
-    "bg": "var(--tag-aqeedah-bg)",
-    "icon": "☪️"
-  },
-  {
-    "name": "Hadith Studies",
-    "color": "var(--tag-hadith-studies)",
-    "bg": "var(--tag-hadith-studies-bg)",
-    "icon": "📚"
-  },
-  {
-    "name": "Hadith Memorization",
-    "color": "var(--tag-hadith-memorization)",
-    "bg": "var(--tag-hadith-memorization-bg)",
-    "icon": "🧠"
-  },
-  {
-    "name": "Hadith Sciences",
-    "color": "var(--tag-hadith-sciences)",
-    "bg": "var(--tag-hadith-sciences-bg)",
-    "icon": "🔬"
-  },
-  {
-    "name": "Fiqh (Islamic Law)",
-    "color": "var(--tag-fiqh)",
-    "bg": "var(--tag-fiqh-bg)",
-    "icon": "⚖️"
-  },
-  {
-    "name": "Fiqh of Worship",
-    "color": "var(--tag-fiqh-worship)",
-    "bg": "var(--tag-fiqh-worship-bg)",
-    "icon": "🕌"
-  },
-  {
-    "name": "Fiqh of Transactions",
-    "color": "var(--tag-fiqh-transactions)",
-    "bg": "var(--tag-fiqh-transactions-bg)",
-    "icon": "🤝"
-  },
-  {
-    "name": "Principles of Fiqh (Usul)",
-    "color": "var(--tag-usul-al-fiqh)",
-    "bg": "var(--tag-usul-al-fiqh-bg)",
-    "icon": "📐"
-  },
-  {
-    "name": "Seerah of the Prophet",
-    "color": "var(--tag-seerah)",
-    "bg": "var(--tag-seerah-bg)",
-    "icon": "⭐"
-  },
-  {
-    "name": "Islamic History",
-    "color": "var(--tag-islamic-history)",
-    "bg": "var(--tag-islamic-history-bg)",
-    "icon": "🏛️"
-  },
-  {
-    "name": "Companions of the Prophet",
-    "color": "var(--tag-companions)",
-    "bg": "var(--tag-companions-bg)",
-    "icon": "👥"
-  },
-  {
-    "name": "Islamic Ethics (Akhlaq)",
-    "color": "var(--tag-akhlaq)",
-    "bg": "var(--tag-akhlaq-bg)",
-    "icon": "💎"
-  },
-  {
-    "name": "Islamic Manners (Adab)",
-    "color": "var(--tag-adab)",
-    "bg": "var(--tag-adab-bg)",
-    "icon": "🌸"
-  },
-  {
-    "name": "Purification of the Heart",
-    "color": "var(--tag-tazkiyah)",
-    "bg": "var(--tag-tazkiyah-bg)",
-    "icon": "❤️"
-  },
-  {
-    "name": "Dawah and Islamic Outreach",
-    "color": "var(--tag-dawah)",
-    "bg": "var(--tag-dawah-bg)",
-    "icon": "📢"
-  },
-  {
-    "name": "Comparative Religion",
-    "color": "var(--tag-comparative-religion)",
-    "bg": "var(--tag-comparative-religion-bg)",
-    "icon": "🌍"
-  },
-  {
-    "name": "Islamic Family Life",
-    "color": "var(--tag-islamic-family)",
-    "bg": "var(--tag-islamic-family-bg)",
-    "icon": "🏡"
-  },
-  {
-    "name": "Islamic Finance",
-    "color": "var(--tag-islamic-finance)",
-    "bg": "var(--tag-islamic-finance-bg)",
-    "icon": "💰"
-  },
-  {
-    "name": "Islamic Leadership",
-    "color": "var(--tag-islamic-leadership)",
-    "bg": "var(--tag-islamic-leadership-bg)",
-    "icon": "👑"
-  },
-  {
-    "name": "Quranic Arabic Vocabulary",
-    "color": "var(--tag-quranic-vocabulary)",
-    "bg": "var(--tag-quranic-vocabulary-bg)",
-    "icon": "🔑"
-  },
-  {
-    "name": "Classical Arabic Reading",
-    "color": "var(--tag-classical-arabic)",
-    "bg": "var(--tag-classical-arabic-bg)",
-    "icon": "📜"
-  },
-  {
-    "name": "Islamic Education Basics",
-    "color": "var(--tag-islamic-education)",
-    "bg": "var(--tag-islamic-education-bg)",
-    "icon": "🌱"
-  },
+  { "name": "Linear Algebra",          "color": "var(--tag-algebra)",          "bg": "var(--tag-algebra-bg)",          "icon": "🔢" },
+  { "name": "Differential Equations",   "color": "var(--tag-calculus)",         "bg": "var(--tag-calculus-bg)",         "icon": "📉" },
+  { "name": "Discrete Mathematics",     "color": "var(--tag-math)",             "bg": "var(--tag-math-bg)",             "icon": "🔣" },
+  { "name": "Data Structures",          "color": "var(--tag-computer-science)", "bg": "var(--tag-computer-science-bg)", "icon": "🗂️" },
+  { "name": "Algorithms",               "color": "var(--tag-programming)",      "bg": "var(--tag-programming-bg)",      "icon": "⚙️" },
+  { "name": "Machine Learning",         "color": "var(--tag-astronomy)",        "bg": "var(--tag-astronomy-bg)",        "icon": "🤖" },
+  { "name": "Web Development",          "color": "var(--tag-programming)",      "bg": "var(--tag-programming-bg)",      "icon": "🌐" },
+  { "name": "Database Systems",         "color": "var(--tag-computer-science)", "bg": "var(--tag-computer-science-bg)", "icon": "🗄️" },
+  { "name": "Operating Systems",        "color": "var(--tag-geography)",        "bg": "var(--tag-geography-bg)",        "icon": "🖥️" },
+  { "name": "Computer Networks",        "color": "var(--tag-programming)",      "bg": "var(--tag-programming-bg)",      "icon": "📡" },
+  { "name": "Cybersecurity",            "color": "var(--tag-calculus)",         "bg": "var(--tag-calculus-bg)",         "icon": "🔐" },
+  { "name": "Artificial Intelligence",  "color": "var(--tag-physics)",          "bg": "var(--tag-physics-bg)",          "icon": "🧠" },
+  { "name": "Probability Theory",       "color": "var(--tag-statistics)",       "bg": "var(--tag-statistics-bg)",       "icon": "🎲" },
+  { "name": "Number Theory",            "color": "var(--tag-math)",             "bg": "var(--tag-math-bg)",             "icon": "∞" },
+  { "name": "Real Analysis",            "color": "var(--tag-algebra)",          "bg": "var(--tag-algebra-bg)",          "icon": "📊" },
+  { "name": "Quantum Mechanics",        "color": "var(--tag-physics)",          "bg": "var(--tag-physics-bg)",          "icon": "⚛️" },
+  { "name": "Thermodynamics",           "color": "var(--tag-chemistry)",        "bg": "var(--tag-chemistry-bg)",        "icon": "🌡️" },
+  { "name": "Organic Chemistry",        "color": "var(--tag-chemistry)",        "bg": "var(--tag-chemistry-bg)",        "icon": "🧪" },
+  { "name": "Biochemistry",             "color": "var(--tag-biology)",          "bg": "var(--tag-biology-bg)",          "icon": "🧬" },
+  { "name": "Molecular Biology",        "color": "var(--tag-biology)",          "bg": "var(--tag-biology-bg)",          "icon": "🔬" },
+  { "name": "Genetics",                 "color": "var(--tag-earth-science)",    "bg": "var(--tag-earth-science-bg)",    "icon": "🧫" },
+  { "name": "Neuroscience",             "color": "var(--tag-psychology)",       "bg": "var(--tag-psychology-bg)",       "icon": "🧠" },
+  { "name": "Cognitive Science",        "color": "var(--tag-psychology)",       "bg": "var(--tag-psychology-bg)",       "icon": "💭" },
+  { "name": "Political Science",        "color": "var(--tag-history)",          "bg": "var(--tag-history-bg)",          "icon": "🏛️" },
+  { "name": "International Relations",  "color": "var(--tag-world-history)",    "bg": "var(--tag-world-history-bg)",    "icon": "🌍" },
+  { "name": "Sociology",               "color": "var(--tag-social-studies)",   "bg": "var(--tag-social-studies-bg)",   "icon": "👥" },
+  { "name": "Anthropology",             "color": "var(--tag-history)",          "bg": "var(--tag-history-bg)",          "icon": "🏺" },
+  { "name": "Linguistics",              "color": "var(--tag-grammar)",          "bg": "var(--tag-grammar-bg)",          "icon": "🔤" },
+  { "name": "Financial Mathematics",    "color": "var(--tag-economics)",        "bg": "var(--tag-economics-bg)",        "icon": "📈" },
+  { "name": "Game Theory",              "color": "var(--tag-philosophy)",       "bg": "var(--tag-philosophy-bg)",       "icon": "♟️" },
 
   { "name": "Russian",    "color": "var(--tag-russian)",    "bg": "var(--tag-russian-bg)",    "icon": "🇷🇺" },
   { "name": "Portuguese", "color": "var(--tag-portuguese)", "bg": "var(--tag-portuguese-bg)", "icon": "🇵🇹" },
