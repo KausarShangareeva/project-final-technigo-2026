@@ -1,4 +1,5 @@
 const Suggestion = require("../models/Suggestion");
+const { sendTelegram, sendEmail } = require("../services/notify");
 
 exports.createSuggestion = async (req, res) => {
   try {
@@ -16,6 +17,21 @@ exports.createSuggestion = async (req, res) => {
       title,
       details,
     });
+
+    const tgText =
+      `💡 <b>New suggestion on PlanFlow</b>\n\n` +
+      `👤 <b>${name}</b> (${email})\n` +
+      `📁 ${projectType} — <b>${title}</b>\n\n` +
+      `${details}`;
+
+    const emailHtml =
+      `<h2>💡 New suggestion: ${title}</h2>` +
+      `<p><b>From:</b> ${name} (${email})</p>` +
+      `<p><b>Type:</b> ${projectType}</p>` +
+      `<hr/><p>${details.replace(/\n/g, "<br/>")}</p>`;
+
+    sendTelegram(tgText).catch(() => {});
+    sendEmail(`💡 New suggestion: ${title}`, emailHtml).catch(() => {});
 
     return res.status(201).json(suggestion);
   } catch (error) {
