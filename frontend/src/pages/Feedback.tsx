@@ -161,7 +161,7 @@ export default function FeedbackPage() {
         ...form,
         name: user?.name || form.name,
         email: user?.email || form.email,
-        avatarUrl: customAvatar || "",
+        avatarUrl: customAvatar || user?.avatar || "",
       };
       const created = await api.post<FeedbackEntry>("/feedback", payload);
       setFeedbackList((prev) => [created, ...prev]);
@@ -299,8 +299,8 @@ export default function FeedbackPage() {
               name={displayName}
               size={44}
               isCurrentUser
-              showEditOverlay
-              onClick={() => avatarInputRef.current?.click()}
+              showEditOverlay={!!user}
+              onClick={user ? () => avatarInputRef.current?.click() : undefined}
             />
             <input
               ref={avatarInputRef}
