@@ -1,4 +1,5 @@
 import { useAvatar } from "../hooks/useAvatar";
+import { useAuth } from "../context/AuthContext";
 import styles from "./UserAvatar.module.css";
 
 function dicebearUrl(seed: string) {
@@ -57,11 +58,12 @@ export default function UserAvatar({
   avatarUrl,
 }: Props) {
   const { customAvatar } = useAvatar();
+  const { user } = useAuth();
 
   const src =
     isCurrentUser && customAvatar
       ? customAvatar
-      : avatarUrl || dicebearUrl(name);
+      : avatarUrl || (isCurrentUser && user?.avatar) || dicebearUrl(name);
 
   return (
     <AvatarImage

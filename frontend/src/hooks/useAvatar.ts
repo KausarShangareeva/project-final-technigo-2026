@@ -16,7 +16,10 @@ export function useAvatar() {
       canvas.width = SIZE;
       canvas.height = SIZE;
       const ctx = canvas.getContext("2d")!;
-      ctx.drawImage(img, 0, 0, SIZE, SIZE);
+      const side = Math.min(img.width, img.height);
+      const offsetX = (img.width - side) / 2;
+      const offsetY = (img.height - side) / 2;
+      ctx.drawImage(img, offsetX, offsetY, side, side, 0, 0, SIZE, SIZE);
       const dataUrl = canvas.toDataURL("image/jpeg", 0.7);
       URL.revokeObjectURL(objectUrl);
       localStorage.setItem(STORAGE_KEY, dataUrl);
