@@ -4,6 +4,7 @@ import { useCopy } from "../../../hooks/useCopy";
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import CTAButton from "../../../components/CTAButton";
+import TagIcon from "../../../components/TagIcon";
 import styles from "./HeroSection.module.css";
 
 export default function HeroSection() {
@@ -29,7 +30,7 @@ export default function HeroSection() {
   return (
     <section id="hero" className={styles.heroSection}>
       <div className={styles.wrapper}>
-        <div className={styles.badge}>✏️ Your study plan</div>
+        <div className={styles.badge}><TagIcon icon="✏️" size={18} /> Your study plan</div>
 
         <h1 className={styles.mainTitle}>
           Study with a plan,
@@ -44,7 +45,7 @@ export default function HeroSection() {
             key={currentPhraseIndex}
           >
             <span className={styles.phraseEmoji}>
-              {phrases[currentPhraseIndex].emoji}
+              <TagIcon icon={phrases[currentPhraseIndex].emoji} size={28} />
             </span>
             <span className={styles.changingPhrase}>
               {phrases[currentPhraseIndex].text}
@@ -52,7 +53,6 @@ export default function HeroSection() {
           </span>
         </h2>
 
-        {/* <p className={styles.subtitle}>{get("home.subtitle")}</p> */}
         <div className={styles.heroActions}>
           {user ? (
             <CTAButton to="/workspace">{get("home.cta.dashboard")}</CTAButton>

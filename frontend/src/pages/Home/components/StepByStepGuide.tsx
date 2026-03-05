@@ -89,7 +89,6 @@ function EmptyTable() {
 function FilledTable() {
   return (
     <div className={styles.filledTableWrap}>
-      {/* Grid без margin (обнуляем инлайн-стилем) */}
       <div className={styles.emptyTable} style={{ margin: 0 }}>
         <div className={styles.etCorner} />
         {ET_DAYS.map((day, i) => (
@@ -228,7 +227,7 @@ export default function StepByStepGuide() {
             <span>{get("home.howItWorks.step1.tag")}</span>
           </div>
           <h3 className={styles.cardTitle}>
-            {get("home.howItWorks.step1.main")}
+            {get("home.howItWorks.step1.main")} <TagIcon icon="🤓" size={22} />
           </h3>
           <div className={styles.placeholder}>
             <EmptyTable />
@@ -261,7 +260,7 @@ export default function StepByStepGuide() {
             <span>{get("home.howItWorks.step2.tag")}</span>
           </div>
           <h3 className={styles.cardTitle}>
-            {get("home.howItWorks.step2.main")}
+            {get("home.howItWorks.step2.main")} <TagIcon icon="✨" size={22} />
           </h3>
           <div className={styles.placeholder}>
             <FilledTable />

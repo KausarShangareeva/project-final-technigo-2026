@@ -1,20 +1,26 @@
-import { useState, type FormEvent } from "react";
-import { Lightbulb, Rocket, Sparkles } from "lucide-react";
+import { useState, useRef, useEffect, type FormEvent } from "react";
+import { Lightbulb, Rocket, Sparkles, ChevronDown } from "lucide-react";
+import TagIcon from "../components/TagIcon";
 import { useAuth } from "../context/AuthContext";
 import { api } from "../api/client";
 import type { SuggestionPayload } from "../api/types";
 import CTAButton from "../components/CTAButton";
 import styles from "./SuggestProject.module.css";
 
+const PROJECT_TYPES = [
+  { value: "Work project", emoji: "💼" },
+  { value: "Study project", emoji: "📚" },
+  { value: "Personal project", emoji: "👤" },
+  { value: "Client project", emoji: "🤝" },
+  { value: "Other", emoji: "✏️" },
+];
+
 const initialForm: SuggestionPayload = {
   name: "",
   email: "",
   projectType: "",
   title: "",
-  goal: "",
   details: "",
-  timeline: "",
-  budget: "",
 };
 
 export default function SuggestProject() {
@@ -27,11 +33,39 @@ export default function SuggestProject() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [typeOpen, setTypeOpen] = useState(false);
+  const typeRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (typeRef.current && !typeRef.current.contains(e.target as Node)) {
+        setTypeOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
+  useEffect(() => {
+    if (!user) return;
+    setForm((prev) => ({
+      ...prev,
+      name: prev.name || user.name || "",
+      email: prev.email || user.email || "",
+    }));
+  }, [user]);
 
   const onSubmit = async (event: FormEvent) => {
     event.preventDefault();
     setError("");
     setSuccess("");
+
+    if (!form.name) { setError("Please enter your name"); return; }
+    if (!form.email) { setError("Please enter your email"); return; }
+    if (!form.projectType) { setError("Please select a project type"); return; }
+    if (!form.title) { setError("Please enter a project title"); return; }
+    if (!form.details) { setError("Please enter project details"); return; }
+
     setSubmitting(true);
 
     try {
@@ -52,7 +86,7 @@ export default function SuggestProject() {
   return (
     <section className={styles.page}>
       <header className={styles.hero}>
-        <div className={styles.badge}>💡 Community ideas</div>
+        <div className={styles.badge}><TagIcon icon="💡" size={18} /> Community ideas</div>
         <h2 className={styles.heroTitle}>
           Shape the future of <span className={styles.brand}>PlanFlow</span>
         </h2>
@@ -116,23 +150,42 @@ export default function SuggestProject() {
 
           <div className={styles.formSection}>
             <div className={styles.grid}>
-              <label>
-                Project type *
-                <select
-                  value={form.projectType}
-                  onChange={(e) =>
-                    setForm((prev) => ({ ...prev, projectType: e.target.value }))
-                  }
-                  required
-                >
-                  <option value="">Choose type</option>
-                  <option value="Feature">Feature</option>
-                  <option value="Integration">Integration</option>
-                  <option value="Template">Template</option>
-                  <option value="Automation">Automation</option>
-                  <option value="Other">Other</option>
-                </select>
-              </label>
+              <div className={styles.dropdownWrapper}>
+                <span className={styles.dropdownLabel}>Project type *</span>
+                <div className={styles.dropdown} ref={typeRef}>
+                  <button
+                    type="button"
+                    className={`${styles.dropdownTrigger} ${!form.projectType ? styles.dropdownPlaceholder : ""}`}
+                    onClick={() => setTypeOpen((o) => !o)}
+                  >
+                    {form.projectType ? (
+                      <>
+                        <TagIcon icon={PROJECT_TYPES.find((t) => t.value === form.projectType)!.emoji} size={16} />
+                        {form.projectType}
+                      </>
+                    ) : (
+                      "Choose type"
+                    )}
+                    <ChevronDown size={16} className={`${styles.dropdownChevron} ${typeOpen ? styles.dropdownChevronOpen : ""}`} />
+                  </button>
+                  {typeOpen && (
+                    <ul className={styles.dropdownList}>
+                      {PROJECT_TYPES.map((t) => (
+                        <li key={t.value}>
+                          <button
+                            type="button"
+                            className={`${styles.dropdownItem} ${form.projectType === t.value ? styles.dropdownItemActive : ""}`}
+                            onClick={() => { setForm((prev) => ({ ...prev, projectType: t.value })); setTypeOpen(false); }}
+                          >
+                            <TagIcon icon={t.emoji} size={16} />
+                            {t.value}
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              </div>
 
               <label>
                 Project title *
@@ -144,15 +197,6 @@ export default function SuggestProject() {
               </label>
             </div>
 
-            <label>
-              Main goal *
-              <input
-                value={form.goal}
-                onChange={(e) => setForm((prev) => ({ ...prev, goal: e.target.value }))}
-                placeholder="One sentence outcome"
-                required
-              />
-            </label>
           </div>
 
           <div className={styles.formSection}>
@@ -166,28 +210,6 @@ export default function SuggestProject() {
                 required
               />
             </label>
-          </div>
-
-          <div className={styles.formSection}>
-            <div className={styles.grid}>
-              <label>
-                Preferred timeline
-                <input
-                  value={form.timeline}
-                  onChange={(e) => setForm((prev) => ({ ...prev, timeline: e.target.value }))}
-                  placeholder="e.g. 2-4 weeks"
-                />
-              </label>
-
-              <label>
-                Budget range
-                <input
-                  value={form.budget}
-                  onChange={(e) => setForm((prev) => ({ ...prev, budget: e.target.value }))}
-                  placeholder="Optional"
-                />
-              </label>
-            </div>
           </div>
 
           <div className={styles.submitRow}>

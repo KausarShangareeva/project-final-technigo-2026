@@ -1,5 +1,6 @@
-import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { MapPin, Trash2, Pencil, Check, X } from "lucide-react";
+import TagIcon from "../components/TagIcon";
 import { useAuth } from "../context/AuthContext";
 import { useAvatar } from "../hooks/useAvatar";
 import { api } from "../api/client";
@@ -37,10 +38,10 @@ function getReactionTag(rating: number): {
   className: string;
 } {
   if (rating >= 5)
-    return { label: "Love it!", emoji: "😍", className: "tagLove" };
+    return { label: "Love it!", emoji: "🔥", className: "tagLove" };
   if (rating >= 3)
     return { label: "Decent", emoji: "🙂", className: "tagDecent" };
-  return { label: "Bad", emoji: "😔", className: "tagBad" };
+  return { label: "Bad", emoji: "👎", className: "tagBad" };
 }
 
 export default function FeedbackPage() {
@@ -87,15 +88,6 @@ export default function FeedbackPage() {
       activeClass: styles.reactionActiveLove,
     },
   ];
-
-  const averageRating = useMemo(() => {
-    if (!feedbackList.length) return 0;
-    return (
-      feedbackList.reduce((sum, item) => sum + item.rating, 0) /
-      feedbackList.length
-    );
-  }, [feedbackList]);
-  void averageRating;
 
   const displayName = (user?.name || form.name || "Guest").trim();
 
@@ -187,7 +179,7 @@ export default function FeedbackPage() {
   return (
     <section className={styles.page}>
       <header className={styles.hero}>
-        <div className={styles.badge}>⭐ Student reviews</div>
+        <div className={styles.badge}><TagIcon icon="⭐" size={18} /> Student reviews</div>
         <h2 className={styles.heroTitle}>
           Real experiences from <span className={styles.brand}>PlanFlow</span>{" "}
           users
@@ -235,13 +227,6 @@ export default function FeedbackPage() {
                           {formatDate(entry.createdAt)}
                         </span>
                       </div>
-                      {!isEditing && (
-                        <span
-                          className={`${styles.reactionTag} ${styles[reaction.className]}`}
-                        >
-                          {reaction.emoji} {reaction.label}
-                        </span>
-                      )}
                       {own && !isEditing && (
                         <div className={styles.cardActions}>
                           <button
@@ -261,6 +246,14 @@ export default function FeedbackPage() {
                             <Trash2 size={13} />
                           </button>
                         </div>
+                      )}
+                      {!isEditing && (
+                        <span
+                          className={`${styles.reactionTag} ${styles[reaction.className]}`}
+                        >
+                          <TagIcon icon={reaction.emoji} size={20} />
+                          {reaction.label}
+                        </span>
                       )}
                     </div>
 

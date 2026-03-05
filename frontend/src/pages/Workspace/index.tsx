@@ -1,5 +1,6 @@
 import { useRef, useState, useCallback } from "react";
 import { useAuth } from "../../context/AuthContext";
+import TagIcon from "../../components/TagIcon";
 import { useAvatar } from "../../hooks/useAvatar";
 import UserAvatar from "../../components/UserAvatar";
 import { usePlans } from "./hooks/usePlans";
@@ -10,12 +11,12 @@ import WeekPlan from "./components/WeekPlan";
 
 type Orientation = "vertical" | "horizontal";
 
-function getGreeting(): string {
+function getGreeting(): { emoji: string; text: string } {
   const h = new Date().getHours();
-  if (h < 6) return "🌙 Good night";
-  if (h < 12) return "☀️ Good morning";
-  if (h < 18) return "🌤️ Good afternoon";
-  return "✨ Good evening";
+  if (h < 6) return { emoji: "🌙", text: "Good night" };
+  if (h < 12) return { emoji: "☀️", text: "Good morning" };
+  if (h < 18) return { emoji: "🌤️", text: "Good afternoon" };
+  return { emoji: "✨", text: "Good evening" };
 }
 
 export default function Workspace() {
@@ -111,7 +112,7 @@ export default function Workspace() {
           />
           <div className={styles.heroText}>
             <p className={styles.greeting}>
-              {getGreeting()}, <span className={styles.name}>{firstName}</span>
+              <TagIcon icon={getGreeting().emoji} size={22} /> {getGreeting().text}, <span className={styles.name}>{firstName}</span>
             </p>
             <p className={styles.subtitle}>Plan your week</p>
           </div>

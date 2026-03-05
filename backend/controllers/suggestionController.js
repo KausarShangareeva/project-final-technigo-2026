@@ -2,9 +2,9 @@ const Suggestion = require("../models/Suggestion");
 
 exports.createSuggestion = async (req, res) => {
   try {
-    const { name, email, projectType, title, goal, details, timeline, budget } = req.body;
+    const { name, email, projectType, title, details } = req.body;
 
-    if (!name || !email || !projectType || !title || !goal || !details) {
+    if (!name || !email || !projectType || !title || !details) {
       return res.status(400).json({ message: "Please fill all required fields" });
     }
 
@@ -14,10 +14,7 @@ exports.createSuggestion = async (req, res) => {
       email,
       projectType,
       title,
-      goal,
       details,
-      timeline,
-      budget,
     });
 
     return res.status(201).json(suggestion);

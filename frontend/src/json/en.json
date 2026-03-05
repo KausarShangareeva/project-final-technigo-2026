@@ -40,9 +40,9 @@
           "subtitle": "Schedule planning"
         },
         {
-          "title": "Notification System",
+          "title": "Choose from 100+ Courses",
           "description": "Reminders about lessons and deadlines to keep you on track.",
-          "subtitle": "Notification system"
+          "subtitle": "Choose from 100+ Courses"
         },
         {
           "title": "PDF Export",
@@ -61,12 +61,12 @@
       "subtitle": "From profile setup to a ready learning plan — in just a few minutes.",
       "step1": {
         "tag": "Set up your study plan",
-        "main": "Choose the courses you want to study 🤓",
+        "main": "Choose the courses you want to study",
         "bottom": "Your study plan will be built around this courses"
       },
       "step2": {
         "tag": "Get your plan",
-        "main": "See how your schedule will look ✨",
+        "main": "See how your schedule will look",
         "bottom": "You'll always know what to study and when."
       },
       "cta": "Create my first plan"
