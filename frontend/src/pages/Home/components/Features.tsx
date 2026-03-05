@@ -1,9 +1,11 @@
 import { CircleStar, Bell } from "lucide-react";
+import { useAuth } from "../../../context/AuthContext";
 import SectionHeader from "../../../components/SectionHeader";
 import CTAButton from "../../../components/CTAButton";
 import styles from "./Features.module.css";
 
 export default function Features() {
+  const { user } = useAuth();
   return (
     <section id="notifications" className={styles.section}>
       <SectionHeader
@@ -48,7 +50,7 @@ export default function Features() {
         </div>
       </div>
 
-      <CTAButton to="/register">Start Planning</CTAButton>
+      <CTAButton to={user ? "/workspace" : "/register"}>Start Planning</CTAButton>
     </section>
   );
 }

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useAuth } from "../../../context/AuthContext";
 import CTAButton from "../../../components/CTAButton";
 import TagIcon from "../../../components/TagIcon";
 import TAGS from "../../../json/tags.json";
@@ -127,6 +128,7 @@ function MiniSchedulePreview({
 
 // ── Main component ───────────────────────────────────────────────────────────
 export default function PDFExport() {
+  const { user } = useAuth();
   const [active, setActive] = useState<Tab>("vertical");
 
   return (
@@ -165,7 +167,7 @@ export default function PDFExport() {
         </div>
       </div>
 
-      <CTAButton to="/register">Try It Free</CTAButton>
+      <CTAButton to={user ? "/workspace" : "/register"}>Try It Free</CTAButton>
     </section>
   );
 }

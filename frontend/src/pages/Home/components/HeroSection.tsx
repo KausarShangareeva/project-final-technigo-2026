@@ -59,7 +59,7 @@ export default function HeroSection() {
           ) : (
             <CTAButton to="/register">{get("home.cta.register")} ✨</CTAButton>
           )}
-          <Link to="#features" className={styles.exploreBtn}>
+          <Link to="#screen-preview" className={styles.exploreBtn}>
             Explore
             <ArrowUpRight size={18} />
           </Link>

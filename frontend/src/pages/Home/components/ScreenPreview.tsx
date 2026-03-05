@@ -77,7 +77,7 @@ export default function ScreenPreview() {
   }
 
   return (
-    <section className={styles.section}>
+    <section id="screen-preview" className={styles.section}>
       <div className={styles.screen}>
         {/* Browser chrome */}
         <div className={styles.toolbar}>

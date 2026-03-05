@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useCopy } from "../../../hooks/useCopy";
+import { useAuth } from "../../../context/AuthContext";
 import { Calendar, GraduationCap, Search, X } from "lucide-react";
 import CTAButton from "../../../components/CTAButton";
 import TagIcon from "../../../components/TagIcon";
@@ -188,6 +189,7 @@ function DemoPopup({ visible }: { visible: boolean }) {
 
 export default function StepByStepGuide() {
   const { get } = useCopy();
+  const { user } = useAuth();
   const [popupVisible, setPopupVisible] = useState(false);
 
   useEffect(() => {
@@ -270,7 +272,7 @@ export default function StepByStepGuide() {
         </div>
       </div>
 
-      <CTAButton to="/register">{get("home.howItWorks.cta")}</CTAButton>
+      <CTAButton to={user ? "/workspace" : "/register"}>{get("home.howItWorks.cta")}</CTAButton>
     </section>
   );
 }

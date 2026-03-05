@@ -1,8 +1,10 @@
+import { useAuth } from "../../../context/AuthContext";
 import SectionHeader from "../../../components/SectionHeader";
 import CTAButton from "../../../components/CTAButton";
 import styles from "./FinalCTA.module.css";
 
 export default function FinalCTA() {
+  const { user } = useAuth();
   return (
     <section id="cta" className={styles.section}>
       <SectionHeader
@@ -24,7 +26,7 @@ export default function FinalCTA() {
             Create your study plan from scratch in just a few minutes and work
             towards your goal systematically
           </p>
-          <CTAButton align="left" to="/register">
+          <CTAButton align="left" to={user ? "/workspace" : "/register"}>
             Lets start now ✨
           </CTAButton>
         </div>

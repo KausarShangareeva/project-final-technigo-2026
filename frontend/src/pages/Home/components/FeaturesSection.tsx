@@ -1,4 +1,5 @@
 ﻿import { useCopy } from "../../../hooks/useCopy";
+import { useAuth } from "../../../context/AuthContext";
 import SectionHeader from "../../../components/SectionHeader";
 import CTAButton from "../../../components/CTAButton";
 import {
@@ -304,6 +305,7 @@ const featureIcons = [
 
 export default function FeaturesSection() {
   const { getArray, get } = useCopy();
+  const { user } = useAuth();
   const features = getArray("home.features.items");
 
   return (
@@ -346,7 +348,7 @@ export default function FeaturesSection() {
         })}
       </div>
 
-      <CTAButton to="/register">Get Started Free</CTAButton>
+      <CTAButton to={user ? "/workspace" : "/register"}>Get Started Free</CTAButton>
     </section>
   );
 }
