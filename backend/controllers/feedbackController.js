@@ -1,4 +1,5 @@
 const Feedback = require("../models/Feedback");
+const { sendTelegram, sendEmail } = require("../services/notify");
 
 function sanitizeName(name = "Anonymous") {
   const trimmed = String(name).trim();
@@ -92,6 +93,36 @@ exports.createFeedback = async (req, res) => {
       location,
       avatarUrl: avatarUrl || "",
     });
+
+    const tgText =
+      `📝 <b>New feedback on PlanFlow</b>\n\n` +
+      `👤 <b>${name}</b> (${email})\n` +
+      `⭐ Rating: <b>${normalizedRating}/5</b>\n\n` +
+      `${message}`;
+
+    const emailHtml =
+      `<h2>📝 New feedback</h2>` +
+      `<p><b>From:</b> ${name} (${email})</p>` +
+      `<p><b>Rating:</b> ${normalizedRating}/5</p>` +
+      (location ? `<p><b>Location:</b> ${location}</p>` : "") +
+      `<hr/><p>${String(message).replace(/\n/g, "<br/>")}</p>`;
+
+    const notifyResults = await Promise.allSettled([
+      sendTelegram(tgText),
+      sendEmail("📝 New feedback", emailHtml),
+    ]);
+    if (notifyResults[0].status === "rejected") {
+      console.error(
+        "[notify] Telegram error:",
+        notifyResults[0].reason?.message || notifyResults[0].reason,
+      );
+    }
+    if (notifyResults[1].status === "rejected") {
+      console.error(
+        "[notify] Email error:",
+        notifyResults[1].reason?.message || notifyResults[1].reason,
+      );
+    }
 
     return res.status(201).json({
       _id: entry._id,

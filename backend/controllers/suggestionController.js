@@ -30,12 +30,25 @@ exports.createSuggestion = async (req, res) => {
       `<p><b>Type:</b> ${projectType}</p>` +
       `<hr/><p>${details.replace(/\n/g, "<br/>")}</p>`;
 
-    sendTelegram(tgText).catch(() => {});
-    sendEmail(`💡 New suggestion: ${title}`, emailHtml).catch(() => {});
+    const notifyResults = await Promise.allSettled([
+      sendTelegram(tgText),
+      sendEmail(`💡 New suggestion: ${title}`, emailHtml),
+    ]);
+    if (notifyResults[0].status === "rejected") {
+      console.error(
+        "[notify] Telegram error:",
+        notifyResults[0].reason?.message || notifyResults[0].reason,
+      );
+    }
+    if (notifyResults[1].status === "rejected") {
+      console.error(
+        "[notify] Email error:",
+        notifyResults[1].reason?.message || notifyResults[1].reason,
+      );
+    }
 
     return res.status(201).json(suggestion);
   } catch (error) {
     return res.status(400).json({ message: error.message });
   }
 };
-
