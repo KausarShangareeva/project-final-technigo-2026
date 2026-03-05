@@ -8,13 +8,21 @@ export function useAvatar() {
   );
 
   const uploadAvatar = useCallback((file: File) => {
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const dataUrl = e.target?.result as string;
+    const img = new Image();
+    const objectUrl = URL.createObjectURL(file);
+    img.onload = () => {
+      const canvas = document.createElement("canvas");
+      const SIZE = 120;
+      canvas.width = SIZE;
+      canvas.height = SIZE;
+      const ctx = canvas.getContext("2d")!;
+      ctx.drawImage(img, 0, 0, SIZE, SIZE);
+      const dataUrl = canvas.toDataURL("image/jpeg", 0.7);
+      URL.revokeObjectURL(objectUrl);
       localStorage.setItem(STORAGE_KEY, dataUrl);
       setCustomAvatarState(dataUrl);
     };
-    reader.readAsDataURL(file);
+    img.src = objectUrl;
   }, []);
 
   const removeAvatar = useCallback(() => {
