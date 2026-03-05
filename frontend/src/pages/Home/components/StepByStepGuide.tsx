@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useCopy } from "../../../hooks/useCopy";
 import { Calendar, GraduationCap, Search, X } from "lucide-react";
 import CTAButton from "../../../components/CTAButton";
+import SectionHeader from "../../../components/SectionHeader";
 import styles from "./StepByStepGuide.module.css";
 
 const ET_DAYS = ["M", "T", "W", "T", "F", "S", "S"];
@@ -242,10 +243,10 @@ export default function StepByStepGuide() {
 
   return (
     <section id="how-it-works" className={styles.section}>
-      <div className={styles.header}>
-        <h2 className={styles.title}>{get("home.howItWorks.title")}</h2>
-        <p className={styles.subtitle}>{get("home.howItWorks.subtitle")}</p>
-      </div>
+      <SectionHeader
+        title={get("home.howItWorks.title")}
+        subtitle={get("home.howItWorks.subtitle")}
+      />
 
       <div className={styles.grid}>
         {/* Card 1 */}
