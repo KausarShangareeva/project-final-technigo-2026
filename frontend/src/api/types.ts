@@ -106,6 +106,7 @@ export interface FeedbackEntry {
   rating: number;
   message: string;
   location?: string;
+  avatarUrl?: string;
   createdAt: string;
 }
 
@@ -115,4 +116,5 @@ export interface FeedbackPayload {
   rating: number;
   message: string;
   location?: string;
+  avatarUrl?: string;
 }

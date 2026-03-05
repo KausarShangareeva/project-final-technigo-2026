@@ -13,6 +13,8 @@ interface Props {
   showEditOverlay?: boolean;
   /** Pass true only for the current user's avatar (enables custom upload override) */
   isCurrentUser?: boolean;
+  /** Explicit avatar URL to show (overrides dicebear) */
+  avatarUrl?: string;
 }
 
 function AvatarImage({
@@ -52,11 +54,14 @@ export default function UserAvatar({
   onClick,
   showEditOverlay = false,
   isCurrentUser = false,
+  avatarUrl,
 }: Props) {
   const { customAvatar } = useAvatar();
 
   const src =
-    isCurrentUser && customAvatar ? customAvatar : dicebearUrl(name);
+    isCurrentUser && customAvatar
+      ? customAvatar
+      : avatarUrl || dicebearUrl(name);
 
   return (
     <AvatarImage

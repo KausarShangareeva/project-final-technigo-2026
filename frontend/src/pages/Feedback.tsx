@@ -43,7 +43,7 @@ function getReactionTag(rating: number): {
 
 export default function FeedbackPage() {
   const { user } = useAuth();
-  const { uploadAvatar } = useAvatar();
+  const { customAvatar, uploadAvatar } = useAvatar();
   const avatarInputRef = useRef<HTMLInputElement>(null);
   const isAuthed = Boolean(user);
   const [form, setForm] = useState<FeedbackPayload>({
@@ -161,6 +161,7 @@ export default function FeedbackPage() {
         ...form,
         name: user?.name || form.name,
         email: user?.email || form.email,
+        avatarUrl: customAvatar || "",
       };
       const created = await api.post<FeedbackEntry>("/feedback", payload);
       setFeedbackList((prev) => [created, ...prev]);
@@ -205,7 +206,7 @@ export default function FeedbackPage() {
 
             return (
               <article key={entry._id} className={styles.card}>
-                <UserAvatar name={entry.name} size={40} isCurrentUser={own} />
+                <UserAvatar name={entry.name} size={40} isCurrentUser={own} avatarUrl={entry.avatarUrl} />
                 <div className={styles.cardContent}>
                   <div className={styles.cardMeta}>
                     <div className={styles.cardInfo}>

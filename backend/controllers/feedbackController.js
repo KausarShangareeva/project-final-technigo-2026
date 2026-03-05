@@ -11,7 +11,7 @@ exports.getFeedback = async (_req, res) => {
     const entries = await Feedback.find({})
       .sort({ createdAt: -1 })
       .limit(30)
-      .select("name rating message location createdAt userId");
+      .select("name rating message location createdAt userId avatarUrl");
 
     const publicEntries = entries.map((entry) => ({
       _id: entry._id,
@@ -20,6 +20,7 @@ exports.getFeedback = async (_req, res) => {
       rating: entry.rating,
       message: entry.message,
       location: entry.location,
+      avatarUrl: entry.avatarUrl || "",
       createdAt: entry.createdAt,
     }));
 
@@ -71,7 +72,7 @@ exports.updateFeedback = async (req, res) => {
 
 exports.createFeedback = async (req, res) => {
   try {
-    const { name, email, rating, message, location } = req.body;
+    const { name, email, rating, message, location, avatarUrl } = req.body;
 
     if (!name || !email || !rating || !message) {
       return res.status(400).json({ message: "Please fill all required fields" });
@@ -89,6 +90,7 @@ exports.createFeedback = async (req, res) => {
       rating: normalizedRating,
       message,
       location,
+      avatarUrl: avatarUrl || "",
     });
 
     return res.status(201).json({
@@ -98,6 +100,7 @@ exports.createFeedback = async (req, res) => {
       rating: entry.rating,
       message: entry.message,
       location: entry.location,
+      avatarUrl: entry.avatarUrl || "",
       createdAt: entry.createdAt,
     });
   } catch (error) {
