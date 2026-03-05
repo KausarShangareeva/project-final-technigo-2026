@@ -39,7 +39,10 @@ exports.login = async (req, res) => {
     }
 
     if (!user.password) {
-      return res.status(400).json({ message: "This account was created with Google. Please sign in with Google." });
+      return res.status(400).json({
+        message:
+          "🙂 This account was created with Google. Please sign in with Google 👇🏻",
+      });
     }
 
     const isMatch = await user.comparePassword(password);
@@ -65,7 +68,7 @@ exports.googleLogin = async (req, res) => {
     // Fetch user info from Google using the access token
     const response = await fetch(
       "https://www.googleapis.com/oauth2/v3/userinfo",
-      { headers: { Authorization: `Bearer ${access_token}` } }
+      { headers: { Authorization: `Bearer ${access_token}` } },
     );
 
     if (!response.ok) {
@@ -97,7 +100,12 @@ exports.googleLogin = async (req, res) => {
 
     res.json({
       token,
-      user: { id: user._id, name: user.name, email: user.email, avatar: user.avatar },
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        avatar: user.avatar,
+      },
     });
   } catch (error) {
     res.status(401).json({ message: "Google authentication failed" });
