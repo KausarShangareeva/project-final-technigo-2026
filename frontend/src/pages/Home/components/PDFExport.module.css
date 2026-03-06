@@ -78,14 +78,19 @@
 
 .toggleBtnActive {
   background: var(--color-bg);
-  color: var(--color-primary);
+  color: var(--color-primary-light);
   font-weight: 600;
   box-shadow: 0 0.2rem 0.6rem rgba(0, 0, 0, 0.08);
 }
 
+:global([data-theme="light"]) .toggleBtnActive {
+  color: var(--color-primary-dark);
+}
+
 .toggleIcon {
-  width: 3rem;
-  height: 3rem;
+  width: 2.2rem;
+  height: 2.2rem;
+  flex-shrink: 0;
 }
 
 /* Card */
@@ -176,8 +181,8 @@
   }
 
   .toggleIcon {
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 2rem;
+    height: 2rem;
   }
 
   .toggle {

@@ -1,4 +1,5 @@
-﻿import { useCopy } from "../../../hooks/useCopy";
+﻿import React from "react";
+import { useCopy } from "../../../hooks/useCopy";
 import { useAuth } from "../../../context/AuthContext";
 import SectionHeader from "../../../components/SectionHeader";
 import CTAButton from "../../../components/CTAButton";
@@ -106,8 +107,8 @@ function MiniSchedule() {
       ))}
       {/* Rows */}
       {MINI_HOURS.map((hour, row) => (
-        <>
-          <div key={`t${row}`} className={styles.miniTimeLabel}>
+        <React.Fragment key={row}>
+          <div className={styles.miniTimeLabel}>
             {hour.full.split(":")[0]}
           </div>
           {MINI_DAYS.map((_, col) => {
@@ -127,7 +128,7 @@ function MiniSchedule() {
               />
             );
           })}
-        </>
+        </React.Fragment>
       ))}
     </div>
   );

@@ -104,18 +104,19 @@
   font-weight: 500;
   border: none;
   border-radius: var(--radius-md);
-  color: #fff;
 }
 
 .saveBtn {
   background: var(--color-primary);
+  color: #fff;
   cursor: default;
   pointer-events: none;
-  opacity: 0.6;
+  opacity: 0.7;
 }
 
 .printBtn {
   background: var(--color-success);
+  color: #14532d;
   cursor: pointer;
   opacity: 1;
   transition: opacity var(--transition-fast);
@@ -148,11 +149,15 @@
 .dayHeader {
   padding: 1rem 0.6rem;
   font-size: var(--fs-sm);
-  font-weight: 500;
-  color: #6949b2;
+  font-weight: 600;
+  color: #4a2d8f;
   text-align: center;
   background: color-mix(in srgb, var(--color-primary) 7%, var(--color-bg-card));
   border-bottom: 1px solid var(--color-border);
+}
+
+:global([data-theme="dark"]) .dayHeader {
+  color: #c4b5fd;
 }
 
 .timeHeader {

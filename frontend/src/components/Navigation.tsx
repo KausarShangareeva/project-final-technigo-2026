@@ -206,7 +206,7 @@ export default function Navigation() {
       >
         <div className={styles.mobileMenuHeader}>
           <Logo size="medium" showText={false} />
-          <button className={styles.mobileCloseBtn} onClick={closeMenu}>
+          <button className={styles.mobileCloseBtn} onClick={closeMenu} aria-label="Close menu">
             <X size={20} />
           </button>
         </div>

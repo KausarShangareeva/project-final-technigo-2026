@@ -89,6 +89,16 @@ export default defineConfig({
       }
     })
   ],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'emoji-picker': ['emoji-picker-react', 'emoji-datasource-apple'],
+          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+        },
+      },
+    },
+  },
   server: {
     port: 3000,
     proxy: {

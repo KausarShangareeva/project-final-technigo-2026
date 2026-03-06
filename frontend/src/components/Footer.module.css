@@ -193,7 +193,6 @@
   max-width: none;
   font-size: var(--fs-sm);
   color: var(--color-text-muted);
-  opacity: 0.5;
   padding-top: var(--space-xs);
 }
 
