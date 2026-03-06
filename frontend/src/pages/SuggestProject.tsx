@@ -60,11 +60,26 @@ export default function SuggestProject() {
     setError("");
     setSuccess("");
 
-    if (!form.name) { setError("Please enter your name"); return; }
-    if (!form.email) { setError("Please enter your email"); return; }
-    if (!form.projectType) { setError("Please select a project type"); return; }
-    if (!form.title) { setError("Please enter a project title"); return; }
-    if (!form.details) { setError("Please enter project details"); return; }
+    if (!form.name) {
+      setError("Please enter your name");
+      return;
+    }
+    if (!form.email) {
+      setError("Please enter your email");
+      return;
+    }
+    if (!form.projectType) {
+      setError("Please select a project type");
+      return;
+    }
+    if (!form.title) {
+      setError("Please enter a project title");
+      return;
+    }
+    if (!form.details) {
+      setError("Please enter project details");
+      return;
+    }
 
     setSubmitting(true);
 
@@ -77,7 +92,9 @@ export default function SuggestProject() {
         email: user?.email || "",
       });
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to send suggestion");
+      setError(
+        err instanceof Error ? err.message : "Failed to send suggestion",
+      );
     } finally {
       setSubmitting(false);
     }
@@ -86,16 +103,44 @@ export default function SuggestProject() {
   return (
     <section className={styles.page}>
       <header className={styles.hero}>
-        <div className={styles.badge}><TagIcon icon="💡" size={18} /> Community ideas</div>
+        <div className={styles.badge}>
+          <TagIcon icon="💡" size={18} /> Community ideas
+        </div>
+        <p className={styles.heroMention}>
+          {user ? (
+            <>
+              Hi,{" "}
+              <span className={styles.brand}>{user.name.split(" ")[0]}</span>{" "}
+              <TagIcon icon="👋" size={20} />
+              <TagIcon icon="😁" size={20} />
+            </>
+          ) : (
+            <>
+              Hello there <TagIcon icon="👋" size={20} />
+            </>
+          )}
+        </p>
         <h2 className={styles.heroTitle}>
-          Shape the future of <span className={styles.brand}>PlanFlow</span>
+          {user ? (
+            <>
+              Got an idea for a <br />
+              <span className={styles.brand}>new project?</span>
+            </>
+          ) : (
+            <>
+              Got an idea for a <br />
+              <span className={styles.brand}>new project?</span>
+            </>
+          )}
         </h2>
         <p className={styles.heroSubtitle}>
-          Tell us what tool, feature, or workflow would genuinely help your learning.
+          {user ? "I'd love to hear them!" : "Share it with us!"}
         </p>
         <CTAButton
           onClick={() =>
-            document.querySelector("form")?.scrollIntoView({ behavior: "smooth", block: "start" })
+            document
+              .querySelector("form")
+              ?.scrollIntoView({ behavior: "smooth", block: "end" })
           }
         >
           Share your idea
@@ -111,8 +156,7 @@ export default function SuggestProject() {
               The concrete problem you want to solve
             </li>
             <li>
-              <Rocket size={16} />
-              A realistic scope for the first version
+              <Rocket size={16} />A realistic scope for the first version
             </li>
             <li>
               <Sparkles size={16} />
@@ -125,28 +169,34 @@ export default function SuggestProject() {
           {error && <div className={styles.error}>{error}</div>}
           {success && <div className={styles.success}>{success}</div>}
 
-          <div className={styles.formSection}>
-            <div className={styles.grid}>
-              <label>
-                Your name *
-                <input
-                  value={form.name}
-                  onChange={(e) => setForm((prev) => ({ ...prev, name: e.target.value }))}
-                  required
-                />
-              </label>
+          {!user && (
+            <div className={styles.formSection}>
+              <div className={styles.grid}>
+                <label>
+                  Your name *
+                  <input
+                    value={form.name}
+                    onChange={(e) =>
+                      setForm((prev) => ({ ...prev, name: e.target.value }))
+                    }
+                    required
+                  />
+                </label>
 
-              <label>
-                Email *
-                <input
-                  type="email"
-                  value={form.email}
-                  onChange={(e) => setForm((prev) => ({ ...prev, email: e.target.value }))}
-                  required
-                />
-              </label>
+                <label>
+                  Email *
+                  <input
+                    type="email"
+                    value={form.email}
+                    onChange={(e) =>
+                      setForm((prev) => ({ ...prev, email: e.target.value }))
+                    }
+                    required
+                  />
+                </label>
+              </div>
             </div>
-          </div>
+          )}
 
           <div className={styles.formSection}>
             <div className={styles.grid}>
@@ -160,13 +210,23 @@ export default function SuggestProject() {
                   >
                     {form.projectType ? (
                       <>
-                        <TagIcon icon={PROJECT_TYPES.find((t) => t.value === form.projectType)!.emoji} size={16} />
+                        <TagIcon
+                          icon={
+                            PROJECT_TYPES.find(
+                              (t) => t.value === form.projectType,
+                            )!.emoji
+                          }
+                          size={16}
+                        />
                         {form.projectType}
                       </>
                     ) : (
                       "Choose type"
                     )}
-                    <ChevronDown size={16} className={`${styles.dropdownChevron} ${typeOpen ? styles.dropdownChevronOpen : ""}`} />
+                    <ChevronDown
+                      size={16}
+                      className={`${styles.dropdownChevron} ${typeOpen ? styles.dropdownChevronOpen : ""}`}
+                    />
                   </button>
                   {typeOpen && (
                     <ul className={styles.dropdownList}>
@@ -175,7 +235,13 @@ export default function SuggestProject() {
                           <button
                             type="button"
                             className={`${styles.dropdownItem} ${form.projectType === t.value ? styles.dropdownItemActive : ""}`}
-                            onClick={() => { setForm((prev) => ({ ...prev, projectType: t.value })); setTypeOpen(false); }}
+                            onClick={() => {
+                              setForm((prev) => ({
+                                ...prev,
+                                projectType: t.value,
+                              }));
+                              setTypeOpen(false);
+                            }}
                           >
                             <TagIcon icon={t.emoji} size={16} />
                             {t.value}
@@ -191,12 +257,13 @@ export default function SuggestProject() {
                 Project title *
                 <input
                   value={form.title}
-                  onChange={(e) => setForm((prev) => ({ ...prev, title: e.target.value }))}
+                  onChange={(e) =>
+                    setForm((prev) => ({ ...prev, title: e.target.value }))
+                  }
                   required
                 />
               </label>
             </div>
-
           </div>
 
           <div className={styles.formSection}>
@@ -204,7 +271,9 @@ export default function SuggestProject() {
               Project details *
               <textarea
                 value={form.details}
-                onChange={(e) => setForm((prev) => ({ ...prev, details: e.target.value }))}
+                onChange={(e) =>
+                  setForm((prev) => ({ ...prev, details: e.target.value }))
+                }
                 placeholder="Describe the flow, expected behavior, and why it matters."
                 rows={7}
                 required
@@ -213,7 +282,11 @@ export default function SuggestProject() {
           </div>
 
           <div className={styles.submitRow}>
-            <button type="submit" className={styles.submit} disabled={submitting}>
+            <button
+              type="submit"
+              className={styles.submit}
+              disabled={submitting}
+            >
               {submitting ? "Sending..." : "Send project idea"}
             </button>
           </div>
@@ -222,4 +295,3 @@ export default function SuggestProject() {
     </section>
   );
 }
-

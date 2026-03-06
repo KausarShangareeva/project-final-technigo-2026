@@ -174,25 +174,36 @@ export default function FeedbackPage() {
       createdAt: new Date().toISOString(),
     };
     setFeedbackList((prev) => [optimisticEntry, ...prev]);
-    setForm({ ...initialForm, name: user?.name || "", email: user?.email || "" });
+    setForm({
+      ...initialForm,
+      name: user?.name || "",
+      email: user?.email || "",
+    });
     setSubmitting(false);
 
     // Sync with server in background
-    api.post<FeedbackEntry>("/feedback", payload)
+    api
+      .post<FeedbackEntry>("/feedback", payload)
       .then((created) => {
-        setFeedbackList((prev) => prev.map((e) => (e._id === tempId ? created : e)));
+        setFeedbackList((prev) =>
+          prev.map((e) => (e._id === tempId ? created : e)),
+        );
       })
       .catch((err) => {
         setFeedbackList((prev) => prev.filter((e) => e._id !== tempId));
         setForm(payload);
-        setError(err instanceof Error ? err.message : "Failed to submit feedback");
+        setError(
+          err instanceof Error ? err.message : "Failed to submit feedback",
+        );
       });
   };
 
   return (
     <section className={styles.page}>
       <header className={styles.hero}>
-        <div className={styles.badge}><TagIcon icon="⭐" size={18} /> Student reviews</div>
+        <div className={styles.badge}>
+          <TagIcon icon="⭐" size={18} /> Student reviews
+        </div>
         <h2 className={styles.heroTitle}>
           Real experiences from <span className={styles.brand}>PlanFlow</span>{" "}
           users
@@ -202,7 +213,7 @@ export default function FeedbackPage() {
           onClick={() =>
             document
               .querySelector("form")
-              ?.scrollIntoView({ behavior: "smooth", block: "start" })
+              ?.scrollIntoView({ behavior: "smooth", block: "end" })
           }
         >
           Share your experience
@@ -393,7 +404,7 @@ export default function FeedbackPage() {
                   }
                   className={`${styles.reactionButton} ${option.typeClass} ${form.rating === option.value ? option.activeClass : ""}`}
                 >
-                  <span>{option.emoji}</span>
+                  <TagIcon icon={option.emoji} size={18} />
                   {option.label}
                 </button>
               ))}

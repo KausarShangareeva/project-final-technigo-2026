@@ -180,7 +180,8 @@
   transition: all var(--transition-fast);
 }
 
-.reactionButton span {
+.reactionButton span,
+.reactionButton img {
   font-size: 1.6rem;
   line-height: 1;
   filter: grayscale(1);
@@ -193,7 +194,8 @@
   border-color: rgba(34, 197, 94, 0.3);
   color: rgba(34, 197, 94, 0.85);
 }
-.reactionTypeLove:hover span {
+.reactionTypeLove:hover span,
+.reactionTypeLove:hover img {
   filter: none;
 }
 
@@ -202,7 +204,8 @@
   border-color: rgba(245, 158, 11, 0.3);
   color: rgba(245, 158, 11, 0.85);
 }
-.reactionTypeDecent:hover span {
+.reactionTypeDecent:hover span,
+.reactionTypeDecent:hover img {
   filter: none;
 }
 
@@ -211,7 +214,8 @@
   border-color: rgba(239, 68, 68, 0.3);
   color: rgba(239, 68, 68, 0.85);
 }
-.reactionTypeBad:hover span {
+.reactionTypeBad:hover span,
+.reactionTypeBad:hover img {
   filter: none;
 }
 
@@ -221,7 +225,8 @@
   border-color: rgba(34, 197, 94, 0.45);
   color: #22c55e;
 }
-.reactionActiveLove span {
+.reactionActiveLove span,
+.reactionActiveLove img {
   filter: none;
 }
 
@@ -231,7 +236,8 @@
   border-color: rgba(245, 158, 11, 0.45);
   color: #f59e0b;
 }
-.reactionActiveDecent span {
+.reactionActiveDecent span,
+.reactionActiveDecent img {
   filter: none;
 }
 
@@ -241,7 +247,8 @@
   border-color: rgba(239, 68, 68, 0.45);
   color: #ef4444;
 }
-.reactionActiveBad span {
+.reactionActiveBad span,
+.reactionActiveBad img {
   filter: none;
 }
 
@@ -598,6 +605,8 @@
 .reactionTagEmoji {
   font-size: 1.6rem;
   line-height: 1;
+  font-family:
+    "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
 }
 
 .tagLove {
