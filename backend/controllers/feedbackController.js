@@ -75,7 +75,7 @@ exports.createFeedback = async (req, res) => {
   try {
     const { name, email, rating, message, location, avatarUrl } = req.body;
 
-    if (!name || !email || !rating || !message) {
+    if (!name || !rating || !message) {
       return res.status(400).json({ message: "Please fill all required fields" });
     }
 

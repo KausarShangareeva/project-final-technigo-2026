@@ -175,19 +175,18 @@ export default function FeedbackPage() {
     };
     setFeedbackList((prev) => [optimisticEntry, ...prev]);
     setForm({ ...initialForm, name: user?.name || "", email: user?.email || "" });
+    setSubmitting(false);
 
-    try {
-      const created = await api.post<FeedbackEntry>("/feedback", payload);
-      // Replace temp entry with real one from server
-      setFeedbackList((prev) => prev.map((e) => (e._id === tempId ? created : e)));
-    } catch (err) {
-      // Rollback on failure
-      setFeedbackList((prev) => prev.filter((e) => e._id !== tempId));
-      setForm(payload);
-      setError(err instanceof Error ? err.message : "Failed to submit feedback");
-    } finally {
-      setSubmitting(false);
-    }
+    // Sync with server in background
+    api.post<FeedbackEntry>("/feedback", payload)
+      .then((created) => {
+        setFeedbackList((prev) => prev.map((e) => (e._id === tempId ? created : e)));
+      })
+      .catch((err) => {
+        setFeedbackList((prev) => prev.filter((e) => e._id !== tempId));
+        setForm(payload);
+        setError(err instanceof Error ? err.message : "Failed to submit feedback");
+      });
   };
 
   return (
@@ -236,6 +235,9 @@ export default function FeedbackPage() {
                       <div className={styles.cardInfo}>
                         <strong className={styles.cardName}>
                           {entry.name}
+                          {!entry.userId && (
+                            <span className={styles.guestLabel}>(guest)</span>
+                          )}
                         </strong>
                         <span className={styles.cardDate}>
                           {formatDate(entry.createdAt)}
@@ -346,7 +348,10 @@ export default function FeedbackPage() {
             />
             <div className={styles.authorMeta}>
               <div className={styles.authorNameRow}>
-                <h2>{displayName}</h2>
+                <h2>
+                  {displayName}
+                  {!user && <span className={styles.guestLabel}>(guest)</span>}
+                </h2>
                 <span className={styles.authorDate}>
                   {new Intl.DateTimeFormat("en-US", {
                     month: "short",
@@ -405,17 +410,6 @@ export default function FeedbackPage() {
                 value={form.name}
                 onChange={(e) =>
                   setForm((prev) => ({ ...prev, name: e.target.value }))
-                }
-                required
-              />
-            </label>
-            <label>
-              Email *
-              <input
-                type="email"
-                value={form.email}
-                onChange={(e) =>
-                  setForm((prev) => ({ ...prev, email: e.target.value }))
                 }
                 required
               />
