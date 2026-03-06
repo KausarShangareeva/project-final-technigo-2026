@@ -56,7 +56,7 @@ exports.login = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
-};+
+};
 
 exports.googleLogin = async (req, res) => {
   try {
@@ -82,7 +82,7 @@ exports.googleLogin = async (req, res) => {
         user.googleId = googleId;
         if (picture) user.avatar = picture;
         await user.save();
-      }+
+      }
     } else {
       // Create new user
       user = await User.create({
