@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { Save, Printer } from "lucide-react";
 import TAGS from "../../../json/tags.json";
 import WEEKDAYS from "../../../json/weekdays.json";
@@ -5,13 +6,35 @@ import TagIcon from "../../../components/TagIcon";
 import styles from "./ScreenPreview.module.css";
 
 const DAYS = WEEKDAYS.days.map((d) => d.short);
+
+// Screen preview uses hourly slots (compact)
 const TIMES = WEEKDAYS.hours
   .filter((h) => h.value >= 8 && h.value <= 16)
   .map((h) => h.full);
 
+// Print uses 30-minute slots
+const PRINT_TIMES: string[] = [];
+for (let h = 8; h <= 21; h++) {
+  PRINT_TIMES.push(`${String(h).padStart(2, "0")}:00`);
+  if (h < 16) PRINT_TIMES.push(`${String(h).padStart(2, "0")}:30`);
+}
+
+// Convert emoji char → Apple CDN image URL (same source as emoji-picker-react)
+function emojiToAppleUrl(emoji: string): string {
+  const codepoints = [...emoji]
+    .map((c) => c.codePointAt(0)!)
+    .filter((cp) => cp !== 0xfe0f) // strip variation selector
+    .map((cp) => cp.toString(16).toLowerCase())
+    .join("-");
+  return `https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/${codepoints}.png`;
+}
+
 function tag(name: string) {
   const t = TAGS.find((t) => t.name === name);
-  if (!t) { console.warn(`[ScreenPreview] Course not found in tags.json: "${name}"`); return { name, color: "#888", bg: "rgba(136,136,136,0.12)", icon: "📚" }; }
+  if (!t) {
+    console.warn(`[ScreenPreview] Course not found in tags.json: "${name}"`);
+    return { name, color: "#888", bg: "rgba(136,136,136,0.12)", icon: "📚" };
+  }
   return { name: t.name, color: t.color, bg: t.bg, icon: t.icon };
 }
 
@@ -19,21 +42,43 @@ const DEMO_SCHEDULE: Record<
   string,
   { name: string; color: string; bg: string; icon: string }
 > = {
+  // Mon — Math 09:00–11:00
   "Mon-09:00": tag("Math"),
+  "Mon-09:30": tag("Math"),
   "Mon-10:00": tag("Math"),
+  "Mon-10:30": tag("Math"),
+  // Tue — Physics 08:00–10:00
   "Tue-08:00": tag("Physics"),
+  "Tue-08:30": tag("Physics"),
   "Tue-09:00": tag("Physics"),
+  "Tue-09:30": tag("Physics"),
+  // Wed — Literature 11:00–13:00
   "Wed-11:00": tag("Literature"),
+  "Wed-11:30": tag("Literature"),
   "Wed-12:00": tag("Literature"),
+  "Wed-12:30": tag("Literature"),
+  // Thu — History 09:00–12:00
   "Thu-09:00": tag("History"),
+  "Thu-09:30": tag("History"),
   "Thu-10:00": tag("History"),
+  "Thu-10:30": tag("History"),
   "Thu-11:00": tag("History"),
+  "Thu-11:30": tag("History"),
+  // Fri — Chemistry 14:00–16:00
   "Fri-14:00": tag("Chemistry"),
+  "Fri-14:30": tag("Chemistry"),
   "Fri-15:00": tag("Chemistry"),
+  "Fri-15:30": tag("Chemistry"),
+  // Sat — Biology 10:00–12:00
   "Sat-10:00": tag("Biology"),
+  "Sat-10:30": tag("Biology"),
   "Sat-11:00": tag("Biology"),
+  "Sat-11:30": tag("Biology"),
+  // Sun — English 13:00–15:00
   "Sun-13:00": tag("English"),
+  "Sun-13:30": tag("English"),
   "Sun-14:00": tag("English"),
+  "Sun-14:30": tag("English"),
 };
 
 // Track which cells are "start" vs "continuation"
@@ -62,6 +107,96 @@ function getSpan(day: string, time: string, times: string[]): number {
 }
 
 export default function ScreenPreview() {
+  const tableRef = useRef<HTMLDivElement>(null);
+
+  function buildPrintTable(): string {
+    // Track which cells to skip (continuations of multi-row blocks)
+    const skip = new Set<string>();
+    for (const day of DAYS) {
+      for (let i = 0; i < PRINT_TIMES.length; i++) {
+        const key = `${day}-${PRINT_TIMES[i]}`;
+        if (DEMO_SCHEDULE[key] && isStart(day, PRINT_TIMES[i], PRINT_TIMES)) {
+          const span = getSpan(day, PRINT_TIMES[i], PRINT_TIMES);
+          for (let j = 1; j < span; j++) {
+            skip.add(`${day}-${PRINT_TIMES[i + j]}`);
+          }
+        }
+      }
+    }
+
+    const header = `<tr><th></th>${DAYS.map((d) => `<th>${d}</th>`).join("")}</tr>`;
+    const rows = PRINT_TIMES.map((time) => {
+      const cells = DAYS.map((day) => {
+        const key = `${day}-${time}`;
+        if (skip.has(key)) return "";
+        const entry = DEMO_SCHEDULE[key];
+        if (entry && isStart(day, time, PRINT_TIMES)) {
+          const span = getSpan(day, time, PRINT_TIMES);
+          const bg = `repeating-linear-gradient(-45deg,transparent,transparent 4px,color-mix(in srgb,${entry.color} 10%,transparent) 4px,color-mix(in srgb,${entry.color} 10%,transparent) 7px),${entry.bg}`;
+          const iconUrl = emojiToAppleUrl(entry.icon);
+          return `<td rowspan="${span}" style="background:${bg};border-left:3px solid ${entry.color};vertical-align:top;padding:4px 5px 3px;"><span style="display:inline-flex;align-items:center;gap:3px;"><img src="${iconUrl}" style="width:12px;height:12px;flex-shrink:0;" /><span style="font-size:9px;font-weight:600;">${entry.name}</span></span></td>`;
+        }
+        return `<td></td>`;
+      }).join("");
+      return `<tr><td>${time}</td>${cells}</tr>`;
+    }).join("");
+
+    return `<table><thead>${header}</thead><tbody>${rows}</tbody></table>`;
+  }
+
+  function handlePrint() {
+    // Resolve CSS custom properties (var(--tag-*)) used in DEMO_SCHEDULE colors
+    const computedRoot = getComputedStyle(document.documentElement);
+    const rawColors = Object.values(DEMO_SCHEDULE)
+      .flatMap((e) => [e.color, e.bg])
+      .join(" ");
+    const varNames = [...new Set(rawColors.match(/--[^)]+/g) ?? [])];
+    const cssVarsBlock = `:root { ${varNames.map((v) => `${v}: ${computedRoot.getPropertyValue(v).trim()};`).join(" ")} }`;
+
+    const iframe = document.createElement("iframe");
+    Object.assign(iframe.style, {
+      position: "fixed",
+      left: "-9999px",
+      top: "-9999px",
+      width: "0",
+      height: "0",
+    });
+    document.body.appendChild(iframe);
+
+    const doc = iframe.contentDocument || iframe.contentWindow?.document;
+    if (!doc) {
+      document.body.removeChild(iframe);
+      return;
+    }
+
+    doc.open();
+    doc.write(`<!DOCTYPE html><html><head>
+<meta charset="utf-8"><title>Weekly Schedule</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  ${cssVarsBlock}
+  @page { size: landscape; margin: 8mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  html { font-size: 10px; }
+  body { font-family: "Montserrat", system-ui, sans-serif; background: #fff; }
+  table { width: 100%; border-collapse: separate; border-spacing: 0; table-layout: fixed; border: 1px solid #d1d5db; border-radius: 12px; overflow: hidden; }
+  th, td { border-top: 1px solid #d1d5db; border-right: 1px solid #d1d5db; padding: 2px 4px; font-size: 9px; text-align: center; height: 30px; vertical-align: top; }
+  th:last-child, td:last-child { border-right: none; }
+  tr:first-child th { border-top: none; }
+  th { background: #f3f0fb !important; font-weight: 500; color: #6949b2; border-bottom: 1px solid #d1d5db !important; font-size: 10px; text-align: center; vertical-align: middle; }
+  td:first-child { text-align: center; vertical-align: middle; font-weight: 500; color: #6b7280; width: 48px; background: #f3f0fb !important; font-size: 8px; }
+  span { font-size: 9px; font-weight: 600; color: #111; }
+</style>
+</head><body>${buildPrintTable()}</body></html>`);
+    doc.close();
+
+    iframe.contentWindow?.focus();
+    setTimeout(() => {
+      iframe.contentWindow?.print();
+      setTimeout(() => document.body.removeChild(iframe), 1000);
+    }, 1500);
+  }
+
   // Build a set of continuation cells to skip
   const skipCells = new Set<string>();
   for (const day of DAYS) {
@@ -95,7 +230,11 @@ export default function ScreenPreview() {
             <Save size={18} />
             Save Plan
           </button>
-          <button className={styles.printBtn}>
+          <button
+            type="button"
+            className={styles.printBtn}
+            onClick={handlePrint}
+          >
             <Printer size={18} />
             Print PDF
           </button>
@@ -132,7 +271,7 @@ export default function ScreenPreview() {
         </div>
 
         {/* Schedule table */}
-        <div className={styles.content}>
+        <div className={styles.content} ref={tableRef}>
           <table className={styles.table}>
             <thead>
               <tr>

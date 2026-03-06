@@ -105,17 +105,24 @@
   border: none;
   border-radius: var(--radius-md);
   color: #fff;
+}
+
+.saveBtn {
+  background: var(--color-primary);
   cursor: default;
   pointer-events: none;
   opacity: 0.6;
 }
 
-.saveBtn {
-  background: var(--color-primary);
-}
-
 .printBtn {
   background: var(--color-success);
+  cursor: pointer;
+  opacity: 1;
+  transition: opacity var(--transition-fast);
+}
+
+.printBtn:hover {
+  opacity: 0.85;
 }
 
 /* Table area */

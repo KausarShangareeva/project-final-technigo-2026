@@ -45,7 +45,7 @@
     "name": "Physics",
     "color": "var(--tag-physics)",
     "bg": "var(--tag-physics-bg)",
-    "icon": "⚛️"
+    "icon": "🔬"
   },
   {
     "name": "Astronomy",
@@ -358,7 +358,7 @@
   { "name": "Probability Theory",       "color": "var(--tag-statistics)",       "bg": "var(--tag-statistics-bg)",       "icon": "🎲" },
   { "name": "Number Theory",            "color": "var(--tag-math)",             "bg": "var(--tag-math-bg)",             "icon": "∞" },
   { "name": "Real Analysis",            "color": "var(--tag-algebra)",          "bg": "var(--tag-algebra-bg)",          "icon": "📊" },
-  { "name": "Quantum Mechanics",        "color": "var(--tag-physics)",          "bg": "var(--tag-physics-bg)",          "icon": "⚛️" },
+  { "name": "Quantum Mechanics",        "color": "var(--tag-physics)",          "bg": "var(--tag-physics-bg)",          "icon": "⚡" },
   { "name": "Thermodynamics",           "color": "var(--tag-chemistry)",        "bg": "var(--tag-chemistry-bg)",        "icon": "🌡️" },
   { "name": "Organic Chemistry",        "color": "var(--tag-chemistry)",        "bg": "var(--tag-chemistry-bg)",        "icon": "🧪" },
   { "name": "Biochemistry",             "color": "var(--tag-biology)",          "bg": "var(--tag-biology-bg)",          "icon": "🧬" },
