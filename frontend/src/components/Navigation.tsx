@@ -9,8 +9,6 @@ import {
   Sun,
   Moon,
   ArrowUpRight,
-  MessageCircle,
-  Coffee,
   Sparkles,
   MessagesSquare,
   Menu,
@@ -83,7 +81,7 @@ export default function Navigation() {
                         rel="noopener noreferrer"
                         className={styles.dropdownItem}
                       >
-                        <MessageCircle size={16} />
+                        <img src="/avatar_logo.png" alt="" className={styles.navAvatar} />
                         Message the Author
                       </a>
                       <a
@@ -92,7 +90,7 @@ export default function Navigation() {
                         rel="noopener noreferrer"
                         className={styles.dropdownItem}
                       >
-                        <Coffee size={16} />
+                        <img src="/buymeacoffee.png" alt="" className={styles.navAvatar} />
                         Buy Me a Coffee
                       </a>
                       <Link to="/suggest-project" className={styles.dropdownItem}>
@@ -132,7 +130,7 @@ export default function Navigation() {
                         rel="noopener noreferrer"
                         className={styles.dropdownItem}
                       >
-                        <MessageCircle size={16} />
+                        <img src="/avatar_logo.png" alt="" className={styles.navAvatar} />
                         Message the Author
                       </a>
                       <a
@@ -141,7 +139,7 @@ export default function Navigation() {
                         rel="noopener noreferrer"
                         className={styles.dropdownItem}
                       >
-                        <Coffee size={16} />
+                        <img src="/buymeacoffee.png" alt="" className={styles.navAvatar} />
                         Buy Me a Coffee
                       </a>
                       <Link to="/suggest-project" className={styles.dropdownItem}>
@@ -236,7 +234,7 @@ export default function Navigation() {
               rel="noopener noreferrer"
               className={styles.mobileNavLink}
             >
-              <MessageCircle size={18} />
+              <img src="/avatar_logo.png" alt="" className={styles.navAvatar} />
               Message the Author
             </a>
             <a
@@ -245,7 +243,7 @@ export default function Navigation() {
               rel="noopener noreferrer"
               className={styles.mobileNavLink}
             >
-              <Coffee size={18} />
+              <img src="/buymeacoffee.png" alt="" className={styles.navAvatar} />
               Buy Me a Coffee
             </a>
             <Link to="/suggest-project" className={styles.mobileNavLink} onClick={closeMenu}>
@@ -306,7 +304,7 @@ export default function Navigation() {
               rel="noopener noreferrer"
               className={styles.mobileNavLink}
             >
-              <MessageCircle size={18} />
+              <img src="/avatar_logo.png" alt="" className={styles.navAvatar} />
               Message the Author
             </a>
             <a
@@ -315,7 +313,7 @@ export default function Navigation() {
               rel="noopener noreferrer"
               className={styles.mobileNavLink}
             >
-              <Coffee size={18} />
+              <img src="/buymeacoffee.png" alt="" className={styles.navAvatar} />
               Buy Me a Coffee
             </a>
             <Link to="/suggest-project" className={styles.mobileNavLink} onClick={closeMenu}>

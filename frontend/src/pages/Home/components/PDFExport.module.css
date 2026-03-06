@@ -78,7 +78,8 @@
 
 .toggleBtnActive {
   background: var(--color-bg);
-  color: var(--color-text);
+  color: var(--color-primary);
+  font-weight: 600;
   box-shadow: 0 0.2rem 0.6rem rgba(0, 0, 0, 0.08);
 }
 

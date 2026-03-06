@@ -2,10 +2,8 @@ import { Link } from "react-router-dom";
 import { useCopy } from "../hooks/useCopy";
 import Logo from "./Logo";
 import {
-  MessageCircle,
   GithubIcon,
   LinkedinIcon,
-  Coffee,
   Sparkles,
   MessagesSquare,
   ClipboardList,
@@ -68,7 +66,6 @@ export default function Footer() {
               <a href="#how-it-works">How It Works</a>
               <a href="#envelope">Envelope</a>
               <a href="#pdf-export">PDF Export</a>
-              <a href="#notifications">Notifications</a>
             </nav>
           </div>
 
@@ -80,7 +77,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <MessageCircle size={15} />
+                <img src="/avatar_logo.png" alt="" className={styles.linkAvatar} />
                 Message the Author
               </a>
               <a
@@ -88,7 +85,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Coffee size={15} />
+                <img src="/buymeacoffee.png" alt="" className={styles.linkAvatar} />
                 Buy Me a Coffee
               </a>
               <Link to="/suggest-project">
