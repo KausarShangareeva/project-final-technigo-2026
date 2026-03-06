@@ -6,20 +6,6 @@ import { AvatarProvider } from "./context/AvatarContext";
 import "./index.css";
 import App from "./App";
 
-// Register Service Worker for PWA
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js').then(
-      (registration) => {
-        console.log('ServiceWorker registered: ', registration);
-      },
-      (error) => {
-        console.log('ServiceWorker registration failed: ', error);
-      }
-    );
-  });
-}
-
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID ?? ""}>
@@ -29,5 +15,5 @@ createRoot(document.getElementById("root")!).render(
         </AvatarProvider>
       </AuthProvider>
     </GoogleOAuthProvider>
-  </StrictMode>
+  </StrictMode>,
 );

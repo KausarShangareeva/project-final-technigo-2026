@@ -153,24 +153,38 @@ export default function FeedbackPage() {
     event.preventDefault();
     setSubmitting(true);
     setError("");
+
+    const payload: FeedbackPayload = {
+      ...form,
+      name: user?.name || form.name,
+      email: user?.email || form.email,
+      avatarUrl: customAvatar || user?.avatar || "",
+    };
+
+    // Optimistic update — show immediately without waiting for server
+    const tempId = `temp-${Date.now()}`;
+    const optimisticEntry: FeedbackEntry = {
+      _id: tempId,
+      userId: user?.id || null,
+      name: payload.name,
+      rating: payload.rating,
+      message: payload.message,
+      location: payload.location || "",
+      avatarUrl: payload.avatarUrl || "",
+      createdAt: new Date().toISOString(),
+    };
+    setFeedbackList((prev) => [optimisticEntry, ...prev]);
+    setForm({ ...initialForm, name: user?.name || "", email: user?.email || "" });
+
     try {
-      const payload: FeedbackPayload = {
-        ...form,
-        name: user?.name || form.name,
-        email: user?.email || form.email,
-        avatarUrl: customAvatar || user?.avatar || "",
-      };
       const created = await api.post<FeedbackEntry>("/feedback", payload);
-      setFeedbackList((prev) => [created, ...prev]);
-      setForm({
-        ...initialForm,
-        name: user?.name || "",
-        email: user?.email || "",
-      });
+      // Replace temp entry with real one from server
+      setFeedbackList((prev) => prev.map((e) => (e._id === tempId ? created : e)));
     } catch (err) {
-      setError(
-        err instanceof Error ? err.message : "Failed to submit feedback",
-      );
+      // Rollback on failure
+      setFeedbackList((prev) => prev.filter((e) => e._id !== tempId));
+      setForm(payload);
+      setError(err instanceof Error ? err.message : "Failed to submit feedback");
     } finally {
       setSubmitting(false);
     }

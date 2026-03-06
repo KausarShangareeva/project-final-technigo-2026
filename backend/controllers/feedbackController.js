@@ -107,22 +107,23 @@ exports.createFeedback = async (req, res) => {
       (location ? `<p><b>Location:</b> ${location}</p>` : "") +
       `<hr/><p>${String(message).replace(/\n/g, "<br/>")}</p>`;
 
-    const notifyResults = await Promise.allSettled([
+    Promise.allSettled([
       sendTelegram(tgText),
       sendEmail("📝 New feedback", emailHtml),
-    ]);
-    if (notifyResults[0].status === "rejected") {
-      console.error(
-        "[notify] Telegram error:",
-        notifyResults[0].reason?.message || notifyResults[0].reason,
-      );
-    }
-    if (notifyResults[1].status === "rejected") {
-      console.error(
-        "[notify] Email error:",
-        notifyResults[1].reason?.message || notifyResults[1].reason,
-      );
-    }
+    ]).then((notifyResults) => {
+      if (notifyResults[0].status === "rejected") {
+        console.error(
+          "[notify] Telegram error:",
+          notifyResults[0].reason?.message || notifyResults[0].reason,
+        );
+      }
+      if (notifyResults[1].status === "rejected") {
+        console.error(
+          "[notify] Email error:",
+          notifyResults[1].reason?.message || notifyResults[1].reason,
+        );
+      }
+    });
 
     return res.status(201).json({
       _id: entry._id,

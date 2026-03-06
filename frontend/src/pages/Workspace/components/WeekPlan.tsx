@@ -114,7 +114,7 @@ export default function WeekPlan({
   const [showEmoji, setShowEmoji] = useState(true);
   const tableRef = useRef<HTMLDivElement>(null);
 
-  const scheduleMap = buildScheduleMap(schedule);
+  const scheduleMap = useMemo(() => buildScheduleMap(schedule), [schedule]);
 
   function handleCellClick(day: string, time: string) {
     const key = `${day}-${time}`;
@@ -153,26 +153,18 @@ export default function WeekPlan({
 
     // Resolve CSS variables (var(--tag-*)) so they work inside the iframe
     const computedRoot = getComputedStyle(document.documentElement);
-    const seen = new Set<string>();
-    const resolvedVars: string[] = [];
-    COURSES.forEach((course) => {
-      [course.color, course.bg].forEach((val) => {
-        const varName = (val as string).match(/var\((--[^)]+)\)/)?.[1];
-        if (varName && !seen.has(varName)) {
-          seen.add(varName);
-          const resolved = computedRoot.getPropertyValue(varName).trim();
-          if (resolved) resolvedVars.push(`${varName}: ${resolved};`);
-        }
-      });
-    });
+    const resolvedVars = COURSES
+      .flatMap((course) => [course.color, course.bg])
+      .filter((val): val is string => typeof val === "string")
+      .map((val) => val.match(/var\((--[^)]+)\)/)?.[1])
+      .filter((varName): varName is string => !!varName)
+      .filter((varName, i, arr) => arr.indexOf(varName) === i)
+      .map((varName) => `${varName}: ${computedRoot.getPropertyValue(varName).trim()};`)
+      .filter(Boolean);
     const cssVarsBlock = `:root { ${resolvedVars.join(" ")} }`;
 
     const iframe = document.createElement("iframe");
-    iframe.style.position = "fixed";
-    iframe.style.left = "-9999px";
-    iframe.style.top = "-9999px";
-    iframe.style.width = "0";
-    iframe.style.height = "0";
+    Object.assign(iframe.style, { position: "fixed", left: "-9999px", top: "-9999px", width: "0", height: "0" });
     document.body.appendChild(iframe);
 
     const doc = iframe.contentDocument || iframe.contentWindow?.document;

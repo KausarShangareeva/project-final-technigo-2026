@@ -45,6 +45,9 @@ async function sendTelegram(text) {
       },
     );
 
+    req.setTimeout(10000, () => {
+      req.destroy(new Error("Telegram request timeout"));
+    });
     req.on("error", reject);
     req.write(payload);
     req.end();

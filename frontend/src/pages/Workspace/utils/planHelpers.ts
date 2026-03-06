@@ -34,22 +34,19 @@ export function generatePlanTitle(schedule: ScheduleEntry[]): string {
 
 /** Auto-generate a description summarizing schedule contents */
 export function generatePlanDescription(schedule: ScheduleEntry[]): string {
-  const courseMap = new Map<string, string[]>();
-  for (const entry of schedule) {
-    const days = courseMap.get(entry.course) || [];
+  const courseMap = schedule.reduce<Map<string, Set<string>>>((acc, entry) => {
     const shortDay = DAY_SHORT[entry.day] || entry.day;
-    if (!days.includes(shortDay)) days.push(shortDay);
-    courseMap.set(entry.course, days);
-  }
+    if (!acc.has(entry.course)) acc.set(entry.course, new Set());
+    acc.get(entry.course)!.add(shortDay);
+    return acc;
+  }, new Map());
 
-  const parts: string[] = [];
-  for (const [course, days] of courseMap) {
-    parts.push(`${course} (${days.join(", ")})`);
-  }
+  const parts = [...courseMap.entries()].map(
+    ([course, days]) => `${course} (${[...days].join(", ")})`
+  );
 
   const totalHours = schedule.reduce((sum, e) => sum + e.duration, 0) / 60;
-  const totalFormatted =
-    totalHours % 1 === 0 ? totalHours.toString() : totalHours.toFixed(1);
+  const totalFormatted = totalHours % 1 === 0 ? String(totalHours) : totalHours.toFixed(1);
 
   return `${parts.join(". ")}. Total ${totalFormatted} hrs/week.`;
 }

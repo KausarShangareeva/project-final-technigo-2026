@@ -22,6 +22,16 @@ function saveToStorage(plans: SavedPlan[]): void {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(plans));
 }
 
+function buildPlanMeta(schedule: ScheduleEntry[], orientation: "vertical" | "horizontal") {
+  return {
+    color: getDominantColor(schedule),
+    title: generatePlanTitle(schedule),
+    description: generatePlanDescription(schedule),
+    schedule,
+    orientation,
+  };
+}
+
 export function usePlans() {
   const [plans, setPlans] = useState<SavedPlan[]>(loadFromStorage);
   const [activePlanId, setActivePlanId] = useState<string | null>(
@@ -48,11 +58,7 @@ export function usePlans() {
       const newPlan: SavedPlan = {
         id: crypto.randomUUID(),
         createdAt: new Date().toISOString(),
-        color: getDominantColor(schedule),
-        title: generatePlanTitle(schedule),
-        description: generatePlanDescription(schedule),
-        schedule,
-        orientation,
+        ...buildPlanMeta(schedule, orientation),
       };
       setPlans((prev) => [newPlan, ...prev]);
       return newPlan;
@@ -68,16 +74,7 @@ export function usePlans() {
     ) => {
       setPlans((prev) =>
         prev.map((p) =>
-          p.id === id
-            ? {
-                ...p,
-                schedule,
-                orientation,
-                color: getDominantColor(schedule),
-                title: generatePlanTitle(schedule),
-                description: generatePlanDescription(schedule),
-              }
-            : p,
+          p.id === id ? { ...p, ...buildPlanMeta(schedule, orientation) } : p,
         ),
       );
     },
