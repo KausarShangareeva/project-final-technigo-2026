@@ -18,10 +18,10 @@ export default function EnvelopePreview() {
 
           {/* Cards inside */}
           <div className={`${styles.card} ${styles.cardLeft}`}>
-            <img src="/example-1.png" alt="Schedule example 1" className={styles.cardImg} />
+            <img src="/example-1.png" alt="Schedule example 1" className={styles.cardImg} loading="lazy" />
           </div>
           <div className={`${styles.card} ${styles.cardRight}`}>
-            <img src="/example-2.png" alt="Schedule example 2" className={styles.cardImg} />
+            <img src="/example-2.png" alt="Schedule example 2" className={styles.cardImg} loading="lazy" />
           </div>
 
           {/* Central placeholder */}

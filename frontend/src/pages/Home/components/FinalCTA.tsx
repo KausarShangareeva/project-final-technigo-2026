@@ -18,6 +18,7 @@ export default function FinalCTA() {
             src="/example_portable.jpg"
             alt="Schedule preview"
             className={styles.illustrationImg}
+            loading="lazy"
           />
         </div>
         <div className={styles.content}>
