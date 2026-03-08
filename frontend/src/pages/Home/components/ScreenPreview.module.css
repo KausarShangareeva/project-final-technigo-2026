@@ -247,6 +247,10 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+  .hintGroup {
+    display: none;
+  }
+
   .content {
     padding: var(--space-sm);
   }

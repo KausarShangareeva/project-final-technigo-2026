@@ -161,6 +161,14 @@ export default function ScreenPreview() {
       width: "0",
       height: "0",
     });
+
+    iframe.addEventListener("load", function onLoad() {
+      iframe.removeEventListener("load", onLoad);
+      iframe.contentWindow?.focus();
+      iframe.contentWindow?.print();
+      setTimeout(() => document.body.removeChild(iframe), 1000);
+    });
+
     document.body.appendChild(iframe);
 
     const doc = iframe.contentDocument || iframe.contentWindow?.document;
@@ -172,13 +180,12 @@ export default function ScreenPreview() {
     doc.open();
     doc.write(`<!DOCTYPE html><html><head>
 <meta charset="utf-8"><title>Weekly Schedule</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   ${cssVarsBlock}
   @page { size: landscape; margin: 8mm; }
   * { margin: 0; padding: 0; box-sizing: border-box; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
   html { font-size: 10px; }
-  body { font-family: "Montserrat", system-ui, sans-serif; background: #fff; }
+  body { font-family: system-ui, sans-serif; background: #fff; }
   table { width: 100%; border-collapse: separate; border-spacing: 0; table-layout: fixed; border: 1px solid #d1d5db; border-radius: 12px; overflow: hidden; }
   th, td { border-top: 1px solid #d1d5db; border-right: 1px solid #d1d5db; padding: 2px 4px; font-size: 9px; text-align: center; height: 30px; vertical-align: top; }
   th:last-child, td:last-child { border-right: none; }
@@ -189,12 +196,6 @@ export default function ScreenPreview() {
 </style>
 </head><body>${buildPrintTable()}</body></html>`);
     doc.close();
-
-    iframe.contentWindow?.focus();
-    setTimeout(() => {
-      iframe.contentWindow?.print();
-      setTimeout(() => document.body.removeChild(iframe), 1000);
-    }, 1500);
   }
 
   // Build a set of continuation cells to skip
