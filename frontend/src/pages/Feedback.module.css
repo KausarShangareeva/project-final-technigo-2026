@@ -640,8 +640,35 @@
 }
 
 @media (max-width: 640px) {
+  .heroTitle {
+    width: 90%;
+    font-size: var(--fs-2xl);
+  }
+
+  .heroSubtitle {
+    font-size: var(--fs-base);
+  }
+
   .authorCard {
     padding: var(--space-md);
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .authorActions {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+
+  .reactionGroup {
+    flex-wrap: wrap;
+  }
+
+  .reactionButton {
+    padding: 0 0.8rem;
+    font-size: var(--fs-xs);
   }
 
   .row {
