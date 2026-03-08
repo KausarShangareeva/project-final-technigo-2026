@@ -239,7 +239,7 @@ export default function Navigation() {
         className={`${styles.mobileMenu} ${menuOpen ? styles.mobileMenuOpen : ""}`}
       >
         <div className={styles.mobileMenuHeader}>
-          <Logo size="medium" showText={false} />
+          <Logo size="medium" showText={true} />
           <button
             className={styles.mobileCloseBtn}
             onClick={closeMenu}
