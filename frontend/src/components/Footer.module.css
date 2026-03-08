@@ -344,4 +344,9 @@
   .quoteAuthor {
     font-size: var(--fs-base);
   }
+
+  .madeWith {
+    padding-top: var(--space-xl);
+    padding-bottom: var(--space-xl);
+  }
 }
