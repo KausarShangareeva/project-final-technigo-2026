@@ -1,7 +1,6 @@
 ﻿import { useState, useEffect } from "react";
 import { useAuth } from "../../../context/AuthContext";
 import { useCopy } from "../../../hooks/useCopy";
-import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import CTAButton from "../../../components/CTAButton";
 import TagIcon from "../../../components/TagIcon";
@@ -59,10 +58,14 @@ export default function HeroSection() {
           ) : (
             <CTAButton to="/register">{get("home.cta.register")} ✨</CTAButton>
           )}
-          <Link to="#screen-preview" className={styles.exploreBtn}>
+          <button
+            type="button"
+            className={styles.exploreBtn}
+            onClick={() => document.getElementById("screen-preview")?.scrollIntoView({ behavior: "smooth" })}
+          >
             Explore
             <ArrowUpRight size={18} />
-          </Link>
+          </button>
         </div>
       </div>
     </section>
