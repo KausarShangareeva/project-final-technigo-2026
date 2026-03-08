@@ -356,9 +356,14 @@
 }
 
 .tagPillActive {
-  background: var(--color-primary);
+  background: var(--color-primary-dark);
   color: #fff;
-  border-color: var(--color-primary);
+  border-color: var(--color-primary-dark);
+}
+
+.tagPillActive:hover {
+  background: var(--color-primary-dark);
+  color: #fff;
 }
 
 /* ===== Step 5 — contact ===== */
