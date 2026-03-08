@@ -99,6 +99,7 @@ export default function SuggestProject() {
   const [name, setName] = useState(user?.name.split(" ")[0] ?? "");
   const [contact, setContact] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
   const [progress, setProgress] = useState(0);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -130,6 +131,10 @@ export default function SuggestProject() {
     } finally {
       clearInterval(intervalRef.current!);
       setProgress(100);
+      setTimeout(() => {
+        setIsSubmitting(false);
+        setIsSuccess(true);
+      }, 600);
     }
   }
 
@@ -193,9 +198,7 @@ export default function SuggestProject() {
                   "Your project idea looks great 🙂"
                 )}
               </h3>
-              <p className={styles.loadingSub}>
-                I'll review it and respond as soon as possible.
-              </p>
+
               <div className={styles.progressTrackBar}>
                 <div
                   className={styles.progressFill}
@@ -206,8 +209,32 @@ export default function SuggestProject() {
             </div>
           )}
 
+          {/* Success screen */}
+          {isSuccess && (
+            <div className={styles.loadingScreen}>
+              <div className={styles.successIconWrap}>
+                <svg
+                  width="36"
+                  height="36"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </div>
+              <h3 className={styles.loadingTitle}>Got it! 🎉</h3>
+              <p className={styles.loadingSub}>
+                I'll review your request and get back to you soon
+              </p>
+            </div>
+          )}
+
           {/* Survey steps */}
-          {!isSubmitting && (
+          {!isSubmitting && !isSuccess && (
             <>
               {/* Progress + back */}
               <div className={styles.surveyTop}>
