@@ -157,3 +157,18 @@ npm run dev        # runs on http://localhost:3001
 3. **Export to PDF** — print or save your weekly schedule
 4. **Leave feedback** — rate the app and share your experience
 5. **Suggest a project** — submit an idea and get notified via Telegram/email
+
+---
+
+## 🌐 Browser Compatibility
+
+Tested and working on:
+
+| Browser | Version | Status |
+|---------|---------|--------|
+| Chrome  | 120+    | ✅ Full support |
+| Firefox | 121+    | ✅ Full support |
+| Safari  | 17+     | ✅ Full support |
+| Edge    | 120+    | ✅ Full support |
+
+Responsive design covers **320px – 1600px** screen widths.
