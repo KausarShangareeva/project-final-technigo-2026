@@ -7,7 +7,7 @@ This project features **JWT & Google OAuth authentication**, **PDF export**, **d
 
 ## 🔗 Demo
 
-Check out the project live: [PlanFlow on Render](https://js-project-final-backend.onrender.com)
+Check out the project live: [PlanFlow on Render](https://yourplanflow.netlify.app/)
 
 ---
 
