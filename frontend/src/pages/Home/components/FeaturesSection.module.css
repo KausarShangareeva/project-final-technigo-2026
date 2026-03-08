@@ -308,7 +308,7 @@
 }
 
 .dlFileBadge {
-  background: #ef4444;
+  background: #b91c1c;
   color: #fff;
   font-size: 1.2rem;
   font-weight: 700;
@@ -750,8 +750,8 @@
   padding: 0.38rem 0.9rem;
   border-radius: 10rem;
   border: 1px solid;
-  font-size: 1.15rem;
-  font-weight: 500;
+  font-size: 1.2rem;
+  font-weight: 700;
   white-space: nowrap;
   flex-shrink: 0;
   user-select: none;

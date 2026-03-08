@@ -244,7 +244,7 @@ function SavedPlans() {
         <div className={styles.savedCardTitle}>Week of Feb 25</div>
         <div className={styles.savedCardDesc}>
           3 sessions this week <br />
-          Wed â€“ Fri <br />4 study hours
+          Wed – Fri <br />4 study hours
         </div>
         <button className={styles.savedCardOpen}>Open</button>
       </div>
