@@ -301,7 +301,7 @@
 /* ── Extra small ── */
 @media (max-width: 480px) {
   .footer {
-    padding: var(--space-3xl) 0 var(--space-2xl);
+    padding: var(--space-xl) 0 var(--space-2xl);
   }
 
   .main {
@@ -324,7 +324,7 @@
 
   .divider {
     padding-inline: var(--space-sm);
-    margin: var(--space-3xl) auto;
+    margin: var(--space-md) auto;
   }
 
   .dividerIcon {
@@ -346,7 +346,6 @@
   }
 
   .madeWith {
-    padding-top: var(--space-xl);
-    padding-bottom: var(--space-xl);
+    padding: 0;
   }
 }

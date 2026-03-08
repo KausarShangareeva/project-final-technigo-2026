@@ -470,7 +470,7 @@
 /* Extra small screens */
 @media (max-width: 480px) {
   .section {
-    padding: var(--space-2xl) 0;
+    padding: var(--space-xl) 0;
   }
 
   .header {

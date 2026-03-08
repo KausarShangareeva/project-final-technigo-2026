@@ -114,6 +114,7 @@
 
   .content {
     align-items: center;
+    gap: 1rem;
   }
 
   .title {
@@ -136,7 +137,8 @@
 
   .card {
     border-radius: 1.6rem;
-    padding: var(--space-md);
+    padding: var(--space-xl);
+    gap: 5rem;
   }
 
   .illustration {
