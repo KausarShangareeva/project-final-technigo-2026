@@ -77,17 +77,21 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img src="/avatar_logo.png" alt="" className={styles.linkAvatar} />
+                <img
+                  src="/avatar_logo.png"
+                  alt=""
+                  className={styles.linkAvatar}
+                />
                 Message the Author
               </a>
-              <a
-                href="https://buymeacoffee.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img src="/buymeacoffee.png" alt="" className={styles.linkAvatar} />
+              <Link to="/donate">
+                <img
+                  src="/buymeacoffee.png"
+                  alt=""
+                  className={styles.linkAvatar}
+                />
                 Buy Me a Coffee
-              </a>
+              </Link>
               <Link to="/suggest-project">
                 <Sparkles size={15} />
                 Suggest a Project
@@ -115,7 +119,7 @@ export default function Footer() {
             </nav>
           </div>
 
-          <div className={styles.column}>
+          {/* <div className={styles.column}>
             <h4 className={styles.columnTitle}>Projects</h4>
             <nav className={styles.links}>
               <span className={styles.projectItem}>
@@ -185,7 +189,7 @@ export default function Footer() {
                 <span className={styles.projectDesc}>– Your home library</span>
               </span>
             </nav>
-          </div>
+          </div> */}
         </div>
       </div>
 
