@@ -45,16 +45,22 @@ exports.updateFeedback = async (req, res) => {
   try {
     const { message, rating } = req.body;
     if (!message || !rating) {
-      return res.status(400).json({ message: "Message and rating are required" });
+      return res
+        .status(400)
+        .json({ message: "Message and rating are required" });
     }
     const normalizedRating = Number(rating);
-    if (!Number.isFinite(normalizedRating) || normalizedRating < 1 || normalizedRating > 5) {
+    if (
+      !Number.isFinite(normalizedRating) ||
+      normalizedRating < 1 ||
+      normalizedRating > 5
+    ) {
       return res.status(400).json({ message: "Rating must be from 1 to 5" });
     }
     const entry = await Feedback.findByIdAndUpdate(
       req.params.id,
       { message: String(message).trim(), rating: normalizedRating },
-      { new: true }
+      { new: true },
     );
     if (!entry) return res.status(404).json({ message: "Not found" });
     return res.json({
@@ -76,11 +82,17 @@ exports.createFeedback = async (req, res) => {
     const { name, email, rating, message, location, avatarUrl } = req.body;
 
     if (!name || !rating || !message) {
-      return res.status(400).json({ message: "Please fill all required fields" });
+      return res
+        .status(400)
+        .json({ message: "Please fill all required fields" });
     }
 
     const normalizedRating = Number(rating);
-    if (!Number.isFinite(normalizedRating) || normalizedRating < 1 || normalizedRating > 5) {
+    if (
+      !Number.isFinite(normalizedRating) ||
+      normalizedRating < 1 ||
+      normalizedRating > 5
+    ) {
       return res.status(400).json({ message: "Rating must be from 1 to 5" });
     }
 
@@ -107,23 +119,29 @@ exports.createFeedback = async (req, res) => {
       (location ? `<p><b>Location:</b> ${location}</p>` : "") +
       `<hr/><p>${String(message).replace(/\n/g, "<br/>")}</p>`;
 
-    Promise.allSettled([
-      sendTelegram(tgText),
-      sendEmail("📝 New feedback", emailHtml),
-    ]).then((notifyResults) => {
-      if (notifyResults[0].status === "rejected") {
-        console.error(
-          "[notify] Telegram error:",
-          notifyResults[0].reason?.message || notifyResults[0].reason,
-        );
-      }
-      if (notifyResults[1].status === "rejected") {
-        console.error(
-          "[notify] Email error:",
-          notifyResults[1].reason?.message || notifyResults[1].reason,
-        );
-      }
-    });
+    // Используем await, чтобы сервер дождался отправки уведомлений перед ответом клиенту
+    // Это критично для бесплатных хостингов (Render/Netlify), которые "засыпают" после ответа
+    try {
+      await Promise.allSettled([
+        sendTelegram(tgText),
+        sendEmail("📝 New feedback", emailHtml),
+      ]).then((results) => {
+        if (results[0].status === "rejected") {
+          console.error(
+            "[notify] Telegram error:",
+            results[0].reason?.message || results[0].reason,
+          );
+        }
+        if (results[1].status === "rejected") {
+          console.error(
+            "[notify] Email error:",
+            results[1].reason?.message || results[1].reason,
+          );
+        }
+      });
+    } catch (notifyErr) {
+      console.error("[notify] Notification process error:", notifyErr);
+    }
 
     return res.status(201).json({
       _id: entry._id,

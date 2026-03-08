@@ -6,7 +6,9 @@ exports.createSuggestion = async (req, res) => {
     const { name, email, projectType, title, details } = req.body;
 
     if (!name || !email || !projectType || !title || !details) {
-      return res.status(400).json({ message: "Please fill all required fields" });
+      return res
+        .status(400)
+        .json({ message: "Please fill all required fields" });
     }
 
     const suggestion = await Suggestion.create({
@@ -30,23 +32,28 @@ exports.createSuggestion = async (req, res) => {
       `<p><b>Type:</b> ${projectType}</p>` +
       `<hr/><p>${details.replace(/\n/g, "<br/>")}</p>`;
 
-    Promise.allSettled([
-      sendTelegram(tgText),
-      sendEmail(`💡 New suggestion: ${title}`, emailHtml),
-    ]).then((notifyResults) => {
-      if (notifyResults[0].status === "rejected") {
-        console.error(
-          "[notify] Telegram error:",
-          notifyResults[0].reason?.message || notifyResults[0].reason,
-        );
-      }
-      if (notifyResults[1].status === "rejected") {
-        console.error(
-          "[notify] Email error:",
-          notifyResults[1].reason?.message || notifyResults[1].reason,
-        );
-      }
-    });
+    // Добавляем await для гарантии отправки на бесплатных хостингах
+    try {
+      await Promise.allSettled([
+        sendTelegram(tgText),
+        sendEmail(`💡 New suggestion: ${title}`, emailHtml),
+      ]).then((results) => {
+        if (results[0].status === "rejected") {
+          console.error(
+            "[notify] Telegram error:",
+            results[0].reason?.message || results[0].reason,
+          );
+        }
+        if (results[1].status === "rejected") {
+          console.error(
+            "[notify] Email error:",
+            results[1].reason?.message || results[1].reason,
+          );
+        }
+      });
+    } catch (notifyErr) {
+      console.error("[notify] Notification process error:", notifyErr);
+    }
 
     return res.status(201).json(suggestion);
   } catch (error) {

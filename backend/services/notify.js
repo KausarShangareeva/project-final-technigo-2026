@@ -57,16 +57,37 @@ async function sendTelegram(text) {
 async function sendEmail(subject, html) {
   const user = process.env.GMAIL_USER;
   const pass = process.env.GMAIL_APP_PASSWORD;
+
   if (!user || !pass) {
     throw new Error("Missing GMAIL_USER or GMAIL_APP_PASSWORD");
   }
 
+  // Используем более надежную конфигурацию для Gmail
   const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: { user, pass },
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true, // true для порта 465
+    auth: {
+      user: user,
+      pass: pass,
+    },
+    // Добавляем таймаут, чтобы не ждать бесконечно
+    connectionTimeout: 10000,
   });
 
-  await transporter.sendMail({ from: user, to: user, subject, html });
+  try {
+    const info = await transporter.sendMail({
+      from: `"PlanFlow Notifications" <${user}>`,
+      to: user, // Отправляем самому себе
+      subject: subject,
+      html: html,
+    });
+    console.log("[notify] Email sent successfully:", info.messageId);
+    return info;
+  } catch (error) {
+    console.error("[notify] Detailed Email Error:", error);
+    throw error; // Пробрасываем ошибку дальше для обработки в контроллере
+  }
 }
 
 module.exports = { sendTelegram, sendEmail };
