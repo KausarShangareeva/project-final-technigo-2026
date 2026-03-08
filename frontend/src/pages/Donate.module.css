@@ -1,0 +1,143 @@
+/* ===== Page ===== */
+.page {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg) var(--space-lg);
+  gap: 3rem;
+}
+
+.cardCenter {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 3rem;
+}
+
+/* ===== Card ===== */
+.card {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 2rem;
+  box-shadow: var(--shadow);
+  padding: var(--space-2xl) var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+  text-align: center;
+}
+
+/* ===== Hero emoji (Apple style) ===== */
+.heroImg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: floatCup 3.5s ease-in-out infinite;
+  filter: drop-shadow(0 16px 32px rgba(99, 102, 241, 0.25))
+          drop-shadow(0 4px 12px rgba(0, 0, 0, 0.12));
+}
+
+@keyframes floatCup {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+
+/* ===== Coffee cards ===== */
+.coffeeGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+  width: 100%;
+  margin-top: var(--space-sm);
+}
+
+.coffeeCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: var(--space-lg) var(--space-md);
+  background: var(--color-bg);
+  border: 1.5px solid var(--color-border);
+  border-radius: 1.6rem;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.coffeeCard:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-3px);
+}
+
+.coffeeCardSelected {
+  border-color: var(--color-primary);
+  background: var(--color-primary-subtle);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 25%, transparent);
+}
+
+
+.popularBadge {
+  position: absolute;
+  top: -1.1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  padding: 0.25rem 0.9rem;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: var(--color-primary);
+  background: var(--color-bg-card);
+  border: 1.5px solid var(--color-primary);
+  border-radius: var(--radius-full);
+}
+
+.coffeeImg {
+  width: 6rem;
+  height: 6rem;
+  object-fit: contain;
+}
+
+.coffeeLabel {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.coffeeSub {
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted);
+}
+
+.coffeeAmount {
+  font-size: var(--fs-lg);
+  font-weight: 800;
+  color: var(--color-primary);
+  margin-top: 0.2rem;
+}
+
+/* ===== Footnote ===== */
+.footnote {
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 520px) {
+  .coffeeGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    padding: var(--space-xl) var(--space-lg);
+  }
+}

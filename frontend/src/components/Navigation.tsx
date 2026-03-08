@@ -40,11 +40,15 @@ export default function Navigation() {
   const scrollToSection = (sectionId: string) => {
     closeMenu();
     if (location.pathname === "/") {
-      document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+      document
+        .getElementById(sectionId)
+        ?.scrollIntoView({ behavior: "smooth" });
     } else {
       navigate("/");
       setTimeout(() => {
-        document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+        document
+          .getElementById(sectionId)
+          ?.scrollIntoView({ behavior: "smooth" });
       }, 150);
     }
   };
@@ -81,19 +85,28 @@ export default function Navigation() {
                         rel="noopener noreferrer"
                         className={styles.dropdownItem}
                       >
-                        <img src="/avatar_logo.png" alt="" className={styles.navAvatar} />
+                        <img
+                          src="/avatar_logo.png"
+                          alt=""
+                          className={styles.navAvatar}
+                        />
                         Message the Author
                       </a>
-                      <a
-                        href="https://buymeacoffee.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                      <Link
+                        to="/donate"
                         className={styles.dropdownItem}
                       >
-                        <img src="/buymeacoffee.png" alt="" className={styles.navAvatar} />
+                        <img
+                          src="/buymeacoffee.png"
+                          alt=""
+                          className={styles.navAvatar}
+                        />
                         Buy Me a Coffee
-                      </a>
-                      <Link to="/suggest-project" className={styles.dropdownItem}>
+                      </Link>
+                      <Link
+                        to="/suggest-project"
+                        className={styles.dropdownItem}
+                      >
                         <Sparkles size={16} />
                         Suggest a Project
                       </Link>
@@ -106,16 +119,28 @@ export default function Navigation() {
                 </>
               ) : (
                 <>
-                  <button className={styles.navLink} onClick={() => scrollToSection("hero")}>
+                  <button
+                    className={styles.navLink}
+                    onClick={() => scrollToSection("hero")}
+                  >
                     Home
                   </button>
-                  <button className={styles.navLink} onClick={() => scrollToSection("features")}>
+                  <button
+                    className={styles.navLink}
+                    onClick={() => scrollToSection("features")}
+                  >
                     Features
                   </button>
-                  <button className={styles.navLink} onClick={() => scrollToSection("how-it-works")}>
+                  <button
+                    className={styles.navLink}
+                    onClick={() => scrollToSection("how-it-works")}
+                  >
                     How It Works
                   </button>
-                  <button className={styles.navLink} onClick={() => scrollToSection("pdf-export")}>
+                  <button
+                    className={styles.navLink}
+                    onClick={() => scrollToSection("pdf-export")}
+                  >
                     PDF Export
                   </button>
                   <div className={styles.dropdownWrapper}>
@@ -130,19 +155,28 @@ export default function Navigation() {
                         rel="noopener noreferrer"
                         className={styles.dropdownItem}
                       >
-                        <img src="/avatar_logo.png" alt="" className={styles.navAvatar} />
+                        <img
+                          src="/avatar_logo.png"
+                          alt=""
+                          className={styles.navAvatar}
+                        />
                         Message the Author
                       </a>
-                      <a
-                        href="https://buymeacoffee.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                      <Link
+                        to="/donate"
                         className={styles.dropdownItem}
                       >
-                        <img src="/buymeacoffee.png" alt="" className={styles.navAvatar} />
+                        <img
+                          src="/buymeacoffee.png"
+                          alt=""
+                          className={styles.navAvatar}
+                        />
                         Buy Me a Coffee
-                      </a>
-                      <Link to="/suggest-project" className={styles.dropdownItem}>
+                      </Link>
+                      <Link
+                        to="/suggest-project"
+                        className={styles.dropdownItem}
+                      >
                         <Sparkles size={16} />
                         Suggest a Project
                       </Link>
@@ -206,7 +240,11 @@ export default function Navigation() {
       >
         <div className={styles.mobileMenuHeader}>
           <Logo size="medium" showText={false} />
-          <button className={styles.mobileCloseBtn} onClick={closeMenu} aria-label="Close menu">
+          <button
+            className={styles.mobileCloseBtn}
+            onClick={closeMenu}
+            aria-label="Close menu"
+          >
             <X size={20} />
           </button>
         </div>
@@ -237,20 +275,31 @@ export default function Navigation() {
               <img src="/avatar_logo.png" alt="" className={styles.navAvatar} />
               Message the Author
             </a>
-            <a
-              href="https://buymeacoffee.com"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/donate"
               className={styles.mobileNavLink}
+              onClick={closeMenu}
             >
-              <img src="/buymeacoffee.png" alt="" className={styles.navAvatar} />
+              <img
+                src="/buymeacoffee.png"
+                alt=""
+                className={styles.navAvatar}
+              />
               Buy Me a Coffee
-            </a>
-            <Link to="/suggest-project" className={styles.mobileNavLink} onClick={closeMenu}>
+            </Link>
+            <Link
+              to="/suggest-project"
+              className={styles.mobileNavLink}
+              onClick={closeMenu}
+            >
               <Sparkles size={18} />
               Suggest a Project
             </Link>
-            <Link to="/feedback" className={styles.mobileNavLink} onClick={closeMenu}>
+            <Link
+              to="/feedback"
+              className={styles.mobileNavLink}
+              onClick={closeMenu}
+            >
               <MessagesSquare size={18} />
               Leave Feedback
             </Link>
@@ -279,19 +328,31 @@ export default function Navigation() {
           </>
         ) : (
           <>
-            <button className={styles.mobileNavLink} onClick={() => scrollToSection("hero")}>
+            <button
+              className={styles.mobileNavLink}
+              onClick={() => scrollToSection("hero")}
+            >
               <Home size={18} />
               Home
             </button>
-            <button className={styles.mobileNavLink} onClick={() => scrollToSection("features")}>
+            <button
+              className={styles.mobileNavLink}
+              onClick={() => scrollToSection("features")}
+            >
               <Zap size={18} />
               Features
             </button>
-            <button className={styles.mobileNavLink} onClick={() => scrollToSection("how-it-works")}>
+            <button
+              className={styles.mobileNavLink}
+              onClick={() => scrollToSection("how-it-works")}
+            >
               <BookOpen size={18} />
               How It Works
             </button>
-            <button className={styles.mobileNavLink} onClick={() => scrollToSection("pdf-export")}>
+            <button
+              className={styles.mobileNavLink}
+              onClick={() => scrollToSection("pdf-export")}
+            >
               <Printer size={18} />
               PDF Export
             </button>
@@ -307,20 +368,31 @@ export default function Navigation() {
               <img src="/avatar_logo.png" alt="" className={styles.navAvatar} />
               Message the Author
             </a>
-            <a
-              href="https://buymeacoffee.com"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/donate"
               className={styles.mobileNavLink}
+              onClick={closeMenu}
             >
-              <img src="/buymeacoffee.png" alt="" className={styles.navAvatar} />
+              <img
+                src="/buymeacoffee.png"
+                alt=""
+                className={styles.navAvatar}
+              />
               Buy Me a Coffee
-            </a>
-            <Link to="/suggest-project" className={styles.mobileNavLink} onClick={closeMenu}>
+            </Link>
+            <Link
+              to="/suggest-project"
+              className={styles.mobileNavLink}
+              onClick={closeMenu}
+            >
               <Sparkles size={18} />
               Suggest a Project
             </Link>
-            <Link to="/feedback" className={styles.mobileNavLink} onClick={closeMenu}>
+            <Link
+              to="/feedback"
+              className={styles.mobileNavLink}
+              onClick={closeMenu}
+            >
               <MessagesSquare size={18} />
               Leave Feedback
             </Link>
