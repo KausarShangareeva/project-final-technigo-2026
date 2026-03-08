@@ -32,7 +32,7 @@ export default function Logo({ size = "medium", showText = true, variant = "dark
           fontSize: fontSizes[size]
         }}
       >
-        Q
+        P
       </div>
       {showText && (
         <span className={`${styles.logoText} ${variant === "light" ? styles.logoTextLight : ""}`}>

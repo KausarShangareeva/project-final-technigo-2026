@@ -1,104 +1,150 @@
-import { useState, useRef, useEffect, type FormEvent } from "react";
-import { Lightbulb, Rocket, Sparkles, ChevronDown } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
 import TagIcon from "../components/TagIcon";
 import { useAuth } from "../context/AuthContext";
+import { ChevronLeft, Sparkles } from "lucide-react";
 import { api } from "../api/client";
-import type { SuggestionPayload } from "../api/types";
-import CTAButton from "../components/CTAButton";
 import styles from "./SuggestProject.module.css";
 
-const PROJECT_TYPES = [
-  { value: "Work project", emoji: "💼" },
-  { value: "Study project", emoji: "📚" },
-  { value: "Personal project", emoji: "👤" },
-  { value: "Client project", emoji: "🤝" },
-  { value: "Other", emoji: "✏️" },
+const TOPICS = [
+  { value: "AI", emoji: "🤖" },
+  { value: "Education", emoji: "📚" },
+  { value: "Business", emoji: "💼" },
+  { value: "Personal Site", emoji: "🌱" },
+  { value: "Gaming", emoji: "🎮" },
 ];
 
-const initialForm: SuggestionPayload = {
-  name: "",
-  email: "",
-  projectType: "",
-  title: "",
-  details: "",
+const STATS = [
+  {
+    value: "6+ Years in UI Design",
+    label: "UI/UX design in Figma",
+    icon: "🎨",
+    colorClass: "statBlue",
+  },
+  {
+    value: "Full-Stack Developer",
+    label: "React.js • Node.js • Modern Web Apps",
+    icon: "💻",
+    colorClass: "statYellow",
+  },
+  {
+    value: "Open to new projects",
+    label: "Looking for interesting ideas to build",
+    icon: "🚀",
+    colorClass: "statGreen",
+  },
+];
+
+const TIMELINES = [
+  { value: "Urgent", label: "1–2 weeks", badge: "Urgent" },
+  { value: "Fast", label: "2–3 weeks" },
+  { value: "Flexible", label: "1–2 months" },
+  { value: "No rush", label: "No Date Yet" },
+];
+
+const TOPIC_TAGS: Record<string, string[]> = {
+  AI: [
+    "AI Chatbot",
+    "AI Assistant",
+    "AI Content Generator",
+    "AI Automation",
+    "AI Image Tool",
+    "AI SaaS",
+    "AI API Integration",
+    "AI Productivity Tool",
+  ],
+  Education: [
+    "Language Learning",
+    "Online Courses",
+    "Learning Platform",
+    "Study Planner",
+    "Education App",
+    "Course Website",
+  ],
+  Business: [
+    "Company Website",
+    "SaaS Platform",
+    "Marketplace",
+    "CRM / Dashboard",
+    "Booking System",
+    "Online Service",
+    "Startup MVP",
+    "Admin Panel",
+  ],
+  "Personal Site": [
+    "Portfolio Website",
+    "Personal Blog",
+    "Resume / CV Site",
+    "Personal Brand",
+    "Landing Page",
+    "Personal Dashboard",
+  ],
+  Gaming: [
+    "Browser Game",
+    "Multiplayer Game",
+    "Game Landing Page",
+    "Game Community",
+    "Leaderboard System",
+    "Game Dashboard",
+  ],
 };
+
+const TOTAL_STEPS = 5;
 
 export default function SuggestProject() {
   const { user } = useAuth();
-  const [form, setForm] = useState<SuggestionPayload>({
-    ...initialForm,
-    name: user?.name || "",
-    email: user?.email || "",
-  });
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
-  const [submitting, setSubmitting] = useState(false);
-  const [typeOpen, setTypeOpen] = useState(false);
-  const typeRef = useRef<HTMLDivElement>(null);
+  const [step, setStep] = useState(1);
+  const [topic, setTopic] = useState("");
+  const [timeline, setTimeline] = useState("");
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [name, setName] = useState(user?.name.split(" ")[0] ?? "");
+  const [contact, setContact] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  useEffect(() => {
-    const handler = (e: MouseEvent) => {
-      if (typeRef.current && !typeRef.current.contains(e.target as Node)) {
-        setTypeOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
-  }, []);
+  async function handleSubmit() {
+    setIsSubmitting(true);
+    setProgress(0);
 
-  useEffect(() => {
-    if (!user) return;
-    setForm((prev) => ({
-      ...prev,
-      name: prev.name || user.name || "",
-      email: prev.email || user.email || "",
-    }));
-  }, [user]);
-
-  const onSubmit = async (event: FormEvent) => {
-    event.preventDefault();
-    setError("");
-    setSuccess("");
-
-    if (!form.name) {
-      setError("Please enter your name");
-      return;
-    }
-    if (!form.email) {
-      setError("Please enter your email");
-      return;
-    }
-    if (!form.projectType) {
-      setError("Please select a project type");
-      return;
-    }
-    if (!form.title) {
-      setError("Please enter a project title");
-      return;
-    }
-    if (!form.details) {
-      setError("Please enter project details");
-      return;
-    }
-
-    setSubmitting(true);
+    // Start visual progress bar
+    intervalRef.current = setInterval(() => {
+      setProgress((p) => {
+        if (p >= 95) {
+          clearInterval(intervalRef.current!);
+          return 95;
+        }
+        return p + 1;
+      });
+    }, 30);
 
     try {
-      await api.post("/suggestions", form);
-      setSuccess("Your idea has been sent. Thank you.");
-      setForm({
-        ...initialForm,
-        name: user?.name || "",
-        email: user?.email || "",
+      await api.post("/suggestions", {
+        name,
+        email: contact,
+        projectType: topic,
+        title: selectedTags.join(", ") || topic,
+        details: `Timeline: ${timeline}\nContact: ${contact}\nTags: ${selectedTags.join(", ")}`,
       });
-    } catch (err) {
-      setError(
-        err instanceof Error ? err.message : "Failed to send suggestion",
-      );
+    } catch {
+      // notification still shows even if request fails silently
     } finally {
-      setSubmitting(false);
+      clearInterval(intervalRef.current!);
+      setProgress(100);
     }
-  };
+  }
+
+  useEffect(
+    () => () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    },
+    [],
+  );
+
+  function toggleTag(tag: string) {
+    setSelectedTags((prev) =>
+      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag],
+    );
+  }
 
   return (
     <section className={styles.page}>
@@ -121,176 +167,234 @@ export default function SuggestProject() {
           )}
         </p>
         <h2 className={styles.heroTitle}>
-          {user ? (
-            <>
-              Got an idea for a <br />
-              <span className={styles.brand}>new project?</span>
-            </>
-          ) : (
-            <>
-              Got an idea for a <br />
-              <span className={styles.brand}>new project?</span>
-            </>
-          )}
+          Got an idea for a <br />
+          <span className={styles.brand}>new project?</span>
         </h2>
         <p className={styles.heroSubtitle}>
           {user ? "I'd love to hear them!" : "Share it with us!"}
         </p>
-        <CTAButton
-          onClick={() =>
-            document
-              .querySelector("form")
-              ?.scrollIntoView({ behavior: "smooth", block: "end" })
-          }
-        >
-          Share your idea
-        </CTAButton>
       </header>
 
-      <div className={styles.layout}>
-        <aside className={styles.benefits}>
-          <h2>What to include</h2>
-          <ul>
-            <li>
-              <Lightbulb size={16} />
-              The concrete problem you want to solve
-            </li>
-            <li>
-              <Rocket size={16} />A realistic scope for the first version
-            </li>
-            <li>
-              <Sparkles size={16} />
-              Why this helps learners stay consistent
-            </li>
-          </ul>
-        </aside>
-
-        <form onSubmit={onSubmit} className={styles.form}>
-          {error && <div className={styles.error}>{error}</div>}
-          {success && <div className={styles.success}>{success}</div>}
-
-          {!user && (
-            <div className={styles.formSection}>
-              <div className={styles.grid}>
-                <label>
-                  Your name *
-                  <input
-                    value={form.name}
-                    onChange={(e) =>
-                      setForm((prev) => ({ ...prev, name: e.target.value }))
-                    }
-                    required
-                  />
-                </label>
-
-                <label>
-                  Email *
-                  <input
-                    type="email"
-                    value={form.email}
-                    onChange={(e) =>
-                      setForm((prev) => ({ ...prev, email: e.target.value }))
-                    }
-                    required
-                  />
-                </label>
+      <div className={styles.cardCenter}>
+        <div className={styles.surveyCard}>
+          {/* Loading screen */}
+          {isSubmitting && (
+            <div className={styles.loadingScreen}>
+              <div className={styles.loadingIconWrap}>
+                <Sparkles size={32} strokeWidth={1.5} />
               </div>
+              <h3 className={styles.loadingTitle}>
+                {name ? (
+                  <>
+                    <span className={styles.brand}>{name}</span>, your project
+                    idea looks great 🙂
+                  </>
+                ) : (
+                  "Your project idea looks great 🙂"
+                )}
+              </h3>
+              <p className={styles.loadingSub}>
+                I'll review it and respond as soon as possible.
+              </p>
+              <div className={styles.progressTrackBar}>
+                <div
+                  className={styles.progressFill}
+                  style={{ width: `${progress}%` }}
+                />
+              </div>
+              <span className={styles.progressPct}>{progress}%</span>
             </div>
           )}
 
-          <div className={styles.formSection}>
-            <div className={styles.grid}>
-              <div className={styles.dropdownWrapper}>
-                <span className={styles.dropdownLabel}>Project type *</span>
-                <div className={styles.dropdown} ref={typeRef}>
+          {/* Survey steps */}
+          {!isSubmitting && (
+            <>
+              {/* Progress + back */}
+              <div className={styles.surveyTop}>
+                {step > 1 && (
                   <button
-                    type="button"
-                    className={`${styles.dropdownTrigger} ${!form.projectType ? styles.dropdownPlaceholder : ""}`}
-                    onClick={() => setTypeOpen((o) => !o)}
+                    className={styles.backBtn}
+                    onClick={() => setStep((s) => s - 1)}
                   >
-                    {form.projectType ? (
-                      <>
-                        <TagIcon
-                          icon={
-                            PROJECT_TYPES.find(
-                              (t) => t.value === form.projectType,
-                            )!.emoji
-                          }
-                          size={16}
-                        />
-                        {form.projectType}
-                      </>
-                    ) : (
-                      "Choose type"
-                    )}
-                    <ChevronDown
-                      size={16}
-                      className={`${styles.dropdownChevron} ${typeOpen ? styles.dropdownChevronOpen : ""}`}
-                    />
+                    <ChevronLeft size={20} />
                   </button>
-                  {typeOpen && (
-                    <ul className={styles.dropdownList}>
-                      {PROJECT_TYPES.map((t) => (
-                        <li key={t.value}>
-                          <button
-                            type="button"
-                            className={`${styles.dropdownItem} ${form.projectType === t.value ? styles.dropdownItemActive : ""}`}
-                            onClick={() => {
-                              setForm((prev) => ({
-                                ...prev,
-                                projectType: t.value,
-                              }));
-                              setTypeOpen(false);
-                            }}
-                          >
-                            <TagIcon icon={t.emoji} size={16} />
-                            {t.value}
-                          </button>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
+                )}
+                <div className={styles.progressTrack}>
+                  {Array.from({ length: TOTAL_STEPS }).map((_, i) => (
+                    <div
+                      key={i}
+                      className={`${styles.progressDot} ${i < step ? styles.progressDotActive : ""}`}
+                    />
+                  ))}
                 </div>
               </div>
 
-              <label>
-                Project title *
-                <input
-                  value={form.title}
-                  onChange={(e) =>
-                    setForm((prev) => ({ ...prev, title: e.target.value }))
-                  }
-                  required
-                />
-              </label>
-            </div>
-          </div>
+              {/* Step 1 — topic */}
+              {step === 1 && (
+                <div className={styles.stepBody}>
+                  <h3 className={styles.stepTitle}>
+                    What topic interests you?
+                  </h3>
+                  <p className={styles.stepSub}>Choose your main interest</p>
+                  <ul className={styles.optionList}>
+                    {TOPICS.map((t) => (
+                      <li key={t.value}>
+                        <button
+                          className={`${styles.optionBtn} ${topic === t.value ? styles.optionBtnActive : ""}`}
+                          onClick={() => {
+                            setTopic(t.value);
+                            setTimeout(() => setStep(2), 180);
+                          }}
+                        >
+                          <span className={styles.optionIcon}>
+                            <TagIcon icon={t.emoji} size={20} />
+                          </span>
+                          <span className={styles.optionLabel}>{t.value}</span>
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
 
-          <div className={styles.formSection}>
-            <label>
-              Project details *
-              <textarea
-                value={form.details}
-                onChange={(e) =>
-                  setForm((prev) => ({ ...prev, details: e.target.value }))
-                }
-                placeholder="Describe the flow, expected behavior, and why it matters."
-                rows={7}
-                required
-              />
-            </label>
-          </div>
+              {/* Step 2 — You're in the right place */}
+              {step === 2 && (
+                <div className={styles.stepBody}>
+                  <h3 className={styles.stepTitle}>
+                    You're in the right place
+                  </h3>
+                  <div className={styles.statList}>
+                    {STATS.map((s) => (
+                      <div
+                        key={s.value}
+                        className={`${styles.statCard} ${styles[s.colorClass]}`}
+                      >
+                        <span className={styles.flex}>
+                          <TagIcon icon={s.icon} size={20} />
+                          <strong className={styles.statValue}>
+                            {s.value}
+                          </strong>
+                        </span>
+                        <p className={styles.statLabel}>{s.label}</p>
+                      </div>
+                    ))}
+                  </div>
+                  <button
+                    className={styles.continueBtn}
+                    onClick={() => setStep(3)}
+                  >
+                    Continue
+                  </button>
+                </div>
+              )}
 
-          <div className={styles.submitRow}>
-            <button
-              type="submit"
-              className={styles.submit}
-              disabled={submitting}
-            >
-              {submitting ? "Sending..." : "Send project idea"}
-            </button>
-          </div>
-        </form>
+              {/* Step 3 — Timeline */}
+              {step === 3 && (
+                <div className={styles.stepBody}>
+                  <h3 className={styles.stepTitle}>
+                    When do you need the project ready?
+                  </h3>
+                  <p className={styles.stepSub}>Choose your timeline</p>
+                  <ul className={styles.optionList}>
+                    {TIMELINES.map((t) => (
+                      <li key={t.value}>
+                        <button
+                          className={`${styles.optionBtn} ${styles.timelineBtn} ${timeline === t.value ? styles.optionBtnActive : ""}`}
+                          onClick={() => {
+                            setTimeline(t.value);
+                            setTimeout(() => setStep(4), 180);
+                          }}
+                        >
+                          <span className={styles.optionLabel}>
+                            {t.value}
+                            <span className={styles.optionSub}>{t.label}</span>
+                          </span>
+                          {t.badge && (
+                            <span className={styles.urgentBadge}>
+                              {t.badge}
+                            </span>
+                          )}
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* Step 4 — Tags */}
+              {step === 4 && (
+                <div className={styles.stepBody}>
+                  <h3 className={styles.stepTitle}>
+                    What is your project about?
+                  </h3>
+                  <p className={styles.stepSub}>You can select a few topics</p>
+                  <div className={styles.tagGrid}>
+                    {(TOPIC_TAGS[topic] ?? []).map((tag) => (
+                      <button
+                        key={tag}
+                        className={`${styles.tagPill} ${selectedTags.includes(tag) ? styles.tagPillActive : ""}`}
+                        onClick={() => toggleTag(tag)}
+                      >
+                        {tag}
+                      </button>
+                    ))}
+                  </div>
+                  <button
+                    className={styles.continueBtn}
+                    style={{ marginTop: "var(--space-xl)" }}
+                    disabled={selectedTags.length === 0}
+                    onClick={() => setStep(5)}
+                  >
+                    Continue
+                  </button>
+                </div>
+              )}
+
+              {/* Step 5 — Contact */}
+              {step === 5 && (
+                <div className={styles.stepBody}>
+                  <h3 className={styles.stepTitle}>Almost there!</h3>
+                  <p className={styles.stepSub}>Tell me how to reach you</p>
+                  <div className={styles.contactForm}>
+                    <div className={styles.fieldGroup}>
+                      <label className={styles.fieldLabel} htmlFor="sp-name">
+                        Your name
+                      </label>
+                      <input
+                        id="sp-name"
+                        type="text"
+                        className={styles.fieldInput}
+                        placeholder="Your name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                      />
+                    </div>
+                    <div className={styles.fieldGroup}>
+                      <label className={styles.fieldLabel} htmlFor="sp-contact">
+                        Email or Telegram
+                      </label>
+                      <input
+                        id="sp-contact"
+                        type="text"
+                        className={styles.fieldInput}
+                        placeholder="email@example.com or @username"
+                        value={contact}
+                        onChange={(e) => setContact(e.target.value)}
+                      />
+                    </div>
+                    <button
+                      className={styles.submitIdeaBtn}
+                      disabled={!name.trim() || !contact.trim()}
+                      onClick={handleSubmit}
+                    >
+                      Let's bring your idea to life 🚀
+                    </button>
+                  </div>
+                </div>
+              )}
+            </>
+          )}
+        </div>
       </div>
     </section>
   );

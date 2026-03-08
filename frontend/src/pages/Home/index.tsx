@@ -1,7 +1,7 @@
 import HeroSection from "./components/HeroSection";
 import ScreenPreview from "./components/ScreenPreview";
 import FeaturesSection from "./components/FeaturesSection";
-import Features from "./components/Features";
+// import Features from "./components/Features";
 import StepByStepGuide from "./components/StepByStepGuide";
 import EnvelopePreview from "./components/EnvelopePreview";
 import PDFExport from "./components/PDFExport";
@@ -16,7 +16,7 @@ export default function Home() {
       <StepByStepGuide />
       <EnvelopePreview />
       <PDFExport />
-      <Features />
+      {/* <Features /> */}
       <FinalCTA />
     </>
   );

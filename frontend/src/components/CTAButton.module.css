@@ -60,6 +60,10 @@
     width: 100%;
     max-width: 32rem;
   }
+
+  .align_left {
+    justify-content: center;
+  }
 }
 
 /* Extra small screens */
