@@ -162,6 +162,8 @@ npm run dev        # runs on http://localhost:3001
 
 ## ⚡ Lighthouse Scores (incognito, production)
 
+![Lighthouse scores](./frontend/public/Lightroom.png)
+
 | Metric | Score |
 |--------|-------|
 | Performance | 98 |
