@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useCopy } from "../../../hooks/useCopy";
 import { useAuth } from "../../../context/AuthContext";
 import { Calendar, GraduationCap, Search, X } from "lucide-react";
@@ -73,14 +73,14 @@ function EmptyTable() {
         </div>
       ))}
       {ET_TIMES.map((time, row) => (
-        <>
-          <div key={`t${row}`} className={styles.etTimeLabel}>
+        <React.Fragment key={`row-${row}`}>
+          <div className={styles.etTimeLabel}>
             {time}
           </div>
           {ET_DAYS.map((_, col) => (
             <div key={`${col}-${row}`} className={styles.etCell} />
           ))}
-        </>
+        </React.Fragment>
       ))}
     </div>
   );
