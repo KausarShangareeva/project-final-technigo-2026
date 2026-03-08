@@ -118,16 +118,21 @@ export default function SuggestProject() {
       });
     }, 30);
 
+    const minDelay = new Promise((resolve) => setTimeout(resolve, 3000));
+
     try {
-      await api.post("/suggestions", {
-        name,
-        email: contact,
-        projectType: topic,
-        title: selectedTags.join(", ") || topic,
-        details: `Timeline: ${timeline}\nContact: ${contact}\nTags: ${selectedTags.join(", ")}`,
-      });
+      await Promise.all([
+        api.post("/suggestions", {
+          name,
+          email: contact,
+          projectType: topic,
+          title: selectedTags.join(", ") || topic,
+          details: `Timeline: ${timeline}\nContact: ${contact}\nTags: ${selectedTags.join(", ")}`,
+        }),
+        minDelay,
+      ]);
     } catch {
-      // notification still shows even if request fails silently
+      await minDelay;
     } finally {
       clearInterval(intervalRef.current!);
       setProgress(100);
