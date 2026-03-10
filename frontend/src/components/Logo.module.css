@@ -1,0 +1,43 @@
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.logoIcon {
+  border-radius: 30%;
+  background: linear-gradient(135deg, #6366f1 50%, #632be5 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: white;
+  flex-shrink: 0;
+}
+
+.logoText {
+  font-size: 2rem; /* 20px */
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.logoTextLight {
+  color: white;
+}
+
+/* Hide logo text on extra small screens */
+@media (max-width: 375px) {
+  .logoText {
+    display: none;
+  }
+
+  .logoIcon {
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 18px !important;
+  }
+
+  .logo {
+    gap: 0;
+  }
+}

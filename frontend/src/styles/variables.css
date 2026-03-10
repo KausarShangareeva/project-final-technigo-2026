@@ -1,0 +1,189 @@
+/* ===== Design Tokens ===== */
+:root {
+  /* Colors - Primary (Indigo) */
+  --color-primary: #6366f1;
+  --color-primary-light: #818cf8;
+  --color-primary-dark: #4f46e5;
+  --color-primary-subtle: rgba(99, 102, 241, 0.1);
+  --color-primary-hover: #5b5fc7;
+
+  /* Colors - Secondary (Amber) */
+  --color-secondary: #f59e0b;
+  --color-secondary-light: #fbbf24;
+  --color-secondary-dark: #d97706;
+  --color-secondary-subtle: rgba(245, 158, 11, 0.1);
+
+  /* Colors - Backgrounds - Dark Theme */
+  --color-bg: #0f172a;
+  --color-bg-card: #1e293b;
+  --color-bg-elevated: #273549;
+  --color-bg-input: #1e293b;
+  --color-bg-hover: #334155;
+
+  /* Colors - Text - Dark Theme */
+  --color-text: #f1f5f9;
+  --color-text-muted: #94a3b8;
+  --color-text-inverse: #0f172a;
+  --color-text-secondary: #cbd5e1;
+
+  /* Dot grid pattern */
+  --dot-color: rgba(255, 255, 255, 0.08);
+  --dash-color: #636f80;
+
+  /* Colors - Borders - Dark Theme */
+  --color-border: #636f80;
+  --color-border-light: #c2cdd9;
+
+  /* Colors - Status */
+  --color-success: #22c55e;
+  --color-success-light: #4ade80;
+  --color-success-dark: #16a34a;
+  --color-error: #ef4444;
+  --color-error-light: #f87171;
+  --color-error-dark: #dc2626;
+  --color-warning: #f59e0b;
+  --color-info: #3b82f6;
+
+  /* Typography */
+  --font-sans:
+    "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-handwritten: "Shantell Sans", cursive;
+  --font-mono: "Fira Code", "Cascadia Code", monospace;
+
+  --fs-xs: 1.2rem; /* 12px */
+  --fs-sm: 1.4rem; /* 14px */
+  --fs-base: 1.6rem; /* 16px */
+  --fs-lg: 1.8rem; /* 18px */
+  --fs-xl: 2rem; /* 20px */
+  --fs-2xl: clamp(2.4rem, 3vw, 3.2rem); /* 24-32px */
+  --fs-3xl: clamp(2.8rem, 4vw, 4rem); /* 28-40px */
+  --fs-4xl: clamp(3.2rem, 5vw, 4.8rem); /* 32-48px */
+
+  /* Spacing */
+  --space-xs: 0.4rem; /* 4px */
+  --space-sm: 0.8rem; /* 8px */
+  --space-md: 1.6rem; /* 16px */
+  --space-lg: 2.4rem; /* 24px */
+  --space-xl: 3.2rem; /* 32px */
+  --space-2xl: 4.8rem; /* 48px */
+  --space-3xl: 6.4rem; /* 64px */
+
+  /* Border Radius */
+  --radius-sm: 0.4rem; /* 4px */
+  --radius-md: 0.8rem; /* 8px */
+  --radius-lg: 1.2rem; /* 12px */
+  --radius-xl: 1.6rem; /* 16px */
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow: 0 20px 25px rgba(0, 0, 0, 0.07);
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.5);
+  --shadow-2xl: 0 25px 50px rgba(0, 0, 0, 0.6);
+  --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+  --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.3);
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
+  --transition-spring: 300ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(90deg, #6366f1 0%, #a855f7 100%);
+  --gradient-rainbow: linear-gradient(
+    90deg,
+    #6366f1 0%,
+    #a855f7 50%,
+    #ec4899 100%
+  );
+  --gradient-accent: linear-gradient(
+    90deg,
+    transparent 0%,
+    #6366f1 20%,
+    #a855f7 50%,
+    #ec4899 80%,
+    transparent 100%
+  );
+  --gradient-subtle: linear-gradient(
+    135deg,
+    rgba(99, 102, 241, 0.1) 0%,
+    rgba(168, 85, 247, 0.1) 100%
+  );
+
+  /* Feature Icon Gradients */
+  --gradient-violet-pink: linear-gradient(135deg, #7c3aed 0%, #db2777 100%);
+  --gradient-emerald-cyan: linear-gradient(
+    135deg,
+    #059669 0%,
+    #0d9488 50%,
+    #06b6d4 100%
+  );
+  --gradient-orange-pink: linear-gradient(
+    135deg,
+    #f97316 0%,
+    #ef4444 50%,
+    #ec4899 100%
+  );
+  --gradient-sky-purple: linear-gradient(
+    135deg,
+    #0ea5e9 0%,
+    #6366f1 50%,
+    #a855f7 100%
+  );
+  --gradient-amber-red: linear-gradient(
+    135deg,
+    #f59e0b 0%,
+    #f97316 50%,
+    #ef4444 100%
+  );
+  --gradient-emerald-violet: linear-gradient(
+    135deg,
+    #10b981 0%,
+    #3b82f6 50%,
+    #8b5cf6 100%
+  );
+
+  /* Course Tags */
+  --tag-bg-strength: 24%;
+  --tag-border-strength: 40%;
+  --tag-text-mix: 62%;
+  --tag-stripe-strength: 10%;
+
+  /* Layout */
+  --max-width: 120rem; /* 1200px */
+  --header-height: 6.4rem; /* 64px */
+}
+
+/* ===== Light Theme ===== */
+[data-theme="light"] {
+  /* Colors - Backgrounds - Light Theme */
+  --color-bg: #f8f9fa;
+  --color-bg-card: #ffffff;
+  --color-bg-elevated: #ffffff;
+  --color-bg-input: #ffffff;
+  --color-bg-hover: #f1f3f5;
+
+  /* Colors - Text - Light Theme */
+  --color-text: #1f2937;
+  --color-text-muted: #6b7280;
+  --color-text-inverse: #ffffff;
+  --color-text-secondary: #4b5563;
+
+  /* Dot grid pattern - Light Theme */
+  --dot-color: rgba(0, 0, 0, 0.1);
+  --dash-color: #636f80;
+
+  /* Colors - Borders - Light Theme */
+  --color-border: #d1d5db;
+  --color-border-light: #6b7280;
+
+  /* Course Tags - Light Theme */
+  --tag-bg-strength: 22%;
+  --tag-border-strength: 44%;
+  --tag-text-mix: 78%;
+  --tag-stripe-strength: 18%;
+}

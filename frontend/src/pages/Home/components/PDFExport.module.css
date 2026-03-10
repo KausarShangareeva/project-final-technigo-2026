@@ -1,0 +1,430 @@
+.section {
+  width: 100%;
+  padding: var(--space-3xl) 0;
+}
+
+.header {
+  text-align: center;
+  margin: 0 auto var(--space-xl);
+  padding-inline: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.first {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.title {
+  font-size: var(--fs-4xl);
+  font-weight: 800;
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.titleIcon {
+  width: 5rem;
+  height: 5rem;
+  vertical-align: middle;
+  margin: 0 0.4rem;
+  padding: 0.8rem;
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(1.2rem);
+  -webkit-backdrop-filter: blur(1.2rem);
+  border: 0.1rem solid rgba(255, 255, 255, 0.6);
+  border-radius: 1.2rem;
+  box-shadow:
+    0 0.4rem 1.6rem rgba(0, 0, 0, 0.06),
+    inset 0 0.1rem 0 rgba(255, 255, 255, 0.8);
+}
+
+/* Toggle */
+.toggle {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: var(--space-2xl);
+  background: var(--color-bg-card);
+  border: 0.1rem solid var(--color-border);
+  border-radius: 3rem;
+  padding: 0.4rem;
+  width: fit-content;
+  margin-inline: auto;
+}
+
+.toggleBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.8rem 1.8rem;
+  border: none;
+  border-radius: 3rem;
+  background: transparent;
+  color: var(--color-text-muted);
+  font-size: 1.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.toggleBtnActive {
+  background: var(--color-bg);
+  color: var(--color-primary-light);
+  font-weight: 600;
+  box-shadow: 0 0.2rem 0.6rem rgba(0, 0, 0, 0.08);
+}
+
+:global([data-theme="light"]) .toggleBtnActive {
+  color: var(--color-primary-dark);
+}
+
+.toggleIcon {
+  width: 2.2rem;
+  height: 2.2rem;
+  flex-shrink: 0;
+}
+
+/* Card */
+.cardWrapper {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-inline: var(--space-md);
+  margin-bottom: 6rem;
+}
+
+.card {
+  width: 50%;
+  min-height: 50rem;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 1.6rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.05) 1rem,
+    transparent 1rem,
+    transparent 2rem
+  );
+}
+
+.placeholderText {
+  font-size: var(--fs-base);
+  font-weight: 500;
+  color: var(--color-text-muted);
+  opacity: 0.5;
+  z-index: 1;
+}
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .card {
+    min-height: 35rem;
+  }
+}
+
+/* Medium screens */
+@media (max-width: 768px) {
+  .header {
+    margin-bottom: var(--space-lg);
+  }
+
+  .title {
+    font-size: var(--fs-3xl);
+  }
+
+  .cardWrapper {
+    padding-inline: var(--space-lg);
+  }
+
+  .card {
+    min-height: 30rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .cardWrapper {
+    padding-inline: var(--space-md);
+  }
+
+  .card {
+    min-height: 25rem;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .section {
+    padding: var(--space-2xl) 0;
+  }
+
+  .toggleIcon {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .toggle {
+    gap: 5px;
+  }
+
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .toggle {
+    margin-bottom: var(--space-xl);
+  }
+
+  .toggleBtn {
+    padding: 0.6rem 1.4rem;
+    font-size: 1.6rem;
+    gap: 1rem;
+  }
+
+  .cardWrapper {
+    padding-inline: var(--space-sm);
+  }
+
+  .card {
+    min-height: 40rem;
+    border-radius: 1.2rem;
+    width: 80%;
+  }
+
+  .placeholderText {
+    font-size: var(--fs-sm);
+  }
+}
+
+/* ── Card orientations (A4 proportions) ────────────────────────────────────── */
+.cardPortrait {
+  width: 36%;
+  aspect-ratio: 210 / 297;
+  min-height: 0;
+  transition: width 0.35s ease;
+  align-items: stretch;
+}
+
+.cardLandscape {
+  width: 68%;
+  aspect-ratio: 297 / 210;
+  min-height: 0;
+  transition: width 0.35s ease;
+  align-items: stretch;
+}
+
+/* ── Preview paper ──────────────────────────────────────────────────────────── */
+.previewPaper {
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.paper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 3.8rem;
+}
+
+.previewFormatLabel {
+  flex-shrink: 0;
+  text-align: center;
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.3rem 0 0.4rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+/* ── Schedule grid ──────────────────────────────────────────────────────────── */
+.schedGrid {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0.8rem 0.7rem 0.5rem 0.6rem;
+  box-sizing: border-box;
+  min-height: 0;
+}
+
+/* Day header row */
+.schedHeader {
+  display: flex;
+  flex-shrink: 0;
+  height: 2.4rem;
+  border-bottom: 1px solid #d6d9e6;
+  background-color: #F1F1F8;
+}
+
+.schedCorner {
+  width: 10%;
+  flex-shrink: 0;
+  background: #F1F1F8;
+}
+
+.schedDayLabel {
+  flex: 1;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #6949b2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.01em;
+  background: #F1F1F8;
+}
+
+/* Schedule body */
+.schedBody {
+  flex: 1;
+  position: relative;
+  min-height: 0;
+}
+
+.schedRows {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.schedRow {
+  flex: 1;
+  display: flex;
+  align-items: stretch;
+  border-bottom: 1px solid #d6d9e6;
+}
+
+.schedRow:last-child {
+  border-bottom: none;
+}
+
+.schedTimeLabel {
+  width: 10%;
+  flex-shrink: 0;
+  font-size: 0.6rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+  border-right: 1px solid #d6d9e6;
+  background: #F1F1F8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.schedCell {
+  flex: 1;
+  border-right: 1px solid #d6d9e6;
+}
+
+.schedCell:last-child {
+  border-right: none;
+}
+
+/* Course blocks */
+.schedBlock {
+  position: absolute;
+  z-index: 1;
+  border-radius: 0.3rem;
+  padding: 0.3rem 0.25rem 0.15rem;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.18rem;
+  min-width: 0;
+}
+
+.schedBlockIcon {
+  width: 0.9rem;
+  height: 0.9rem;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.schedBlockIcon img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.schedBlockLabel {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #1e293b;
+  min-width: 0;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+}
+
+/* ── Responsive (orientation classes) ──────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .cardPortrait {
+    width: 50%;
+  }
+  .cardLandscape {
+    width: 82%;
+  }
+}
+
+@media (max-width: 768px) {
+  .cardPortrait {
+    width: 62%;
+  }
+  .cardLandscape {
+    width: 92%;
+  }
+}
+
+@media (max-width: 640px) {
+  .cardPortrait {
+    width: 76%;
+  }
+  .cardLandscape {
+    width: 96%;
+  }
+}
+
+@media (max-width: 480px) {
+  .cardPortrait {
+    width: 88%;
+  }
+  .cardLandscape {
+    width: 98%;
+  }
+}

@@ -1,0 +1,922 @@
+﻿/* Features Section */
+.features {
+  width: 100%;
+  padding: var(--space-3xl) 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6rem;
+}
+
+.cardGrid {
+  max-width: var(--max-width);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+  padding-inline: var(--space-md);
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 1.6rem;
+  padding: 1.6rem;
+  min-height: 22rem;
+  overflow: hidden;
+  min-width: 0;
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.card:hover {
+  transform: translateY(-0.2rem);
+  box-shadow: 0 0.6rem 2rem rgba(61, 61, 61, 0.1);
+}
+
+/* Top row: icon left, title right */
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.cardIcon {
+  width: 4rem;
+  height: 4rem;
+  min-width: 4rem;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg);
+  border: 0.1rem solid var(--color-border);
+  color: var(--color-primary);
+}
+
+.cardTitle {
+  font-size: var(--fs-base);
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.2;
+}
+
+/* Center placeholder */
+.cardBody {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.comingSoon {
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--color-text-muted);
+  opacity: 0.5;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Highlighted course bricks */
+.courseBricks {
+  display: flex;
+  gap: var(--space-sm);
+  width: 100%;
+  align-items: flex-end;
+}
+
+.courseColumn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 0.4rem;
+}
+
+.courseBrick {
+  height: 2.4rem;
+  display: flex;
+  align-items: center;
+  padding: 0 0.6rem;
+  gap: 0.4rem;
+  border-bottom: 1px solidrgba(255, 255, 255, 0.3);
+}
+
+.courseBrick:last-child {
+  border-bottom: none;
+}
+
+.courseBrickIcon {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.courseBrickName {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Mini schedule */
+.miniSchedule {
+  width: 90%;
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: 2.2rem repeat(7, 1fr);
+  border: 1px solid var(--color-border);
+  border-bottom: none;
+  border-radius: 0.8rem 0.8rem 0 0;
+  margin-top: 1.6rem;
+  margin-bottom: -1.6rem;
+  padding: 1rem 0.8rem 0;
+  background: var(--color-bg);
+  box-shadow: var(--shadow);
+  position: relative;
+}
+
+.miniCorner {
+  /* empty top-left cell */
+}
+
+.miniDayLabel {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  padding-bottom: 0.3rem;
+}
+
+.miniTimeLabel {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.miniCell {
+  height: 1.6rem;
+  border-right: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.miniCell:nth-child(8n) {
+  border-right: none;
+}
+
+/* Last row: no bottom border (last 8 children = 1 time + 7 cells) */
+.miniTimeLabel:nth-last-child(-n + 8) {
+  border-bottom: none;
+}
+
+.miniCell:nth-last-child(-n + 7) {
+  border-bottom: none;
+}
+
+/* PDF Format */
+.pdfWrap {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  width: 100%;
+  justify-content: center;
+}
+
+.pdfPage {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 0.8rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.pdfLandscape {
+  width: 14rem;
+  height: 10rem;
+}
+
+.pdfPortrait {
+  width: 10rem;
+  height: 14rem;
+}
+
+.pdfImgPlaceholder {
+  width: 100%;
+  flex: 1;
+  border-radius: 0.4rem;
+  background: var(--color-bg-elevated);
+  border: 1px dashed var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  opacity: 0.5;
+}
+
+.pdfLines {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.pdfLine {
+  height: 0.5rem;
+  border-radius: 0.25rem;
+  background: var(--color-border-light);
+}
+
+.pdfBtn {
+  width: 3.2rem;
+  height: 0.8rem;
+  border-radius: 0.4rem;
+  background: var(--color-success);
+  opacity: 0.7;
+}
+
+.pdfSwap {
+  width: 3.4rem;
+  height: 3.4rem;
+  min-width: 3.4rem;
+  border-radius: 50%;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+}
+
+/* Download PDF */
+.dlWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.dlBox {
+  position: relative;
+  width: 7rem;
+  height: 7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-elevated, #f5f5f5);
+  border: 1px solid var(--color-border);
+  border-radius: 1.6rem;
+}
+
+/* PDF file icon */
+.dlFile {
+  position: relative;
+  width: 4rem;
+  height: 4.6rem;
+  background: #fff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 0.5rem 1rem 0.5rem 0.5rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-top: 4rem;
+  padding-bottom: 0.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.dlFileCorner {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0.9rem;
+  height: 0.9rem;
+  background: #e2e8f0;
+  border-radius: 0 0.9rem 0 0.4rem;
+}
+
+.dlFileBadge {
+  background: #b91c1c;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 0.15rem 0.6rem;
+  border-radius: 0.3rem;
+  margin-right: 1rem;
+}
+
+/* Spinner ring */
+.dlSpinner {
+  position: absolute;
+  top: 0.35rem;
+  right: 0.35rem;
+  width: 1.6rem;
+  height: 1.6rem;
+  animation:
+    dlSpinRotate 1.2s linear infinite,
+    dlSpinFade 3s ease-in-out infinite;
+}
+
+.dlSpinner circle {
+  stroke: var(--color-text-muted);
+  stroke-dasharray: 60;
+  stroke-dashoffset: 20;
+  stroke-linecap: round;
+}
+
+/* Checkmark badge */
+.dlCheck {
+  position: absolute;
+  top: 0.3rem;
+  right: 0.3rem;
+  animation: dlCheckFade 3s ease-in-out infinite;
+  opacity: 0;
+}
+
+@keyframes dlSpinRotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dlSpinFade {
+  0%,
+  55% {
+    opacity: 1;
+  }
+  65%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes dlCheckFade {
+  0%,
+  60% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  72% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+  80%,
+  90% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+}
+
+/* Button wrapper for cursor overlay */
+.dlBtnWrap {
+  position: relative;
+  display: inline-flex;
+}
+
+/* Cursor with name */
+.dlCursor {
+  position: absolute;
+  bottom: -0.8rem;
+  right: -1rem;
+  display: flex;
+  align-items: flex-end;
+  gap: 0.3rem;
+  pointer-events: none;
+  animation: dlCursorClick 2s ease-in-out infinite;
+}
+
+.dlCursorLabel {
+  background: #5b21b6;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.2rem 1rem;
+  border-radius: 2rem;
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+}
+
+@keyframes dlCursorClick {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  30% {
+    transform: translate(-2px, -3px) scale(1);
+  }
+  50% {
+    transform: translate(-2px, -3px) scale(0.88);
+  }
+  65% {
+    transform: translate(-2px, -3px) scale(1);
+  }
+}
+
+/* Green button */
+.dlBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 2rem;
+  border-radius: 0.8rem;
+  background: linear-gradient(135deg, #7de35a 0%, #3cb628 100%);
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 600;
+  border: none;
+  cursor: default;
+  letter-spacing: 0.01em;
+  box-shadow: 0 0.3rem 1rem rgba(80, 200, 40, 0.4);
+}
+
+/* Saved plan card (SavedPlans) */
+.savedStack {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 16rem;
+  margin-top: 1.6rem;
+}
+
+.savedCard {
+  width: 55%;
+  border: 1px solid var(--color-border);
+  border-radius: 1.4rem;
+  padding: 1.2rem 1.2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg);
+  gap: 0.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+.savedCardBack2 {
+  position: absolute;
+  height: 18rem;
+  transform: rotate(-6deg) translateY(0.4rem);
+  opacity: 0.45;
+  z-index: 0;
+  padding: 0;
+  margin-right: 2rem;
+  transition: all 1s ease;
+}
+
+.savedCardBack1 {
+  position: absolute;
+  height: 18rem;
+  transform: rotate(4deg) translateY(0.2rem);
+  opacity: 0.65;
+  z-index: 1;
+  padding: 0;
+  margin-left: 2rem;
+  transition: all 1s ease;
+}
+
+.savedCardFront {
+  position: relative;
+  z-index: 2;
+  transition: transform 0.35s ease;
+}
+
+.savedStack:hover .savedCardBack2 {
+  transform: rotate(-16deg);
+  opacity: 0.6;
+  margin-right: 5rem;
+}
+
+.savedStack:hover .savedCardBack1 {
+  transform: rotate(13deg);
+  opacity: 0.8;
+  margin-left: 5rem;
+}
+
+.savedStack:hover .savedCardFront {
+  transform: translateY(-0.25rem);
+}
+
+.savedCardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.1rem;
+}
+
+.savedCardIcon {
+  width: 3.2rem;
+  height: 3.2rem;
+  min-width: 3.2rem;
+  min-height: 3.2rem;
+  flex-shrink: 0;
+  border-radius: 0.9rem;
+  background: #fef3c7;
+  color: #d97706;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.savedCardTrash {
+  width: 3.2rem;
+  height: 3.2rem;
+  min-width: 3.2rem;
+  min-height: 3.2rem;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--color-bg-elevated, #f5f5f5);
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  cursor: default;
+}
+
+.savedCardTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0.5rem 0;
+  color: var(--color-text);
+  line-height: 1.2;
+}
+
+.savedCardDesc {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  flex: 1;
+}
+
+.savedCardOpen {
+  margin-top: 0.4rem;
+  width: 100%;
+  padding: 0.6rem 0;
+  border-radius: 1rem;
+  background: var(--color-bg-elevated, #f0f0f0);
+  border: 1px solid var(--color-border);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text);
+  cursor: default;
+  letter-spacing: 0.01em;
+}
+
+/* Saved plans stack */
+.stackWrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.stackTrack {
+  position: relative;
+  width: 25rem;
+  height: 14rem;
+  margin: 3rem 0;
+}
+
+.stackCard {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  animation: stackCycle 15s ease-in-out infinite;
+}
+
+.planCard {
+  width: 10rem;
+  height: 13rem;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.planCardLabel {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  opacity: 0.4;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.planText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  animation: textCycle 15s ease-in-out infinite;
+  opacity: 0;
+}
+
+.planTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text);
+  white-space: nowrap;
+  text-align: center;
+}
+
+.planHours {
+  font-size: 1.5rem;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+/*
+  5 positions cycling horizontally: front â†’ mid-right â†’ far-right â†’ far-left â†’ mid-left â†’ front
+*/
+@keyframes stackCycle {
+  0%,
+  2% {
+    transform: translate(-50%, -50%) translateX(0) scale(1);
+    opacity: 1;
+    z-index: 5;
+  }
+  18%,
+  22% {
+    transform: translate(-50%, -50%) translateX(3.5rem) scale(0.85);
+    opacity: 0.5;
+    z-index: 3;
+  }
+  38%,
+  42% {
+    transform: translate(-50%, -50%) translateX(5.5rem) scale(0.7);
+    opacity: 0.25;
+    z-index: 1;
+  }
+  58%,
+  62% {
+    transform: translate(-50%, -50%) translateX(-3.6rem) scale(0.7);
+    opacity: 0.25;
+    z-index: 1;
+  }
+  78%,
+  82% {
+    transform: translate(-50%, -50%) translateX(-2.2rem) scale(0.85);
+    opacity: 0.5;
+    z-index: 3;
+  }
+  98%,
+  100% {
+    transform: translate(-50%, -50%) translateX(0) scale(1);
+    opacity: 1;
+    z-index: 5;
+  }
+}
+
+/* Text only visible when card is in front */
+@keyframes textCycle {
+  0%,
+  2% {
+    opacity: 1;
+  }
+  12% {
+    opacity: 1;
+  }
+  18% {
+    opacity: 0;
+  }
+  82% {
+    opacity: 0;
+  }
+  92% {
+    opacity: 0;
+  }
+  98%,
+  100% {
+    opacity: 1;
+  }
+}
+
+/* ===== Animated Tags Marquee ===== */
+.tagsWrap {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding: 0.4rem 0;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.tagsTrack {
+  display: flex;
+  gap: 0.55rem;
+  width: max-content;
+  animation: tagsScrollLeft 110s linear infinite;
+}
+
+.tagsTrackRight {
+  animation: tagsScrollRight 90s linear infinite;
+}
+
+.tagsTrackSlow {
+  animation: tagsScrollLeft 130s linear infinite;
+}
+
+.animTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.38rem 0.9rem;
+  border-radius: 10rem;
+  border: 1px solid;
+  font-size: 1.2rem;
+  font-weight: 700;
+  white-space: nowrap;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.animTagIcon {
+  font-size: 1.2rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+@keyframes tagsScrollLeft {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes tagsScrollRight {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+/* Notifications */
+.notifWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  width: 100%;
+  padding-top: 0.4rem;
+  margin-top: 1rem;
+}
+
+.notifItem {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1rem;
+  border-radius: 10rem;
+  border: 1px solid rgba(203, 213, 225, 0.45);
+  background: var(--color-bg);
+  backdrop-filter: blur(14px);
+  overflow: hidden;
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.notifItem::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.notifItem:hover {
+  transform: translateY(-0.1rem);
+  border-color: rgba(226, 232, 240, 0.62);
+  box-shadow:
+    0 1.2rem 2.6rem rgba(2, 6, 23, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.44);
+}
+
+.notifIconWrap {
+  position: relative;
+  z-index: 1;
+  width: 3.5rem;
+  height: 3.5rem;
+  min-width: 3.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid #e5cdb6;
+}
+
+.notifContent {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.notifTitle {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.notifDesc {
+  font-size: 1.1rem;
+  color: color-mix(in srgb, var(--color-text-muted) 88%, white);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+[data-theme="light"] .notifItem {
+  border: 1px solid var(--color-border);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.52),
+    rgba(255, 255, 255, 0.22)
+  );
+  box-shadow:
+    0 0.8rem 2rem rgba(15, 23, 42, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+[data-theme="light"] .notifItem::before {
+  background: linear-gradient(
+    110deg,
+    rgba(255, 255, 255, 0.38),
+    rgba(255, 255, 255, 0)
+  );
+}
+
+[data-theme="light"] .notifItem:hover {
+  border-color: var(--color-border);
+  box-shadow:
+    0 1rem 2.4rem rgba(15, 23, 42, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.75);
+}
+
+[data-theme="light"] .notifTitle {
+  color: var(--color-text);
+}
+
+[data-theme="light"] .notifDesc {
+  color: var(--color-text-muted);
+}
+
+/* Tablets */
+@media (max-width: 900px) {
+  .cardGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card {
+    min-height: 18rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 540px) {
+  .cardGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+  }
+
+  .card {
+    min-height: 16rem;
+    padding: 1.4rem;
+  }
+
+  .cardIcon {
+    width: 3.6rem;
+    height: 3.6rem;
+    min-width: 3.6rem;
+  }
+}

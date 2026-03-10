@@ -1,0 +1,168 @@
+{
+  "app": {
+    "name": "PlanFlow",
+    "tagline": "Plan your studies",
+    "copyright": "PlanFlow"
+  },
+  "nav": {
+    "contact": "Contact"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "goHome": "Go home"
+  },
+  "protectedRoute": {
+    "loading": "Loading..."
+  },
+  "home": {
+    "subtitle": "Fill in the calendar. The system will show when you'll finish your course.",
+    "cta": {
+      "dashboard": "Go to workspace",
+      "register": "Build your plan"
+    },
+    "features": {
+      "title": "What Awaits You",
+      "subtitle": "A complete set of tools for effective and enjoyable Arabic language learning.",
+      "items": [
+        {
+          "title": "Choose your course",
+          "description": "The system calculates the sequence of books and topics based on your level and time.",
+          "subtitle": "Personal route"
+        },
+        {
+          "title": "Schedule Planning",
+          "description": "Log completed lessons and see the real percentage of course completion.",
+          "subtitle": "Progress tracking"
+        },
+        {
+          "title": "Choose your format",
+          "description": "Choose how many days a week you study — the system will distribute the workload automatically.",
+          "subtitle": "Schedule planning"
+        },
+        {
+          "title": "Choose from 100+ Courses",
+          "description": "Reminders about lessons and deadlines to keep you on track.",
+          "subtitle": "Choose from 100+ Courses"
+        },
+        {
+          "title": "PDF Export",
+          "description": "Download your schedule in a convenient format for printing or sending to your teacher.",
+          "subtitle": "PDF export"
+        },
+        {
+          "title": "Saved Weekly Plans",
+          "description": "Find out how many months it will take to finish the course at your current pace.",
+          "subtitle": "Saved Weekly Plans"
+        }
+      ]
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "subtitle": "From profile setup to a ready learning plan — in just a few minutes.",
+      "step1": {
+        "tag": "Set up your study plan",
+        "main": "Choose the courses you want to study",
+        "bottom": "Your study plan will be built around this courses"
+      },
+      "step2": {
+        "tag": "Get your plan",
+        "main": "See how your schedule will look",
+        "bottom": "You'll always know what to study and when."
+      },
+      "cta": "Create my first plan"
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Login",
+      "subtitle": "Continue your journey to knowledge",
+      "emailPlaceholder": "Email",
+      "passwordPlaceholder": "Password",
+      "submit": "Log in",
+      "submitting": "Logging in...",
+      "noAccount": "Don't have an account?",
+      "registerLink": "Register"
+    },
+    "register": {
+      "title": "Register",
+      "subtitle": "Start your structured journey to Islamic knowledge",
+      "namePlaceholder": "Name",
+      "emailPlaceholder": "Email",
+      "passwordPlaceholder": "Password",
+      "submit": "Create account",
+      "submitting": "Creating account...",
+      "hasAccount": "Already have an account?",
+      "loginLink": "Log in"
+    }
+  },
+  "pwa": {
+    "install": {
+      "banner": {
+        "title": "Install PlanFlow",
+        "description": "Install our app for a better experience!",
+        "installButton": "Install",
+        "dismissButton": "×"
+      },
+      "modal": {
+        "title": "Install PlanFlow",
+        "ios": {
+          "title": "On Mobile (iOS)",
+          "safari": "Safari",
+          "shareButton": "Share",
+          "addToHomeScreen": "Add to Home Screen",
+          "tapAdd": "Add",
+          "step1": "Open PlanFlow in ",
+          "step2": "Tap the ",
+          "step2b": " button (square with arrow)",
+          "step3": "Scroll down and tap ",
+          "step4": "Tap ",
+          "step4b": " to confirm"
+        },
+        "android": {
+          "title": "On Mobile (Android)",
+          "chrome": "Chrome",
+          "menu": "menu",
+          "addToHome": "Add to Home Screen",
+          "installApp": "Install App",
+          "install": "Install",
+          "step1": "Open PlanFlow in ",
+          "step2": "Tap ",
+          "step2b": " (three dots)",
+          "step3": "Tap ",
+          "step3b": " or ",
+          "step4": "Tap ",
+          "step4b": " to confirm"
+        },
+        "desktop": {
+          "title": "On Desktop (Chrome/Edge)",
+          "installIcon": "install icon",
+          "menu": "menu",
+          "installPlanFlow": "Install PlanFlow",
+          "createShortcut": "Create Shortcut",
+          "install": "Install",
+          "step1": "Look for the ",
+          "step1b": " in the address bar",
+          "step2": "Or click ",
+          "step2b": " (three dots)",
+          "step3": "Select ",
+          "step3b": " or ",
+          "step4": "Click ",
+          "step4b": " to confirm"
+        },
+        "benefits": {
+          "title": "Benefits of installing:",
+          "fastLoading": "Fast loading",
+          "worksOffline": "Works offline",
+          "nativeExperience": "Native app experience",
+          "quickAccess": "Quick access from home screen",
+          "noAppStore": "No app store required"
+        }
+      }
+    }
+  },
+  "footer": {
+    "quickLinks": "Quick Links",
+    "connect": "Connect",
+    "madeWithLove": "Made with"
+  }
+}

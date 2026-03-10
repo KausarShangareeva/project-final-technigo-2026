@@ -1,0 +1,81 @@
+.ctaContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.align_left {
+  justify-content: flex-start;
+}
+
+.align_center {
+  justify-content: center;
+}
+
+.align_right {
+  justify-content: flex-end;
+}
+
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background: var(--gradient-primary);
+  color: white;
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  padding: 1.6rem 4rem;
+  border-radius: 1.2rem;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+  box-shadow: 0 0.4rem 1.2rem rgba(99, 102, 241, 0.3);
+}
+
+.ctaButton:hover {
+  transform: translateY(-0.2rem);
+  box-shadow: 0 0.8rem 2rem rgba(99, 102, 241, 0.4);
+  color: white;
+}
+
+.ctaButton:active {
+  transform: translateY(0);
+}
+
+/* Medium screens */
+@media (max-width: 768px) {
+  .ctaButton {
+    font-size: var(--fs-base);
+    padding: 1.4rem 3rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .ctaButton {
+    width: 100%;
+    max-width: 32rem;
+  }
+
+  .align_left {
+    justify-content: center;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .ctaContainer {
+    margin-top: var(--space-2xl);
+    padding: 0 1rem;
+  }
+
+  .ctaButton {
+    font-size: var(--fs-lg);
+    padding: 2rem 2.4rem;
+    min-width: 100%;
+  }
+}

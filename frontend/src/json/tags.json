@@ -1,0 +1,388 @@
+[
+  {
+    "name": "Math",
+    "color": "var(--tag-math)",
+    "bg": "var(--tag-math-bg)",
+    "icon": "📐"
+  },
+  {
+    "name": "Algebra",
+    "color": "var(--tag-algebra)",
+    "bg": "var(--tag-algebra-bg)",
+    "icon": "🔢"
+  },
+  {
+    "name": "Geometry",
+    "color": "var(--tag-geometry)",
+    "bg": "var(--tag-geometry-bg)",
+    "icon": "📏"
+  },
+  {
+    "name": "Calculus",
+    "color": "var(--tag-calculus)",
+    "bg": "var(--tag-calculus-bg)",
+    "icon": "∫"
+  },
+  {
+    "name": "Statistics",
+    "color": "var(--tag-statistics)",
+    "bg": "var(--tag-statistics-bg)",
+    "icon": "📊"
+  },
+  {
+    "name": "Biology",
+    "color": "var(--tag-biology)",
+    "bg": "var(--tag-biology-bg)",
+    "icon": "🧬"
+  },
+  {
+    "name": "Chemistry",
+    "color": "var(--tag-chemistry)",
+    "bg": "var(--tag-chemistry-bg)",
+    "icon": "🧪"
+  },
+  {
+    "name": "Physics",
+    "color": "var(--tag-physics)",
+    "bg": "var(--tag-physics-bg)",
+    "icon": "🔬"
+  },
+  {
+    "name": "Astronomy",
+    "color": "var(--tag-astronomy)",
+    "bg": "var(--tag-astronomy-bg)",
+    "icon": "🔭"
+  },
+  {
+    "name": "Earth Science",
+    "color": "var(--tag-earth-science)",
+    "bg": "var(--tag-earth-science-bg)",
+    "icon": "🌍"
+  },
+  {
+    "name": "History",
+    "color": "var(--tag-history)",
+    "bg": "var(--tag-history-bg)",
+    "icon": "📜"
+  },
+  {
+    "name": "World History",
+    "color": "var(--tag-world-history)",
+    "bg": "var(--tag-world-history-bg)",
+    "icon": "🌐"
+  },
+  {
+    "name": "Geography",
+    "color": "var(--tag-geography)",
+    "bg": "var(--tag-geography-bg)",
+    "icon": "🗺️"
+  },
+  {
+    "name": "Literature",
+    "color": "var(--tag-literature)",
+    "bg": "var(--tag-literature-bg)",
+    "icon": "📚"
+  },
+  {
+    "name": "Writing",
+    "color": "var(--tag-writing)",
+    "bg": "var(--tag-writing-bg)",
+    "icon": "✍️"
+  },
+  {
+    "name": "Grammar",
+    "color": "var(--tag-grammar)",
+    "bg": "var(--tag-grammar-bg)",
+    "icon": "📝"
+  },
+  {
+    "name": "Reading",
+    "color": "var(--tag-reading)",
+    "bg": "var(--tag-reading-bg)",
+    "icon": "📖"
+  },
+  {
+    "name": "English",
+    "color": "var(--tag-english)",
+    "bg": "var(--tag-english-bg)",
+    "icon": "🇬🇧"
+  },
+  {
+    "name": "Computer Science",
+    "color": "var(--tag-computer-science)",
+    "bg": "var(--tag-computer-science-bg)",
+    "icon": "💻"
+  },
+  {
+    "name": "Programming",
+    "color": "var(--tag-programming)",
+    "bg": "var(--tag-programming-bg)",
+    "icon": "👨‍💻"
+  },
+  {
+    "name": "Art",
+    "color": "var(--tag-art)",
+    "bg": "var(--tag-art-bg)",
+    "icon": "🎨"
+  },
+  {
+    "name": "Music",
+    "color": "var(--tag-music)",
+    "bg": "var(--tag-music-bg)",
+    "icon": "🎵"
+  },
+  {
+    "name": "Physical Education",
+    "color": "var(--tag-physical-education)",
+    "bg": "var(--tag-physical-education-bg)",
+    "icon": "⚽"
+  },
+  {
+    "name": "Psychology",
+    "color": "var(--tag-psychology)",
+    "bg": "var(--tag-psychology-bg)",
+    "icon": "🧠"
+  },
+  {
+    "name": "Economics",
+    "color": "var(--tag-economics)",
+    "bg": "var(--tag-economics-bg)",
+    "icon": "💰"
+  },
+  {
+    "name": "Philosophy",
+    "color": "var(--tag-philosophy)",
+    "bg": "var(--tag-philosophy-bg)",
+    "icon": "🤔"
+  },
+  {
+    "name": "Social Studies",
+    "color": "var(--tag-social-studies)",
+    "bg": "var(--tag-social-studies-bg)",
+    "icon": "🏛️"
+  },
+  {
+    "name": "Drama",
+    "color": "var(--tag-drama)",
+    "bg": "var(--tag-drama-bg)",
+    "icon": "🎭"
+  },
+
+  {
+    "name": "Spanish",
+    "color": "var(--tag-spanish)",
+    "bg": "var(--tag-spanish-bg)",
+    "icon": "🇪🇸"
+  },
+  {
+    "name": "French",
+    "color": "var(--tag-french)",
+    "bg": "var(--tag-french-bg)",
+    "icon": "🇫🇷"
+  },
+  {
+    "name": "German",
+    "color": "var(--tag-german)",
+    "bg": "var(--tag-german-bg)",
+    "icon": "🇩🇪"
+  },
+  {
+    "name": "Japanese",
+    "color": "var(--tag-japanese)",
+    "bg": "var(--tag-japanese-bg)",
+    "icon": "🇯🇵"
+  },
+  {
+    "name": "Arabic",
+    "color": "var(--tag-arabic)",
+    "bg": "var(--tag-arabic-bg)",
+    "icon": "🇸🇦"
+  },
+  {
+    "name": "Chinese",
+    "color": "var(--tag-chinese)",
+    "bg": "var(--tag-chinese-bg)",
+    "icon": "🇨🇳"
+  },
+
+  {
+    "name": "Environmental Science",
+    "color": "var(--tag-environmental-science)",
+    "bg": "var(--tag-environmental-science-bg)",
+    "icon": "🌱"
+  },
+  {
+    "name": "Anatomy",
+    "color": "var(--tag-anatomy)",
+    "bg": "var(--tag-anatomy-bg)",
+    "icon": "🫀"
+  },
+  {
+    "name": "Ecology",
+    "color": "var(--tag-ecology)",
+    "bg": "var(--tag-ecology-bg)",
+    "icon": "🌿"
+  },
+
+  {
+    "name": "Trigonometry",
+    "color": "var(--tag-trigonometry)",
+    "bg": "var(--tag-trigonometry-bg)",
+    "icon": "△"
+  },
+  {
+    "name": "Linear Algebra",
+    "color": "var(--tag-linear-algebra)",
+    "bg": "var(--tag-linear-algebra-bg)",
+    "icon": "🔷"
+  },
+  {
+    "name": "Probability",
+    "color": "var(--tag-probability)",
+    "bg": "var(--tag-probability-bg)",
+    "icon": "🎲"
+  },
+
+  {
+    "name": "Sociology",
+    "color": "var(--tag-sociology)",
+    "bg": "var(--tag-sociology-bg)",
+    "icon": "👥"
+  },
+  {
+    "name": "Political Science",
+    "color": "var(--tag-political-science)",
+    "bg": "var(--tag-political-science-bg)",
+    "icon": "🗳️"
+  },
+  {
+    "name": "Law",
+    "color": "var(--tag-law)",
+    "bg": "var(--tag-law-bg)",
+    "icon": "⚖️"
+  },
+
+  {
+    "name": "Data Science",
+    "color": "var(--tag-data-science)",
+    "bg": "var(--tag-data-science-bg)",
+    "icon": "📈"
+  },
+  {
+    "name": "Cybersecurity",
+    "color": "var(--tag-cybersecurity)",
+    "bg": "var(--tag-cybersecurity-bg)",
+    "icon": "🔐"
+  },
+  {
+    "name": "Web Development",
+    "color": "var(--tag-web-development)",
+    "bg": "var(--tag-web-development-bg)",
+    "icon": "🖥️"
+  },
+  {
+    "name": "UI/UX Design",
+    "color": "var(--tag-ui-ux-design)",
+    "bg": "var(--tag-ui-ux-design-bg)",
+    "icon": "🎯"
+  },
+
+  {
+    "name": "Marketing",
+    "color": "var(--tag-marketing)",
+    "bg": "var(--tag-marketing-bg)",
+    "icon": "📣"
+  },
+  {
+    "name": "Finance",
+    "color": "var(--tag-finance)",
+    "bg": "var(--tag-finance-bg)",
+    "icon": "💳"
+  },
+  {
+    "name": "Accounting",
+    "color": "var(--tag-accounting)",
+    "bg": "var(--tag-accounting-bg)",
+    "icon": "🧾"
+  },
+  {
+    "name": "Entrepreneurship",
+    "color": "var(--tag-entrepreneurship)",
+    "bg": "var(--tag-entrepreneurship-bg)",
+    "icon": "🚀"
+  },
+
+  {
+    "name": "Productivity",
+    "color": "var(--tag-productivity)",
+    "bg": "var(--tag-productivity-bg)",
+    "icon": "⏱️"
+  },
+  {
+    "name": "Public Speaking",
+    "color": "var(--tag-public-speaking)",
+    "bg": "var(--tag-public-speaking-bg)",
+    "icon": "🎤"
+  },
+  {
+    "name": "Leadership",
+    "color": "var(--tag-leadership)",
+    "bg": "var(--tag-leadership-bg)",
+    "icon": "👑"
+  },
+  {
+    "name": "Critical Thinking",
+    "color": "var(--tag-critical-thinking)",
+    "bg": "var(--tag-critical-thinking-bg)",
+    "icon": "🔍"
+  },
+  {
+    "name": "Mindfulness",
+    "color": "var(--tag-mindfulness)",
+    "bg": "var(--tag-mindfulness-bg)",
+    "icon": "🧘"
+  },
+
+  { "name": "Differential Equations",   "color": "var(--tag-calculus)",         "bg": "var(--tag-calculus-bg)",         "icon": "📉" },
+  { "name": "Discrete Mathematics",     "color": "var(--tag-math)",             "bg": "var(--tag-math-bg)",             "icon": "🔣" },
+  { "name": "Data Structures",          "color": "var(--tag-computer-science)", "bg": "var(--tag-computer-science-bg)", "icon": "🗂️" },
+  { "name": "Algorithms",               "color": "var(--tag-programming)",      "bg": "var(--tag-programming-bg)",      "icon": "⚙️" },
+  { "name": "Machine Learning",         "color": "var(--tag-astronomy)",        "bg": "var(--tag-astronomy-bg)",        "icon": "🤖" },
+  { "name": "Database Systems",         "color": "var(--tag-computer-science)", "bg": "var(--tag-computer-science-bg)", "icon": "🗄️" },
+  { "name": "Operating Systems",        "color": "var(--tag-geography)",        "bg": "var(--tag-geography-bg)",        "icon": "🖥️" },
+  { "name": "Computer Networks",        "color": "var(--tag-programming)",      "bg": "var(--tag-programming-bg)",      "icon": "📡" },
+  { "name": "Artificial Intelligence",  "color": "var(--tag-physics)",          "bg": "var(--tag-physics-bg)",          "icon": "🧠" },
+  { "name": "Probability Theory",       "color": "var(--tag-statistics)",       "bg": "var(--tag-statistics-bg)",       "icon": "🎲" },
+  { "name": "Number Theory",            "color": "var(--tag-math)",             "bg": "var(--tag-math-bg)",             "icon": "∞" },
+  { "name": "Real Analysis",            "color": "var(--tag-algebra)",          "bg": "var(--tag-algebra-bg)",          "icon": "📊" },
+  { "name": "Quantum Mechanics",        "color": "var(--tag-physics)",          "bg": "var(--tag-physics-bg)",          "icon": "⚡" },
+  { "name": "Thermodynamics",           "color": "var(--tag-chemistry)",        "bg": "var(--tag-chemistry-bg)",        "icon": "🌡️" },
+  { "name": "Organic Chemistry",        "color": "var(--tag-chemistry)",        "bg": "var(--tag-chemistry-bg)",        "icon": "🧪" },
+  { "name": "Biochemistry",             "color": "var(--tag-biology)",          "bg": "var(--tag-biology-bg)",          "icon": "🧬" },
+  { "name": "Molecular Biology",        "color": "var(--tag-biology)",          "bg": "var(--tag-biology-bg)",          "icon": "🔬" },
+  { "name": "Genetics",                 "color": "var(--tag-earth-science)",    "bg": "var(--tag-earth-science-bg)",    "icon": "🧫" },
+  { "name": "Neuroscience",             "color": "var(--tag-psychology)",       "bg": "var(--tag-psychology-bg)",       "icon": "🧠" },
+  { "name": "Cognitive Science",        "color": "var(--tag-psychology)",       "bg": "var(--tag-psychology-bg)",       "icon": "💭" },
+  { "name": "International Relations",  "color": "var(--tag-world-history)",    "bg": "var(--tag-world-history-bg)",    "icon": "🌍" },
+  { "name": "Anthropology",             "color": "var(--tag-history)",          "bg": "var(--tag-history-bg)",          "icon": "🏺" },
+  { "name": "Linguistics",              "color": "var(--tag-grammar)",          "bg": "var(--tag-grammar-bg)",          "icon": "🔤" },
+  { "name": "Financial Mathematics",    "color": "var(--tag-economics)",        "bg": "var(--tag-economics-bg)",        "icon": "📈" },
+  { "name": "Game Theory",              "color": "var(--tag-philosophy)",       "bg": "var(--tag-philosophy-bg)",       "icon": "♟️" },
+
+  { "name": "Russian",    "color": "var(--tag-russian)",    "bg": "var(--tag-russian-bg)",    "icon": "🇷🇺" },
+  { "name": "Portuguese", "color": "var(--tag-portuguese)", "bg": "var(--tag-portuguese-bg)", "icon": "🇵🇹" },
+  { "name": "Italian",    "color": "var(--tag-italian)",    "bg": "var(--tag-italian-bg)",    "icon": "🇮🇹" },
+  { "name": "Korean",     "color": "var(--tag-korean)",     "bg": "var(--tag-korean-bg)",     "icon": "🇰🇷" },
+  { "name": "Hindi",      "color": "var(--tag-hindi)",      "bg": "var(--tag-hindi-bg)",      "icon": "🇮🇳" },
+  { "name": "Turkish",    "color": "var(--tag-turkish)",    "bg": "var(--tag-turkish-bg)",    "icon": "🇹🇷" },
+  { "name": "Dutch",      "color": "var(--tag-dutch)",      "bg": "var(--tag-dutch-bg)",      "icon": "🇳🇱" },
+  { "name": "Polish",     "color": "var(--tag-polish)",     "bg": "var(--tag-polish-bg)",     "icon": "🇵🇱" },
+  { "name": "Ukrainian",  "color": "var(--tag-ukrainian)",  "bg": "var(--tag-ukrainian-bg)",  "icon": "🇺🇦" },
+  { "name": "Swedish",    "color": "var(--tag-swedish)",    "bg": "var(--tag-swedish-bg)",    "icon": "🇸🇪" },
+  { "name": "Greek",      "color": "var(--tag-greek)",      "bg": "var(--tag-greek-bg)",      "icon": "🇬🇷" },
+  { "name": "Hebrew",     "color": "var(--tag-hebrew)",     "bg": "var(--tag-hebrew-bg)",     "icon": "🇮🇱" },
+  { "name": "Persian",    "color": "var(--tag-persian)",    "bg": "var(--tag-persian-bg)",    "icon": "🇮🇷" },
+  { "name": "Indonesian", "color": "var(--tag-indonesian)", "bg": "var(--tag-indonesian-bg)", "icon": "🇮🇩" },
+  { "name": "Thai",       "color": "var(--tag-thai)",       "bg": "var(--tag-thai-bg)",       "icon": "🇹🇭" },
+  { "name": "Vietnamese", "color": "var(--tag-vietnamese)", "bg": "var(--tag-vietnamese-bg)", "icon": "🇻🇳" }
+]

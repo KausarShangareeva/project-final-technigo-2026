@@ -1,0 +1,452 @@
+import { useEffect, useRef, useState, type FormEvent } from "react";
+import { MapPin, Trash2, Pencil, Check, X } from "lucide-react";
+import TagIcon from "../components/TagIcon";
+import { useAuth } from "../context/AuthContext";
+import { useAvatar } from "../hooks/useAvatar";
+import { api } from "../api/client";
+import CTAButton from "../components/CTAButton";
+import UserAvatar from "../components/UserAvatar";
+import type { FeedbackEntry, FeedbackPayload } from "../api/types";
+import styles from "./Feedback.module.css";
+
+const initialForm: FeedbackPayload = {
+  name: "",
+  email: "",
+  rating: 5,
+  message: "",
+  location: "",
+};
+
+const reactionOptions = [
+  { value: 1, emoji: "😔", label: "Bad" },
+  { value: 3, emoji: "🙂", label: "Decent" },
+  { value: 5, emoji: "😍", label: "Love it!" },
+];
+
+function formatDate(dateString: string): string {
+  const date = new Date(dateString);
+  return new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  }).format(date);
+}
+
+function getReactionTag(rating: number): {
+  label: string;
+  emoji: string;
+  className: string;
+} {
+  if (rating >= 5)
+    return { label: "Love it!", emoji: "🔥", className: "tagLove" };
+  if (rating >= 3)
+    return { label: "Decent", emoji: "🙂", className: "tagDecent" };
+  return { label: "Bad", emoji: "👎", className: "tagBad" };
+}
+
+export default function FeedbackPage() {
+  const { user } = useAuth();
+  const { customAvatar, uploadAvatar } = useAvatar();
+  const avatarInputRef = useRef<HTMLInputElement>(null);
+  const isAuthed = Boolean(user);
+  const [form, setForm] = useState<FeedbackPayload>({
+    ...initialForm,
+    name: user?.name || "",
+    email: user?.email || "",
+  });
+  const [feedbackList, setFeedbackList] = useState<FeedbackEntry[]>([]);
+  const [loadingList, setLoadingList] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
+
+  // Edit state
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [editMessage, setEditMessage] = useState("");
+  const [editRating, setEditRating] = useState(5);
+  const [editSaving, setEditSaving] = useState(false);
+
+  const formReactionOptions = [
+    {
+      value: 1,
+      emoji: "👎",
+      label: "Bad",
+      typeClass: styles.reactionTypeBad,
+      activeClass: styles.reactionActiveBad,
+    },
+    {
+      value: 3,
+      emoji: "🙂",
+      label: "Decent",
+      typeClass: styles.reactionTypeDecent,
+      activeClass: styles.reactionActiveDecent,
+    },
+    {
+      value: 5,
+      emoji: "🔥",
+      label: "Love it!",
+      typeClass: styles.reactionTypeLove,
+      activeClass: styles.reactionActiveLove,
+    },
+  ];
+
+  const displayName = (user?.name || form.name || "Guest").trim();
+
+  useEffect(() => {
+    api
+      .get<FeedbackEntry[]>("/feedback")
+      .then((data) => setFeedbackList(data))
+      .catch(() => setFeedbackList([]))
+      .finally(() => setLoadingList(false));
+  }, []);
+
+  useEffect(() => {
+    if (!user) return;
+    setForm((prev) => ({
+      ...prev,
+      name: prev.name || user.name || "",
+      email: prev.email || user.email || "",
+    }));
+  }, [user]);
+
+  const isOwn = (entry: FeedbackEntry) => {
+    if (!user) return false;
+    if (entry.userId !== null && user.id) {
+      if (String(entry.userId) === String(user.id)) return true;
+    }
+    return entry.name.trim() === displayName;
+  };
+
+  const startEdit = (entry: FeedbackEntry) => {
+    setEditingId(entry._id);
+    setEditMessage(entry.message);
+    setEditRating(entry.rating);
+  };
+
+  const cancelEdit = () => setEditingId(null);
+
+  const saveEdit = async (id: string) => {
+    setEditSaving(true);
+    try {
+      const updated = await api.patch<FeedbackEntry>(`/feedback/${id}`, {
+        message: editMessage,
+        rating: editRating,
+      });
+      setFeedbackList((prev) => prev.map((e) => (e._id === id ? updated : e)));
+      setEditingId(null);
+    } catch {
+      // silent
+    } finally {
+      setEditSaving(false);
+    }
+  };
+
+  const onDelete = async (id: string) => {
+    try {
+      await api.delete(`/feedback/${id}`);
+      setFeedbackList((prev) => prev.filter((e) => e._id !== id));
+    } catch {
+      // silent
+    }
+  };
+
+  const onSubmit = async (event: FormEvent) => {
+    event.preventDefault();
+    setSubmitting(true);
+    setError("");
+
+    const payload: FeedbackPayload = {
+      ...form,
+      name: user?.name || form.name,
+      email: user?.email || form.email,
+      avatarUrl: customAvatar || user?.avatar || "",
+    };
+
+    // Optimistic update — show immediately without waiting for server
+    const tempId = `temp-${Date.now()}`;
+    const optimisticEntry: FeedbackEntry = {
+      _id: tempId,
+      userId: user?.id || null,
+      name: payload.name,
+      rating: payload.rating,
+      message: payload.message,
+      location: payload.location || "",
+      avatarUrl: payload.avatarUrl || "",
+      createdAt: new Date().toISOString(),
+    };
+    setFeedbackList((prev) => [optimisticEntry, ...prev]);
+    setForm({
+      ...initialForm,
+      name: user?.name || "",
+      email: user?.email || "",
+    });
+    setSubmitting(false);
+
+    // Sync with server in background
+    api
+      .post<FeedbackEntry>("/feedback", payload)
+      .then((created) => {
+        setFeedbackList((prev) =>
+          prev.map((e) => (e._id === tempId ? created : e)),
+        );
+      })
+      .catch((err) => {
+        setFeedbackList((prev) => prev.filter((e) => e._id !== tempId));
+        setForm(payload);
+        setError(
+          err instanceof Error ? err.message : "Failed to submit feedback",
+        );
+      });
+  };
+
+  return (
+    <section className={styles.page}>
+      <header className={styles.hero}>
+        <div className={styles.badge}>
+          <TagIcon icon="⭐" size={18} /> Student reviews
+        </div>
+        <h2 className={styles.heroTitle}>
+          Real experiences from <span className={styles.brand}>PlanFlow</span>{" "}
+          users
+        </h2>
+        <p className={styles.heroSubtitle}>Tried it already?</p>
+        <CTAButton
+          onClick={() =>
+            document
+              .querySelector("form")
+              ?.scrollIntoView({ behavior: "smooth", block: "end" })
+          }
+        >
+          Share your experience
+        </CTAButton>
+      </header>
+
+      <aside className={styles.feed}>
+        {loadingList && <p className={styles.empty}>Loading feedback...</p>}
+        {!loadingList && !feedbackList.length && (
+          <p className={styles.empty}>No feedback yet 😄 Be the first one ✨</p>
+        )}
+
+        {feedbackList.length > 0 && (
+          <div className={styles.list}>
+            {feedbackList.map((entry) => {
+              const reaction = getReactionTag(entry.rating);
+              const own = isOwn(entry);
+              const isEditing = editingId === entry._id;
+
+              return (
+                <article key={entry._id} className={styles.card}>
+                  <UserAvatar
+                    name={entry.name}
+                    size={40}
+                    isCurrentUser={own}
+                    avatarUrl={entry.avatarUrl}
+                  />
+                  <div className={styles.cardContent}>
+                    <div className={styles.cardMeta}>
+                      <div className={styles.cardInfo}>
+                        <strong className={styles.cardName}>
+                          {entry.name}
+                          {!entry.userId && (
+                            <span className={styles.guestLabel}>(guest)</span>
+                          )}
+                        </strong>
+                        <span className={styles.cardDate}>
+                          {formatDate(entry.createdAt)}
+                        </span>
+                      </div>
+                      {own && !isEditing && (
+                        <div className={styles.cardActions}>
+                          <button
+                            type="button"
+                            className={styles.editBtn}
+                            onClick={() => startEdit(entry)}
+                            aria-label="Edit feedback"
+                          >
+                            <Pencil size={13} />
+                          </button>
+                          <button
+                            type="button"
+                            className={styles.deleteBtn}
+                            onClick={() => onDelete(entry._id)}
+                            aria-label="Delete feedback"
+                          >
+                            <Trash2 size={13} />
+                          </button>
+                        </div>
+                      )}
+                      {!isEditing && (
+                        <span
+                          className={`${styles.reactionTag} ${styles[reaction.className]}`}
+                        >
+                          <TagIcon icon={reaction.emoji} size={20} />
+                          {reaction.label}
+                        </span>
+                      )}
+                    </div>
+
+                    {isEditing ? (
+                      <div className={styles.editArea}>
+                        <div className={styles.editRatingRow}>
+                          {reactionOptions.map((opt) => (
+                            <button
+                              key={opt.value}
+                              type="button"
+                              className={`${styles.editRatingBtn} ${editRating === opt.value ? styles.editRatingActive : ""}`}
+                              onClick={() => setEditRating(opt.value)}
+                            >
+                              {opt.emoji} {opt.label}
+                            </button>
+                          ))}
+                        </div>
+                        <textarea
+                          className={styles.editTextarea}
+                          value={editMessage}
+                          onChange={(e) => setEditMessage(e.target.value)}
+                          rows={3}
+                          autoFocus
+                        />
+                        <div className={styles.editActions}>
+                          <button
+                            type="button"
+                            className={styles.saveBtn}
+                            onClick={() => saveEdit(entry._id)}
+                            disabled={editSaving || !editMessage.trim()}
+                          >
+                            <Check size={14} />
+                            {editSaving ? "Saving..." : "Save"}
+                          </button>
+                          <button
+                            type="button"
+                            className={styles.cancelBtn}
+                            onClick={cancelEdit}
+                          >
+                            <X size={14} />
+                            Cancel
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
+                      <p className={styles.cardMessage}>{entry.message}</p>
+                    )}
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        )}
+      </aside>
+
+      <form onSubmit={onSubmit} className={styles.form}>
+        <div className={styles.authorCard}>
+          <div className={styles.authorMain}>
+            <UserAvatar
+              name={displayName}
+              size={44}
+              isCurrentUser
+              showEditOverlay={!!user}
+              onClick={user ? () => avatarInputRef.current?.click() : undefined}
+            />
+            <input
+              ref={avatarInputRef}
+              type="file"
+              accept="image/*"
+              hidden
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+                if (file) uploadAvatar(file);
+                e.target.value = "";
+              }}
+            />
+            <div className={styles.authorMeta}>
+              <div className={styles.authorNameRow}>
+                <h2>
+                  {displayName}
+                  {!user && <span className={styles.guestLabel}>(guest)</span>}
+                </h2>
+                <span className={styles.authorDate}>
+                  {new Intl.DateTimeFormat("en-US", {
+                    month: "short",
+                    day: "numeric",
+                    year: "numeric",
+                  }).format(new Date())}
+                </span>
+              </div>
+              <p className={styles.locationText}>
+                <MapPin size={14} />
+                Студентка
+              </p>
+            </div>
+          </div>
+
+          <div className={styles.authorActions}>
+            <button
+              type="button"
+              className={styles.clearBtn}
+              onClick={() =>
+                setForm({
+                  ...initialForm,
+                  name: user?.name || "",
+                  email: user?.email || "",
+                })
+              }
+              aria-label="Clear form"
+            >
+              <Trash2 size={15} />
+            </button>
+            <p className={styles.rateTitle}>Rate your experience</p>
+            <div className={styles.reactionGroup}>
+              {formReactionOptions.map((option) => (
+                <button
+                  key={option.value}
+                  type="button"
+                  onClick={() =>
+                    setForm((prev) => ({ ...prev, rating: option.value }))
+                  }
+                  className={`${styles.reactionButton} ${option.typeClass} ${form.rating === option.value ? option.activeClass : ""}`}
+                >
+                  <TagIcon icon={option.emoji} size={18} />
+                  {option.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+        {error && <div className={styles.error}>{error}</div>}
+
+        {!isAuthed && (
+          <div className={styles.row}>
+            <label>
+              Name *
+              <input
+                value={form.name}
+                onChange={(e) =>
+                  setForm((prev) => ({ ...prev, name: e.target.value }))
+                }
+                required
+              />
+            </label>
+          </div>
+        )}
+
+        <label className={styles.message}>
+          <textarea
+            className={styles.messageArea}
+            value={form.message}
+            onChange={(e) =>
+              setForm((prev) => ({ ...prev, message: e.target.value }))
+            }
+            rows={6}
+            placeholder="Share your thoughts..."
+            required
+          />
+        </label>
+
+        <div className={styles.submitRow}>
+          <button className={styles.submit} type="submit" disabled={submitting}>
+            {submitting ? "Publishing..." : "Publish feedback"}
+          </button>
+        </div>
+      </form>
+    </section>
+  );
+}

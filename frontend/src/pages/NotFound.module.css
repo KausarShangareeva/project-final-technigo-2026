@@ -1,0 +1,138 @@
+.wrapper {
+  min-height: min(72rem, calc(100dvh - var(--header-height) - 12rem));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-2xl);
+  padding: var(--space-2xl) var(--space-md);
+  text-align: center;
+}
+
+.code {
+  margin: 0;
+  line-height: 0.85;
+  font-size: clamp(10rem, 26vw, 30rem);
+  font-weight: 500;
+  letter-spacing: -0.06em;
+  color: var(--color-text);
+}
+
+.card {
+  position: relative;
+  width: min(100%, 56rem);
+  padding: clamp(var(--space-lg), 4vw, var(--space-2xl));
+  border: 1px solid transparent;
+  border-radius: calc(var(--radius-xl) + 0.6rem);
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      var(--dash-color) 0,
+      var(--dash-color) 14px,
+      transparent 14px,
+      transparent 22px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      var(--dash-color) 0,
+      var(--dash-color) 14px,
+      transparent 14px,
+      transparent 22px
+    ),
+    repeating-linear-gradient(
+      180deg,
+      var(--dash-color) 0,
+      var(--dash-color) 14px,
+      transparent 14px,
+      transparent 22px
+    ),
+    repeating-linear-gradient(
+      180deg,
+      var(--dash-color) 0,
+      var(--dash-color) 14px,
+      transparent 14px,
+      transparent 22px
+    );
+  background-size:
+    100% 1px,
+    100% 1px,
+    1px 100%,
+    1px 100%;
+  background-position: top, bottom, left, right;
+  background-repeat: no-repeat;
+}
+
+.title {
+  margin: 0 0 var(--space-sm);
+  color: var(--color-text);
+  font-size: clamp(2.8rem, 4vw, 4rem);
+  font-weight: 600;
+}
+
+.description {
+  margin: 0 auto;
+  max-width: 42rem;
+  color: var(--color-text-muted);
+  font-size: var(--fs-base);
+  line-height: 1.5;
+}
+
+.cta {
+  font-family: var(--font-sans);
+  margin-top: var(--space-xl);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: 1rem 1rem 1rem 3rem;
+  border-radius: var(--radius-full);
+  background: var(--color-text);
+  color: var(--color-text-inverse);
+  font-size: 1.3rem;
+  letter-spacing: 0.04em;
+  font-weight: 700;
+  text-transform: uppercase;
+  transition:
+    transform var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+.cta:hover {
+  color: var(--color-text-inverse);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.ctaIcon {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+@media (max-width: 640px) {
+  .wrapper {
+    min-height: auto;
+    padding: var(--space-xl) 0 var(--space-2xl);
+  }
+
+  .card {
+    width: 100%;
+    padding: var(--space-lg);
+  }
+
+  .description {
+    font-size: var(--fs-sm);
+  }
+}
